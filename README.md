@@ -27,6 +27,7 @@ You can see a live demo of this website at:
 *   **GitHub Pages:** Website hosting.
 
 ## 📁 Project Structure
+```
 your-repository/
 ├── docs/                   <-- Main folder for GitHub Pages (could also be the root, depending on settings)
 │   ├── index.html          <-- Main portfolio page
@@ -43,7 +44,7 @@ your-repository/
 │   │   └── ... (other images)
 │   └── favicon.ico
 └── README.md               <-- This file
-
+```
 ## 🧑‍💻 About Me
 
 I'm a final-year Sharia Accounting student at UINSU. I have a strong interest in:
