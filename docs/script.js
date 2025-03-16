@@ -6,17 +6,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Fungsi untuk animasi smooth scrolling (polyfill sederhana)
     function smoothScrollTo(targetY, duration) {
-        const startingY = window.pageYOffset;
-        const diff = targetY - startingY;
+        const startingY = window.pageYOffset; // Posisi scroll saat ini
+        const diff = targetY - startingY;     // Selisih jarak
         let start;
 
         // Fungsi animasi (dijalankan setiap frame)
         function step(timestamp) {
             if (!start) start = timestamp;
-            const time = timestamp - start;
-            const percent = Math.min(time / duration, 1);
+            const time = timestamp - start; // Waktu yang berlalu
+            const percent = Math.min(time / duration, 1); // Persentase animasi (0 - 1)
 
-            // Easing function (easeInOutCubic)
+            // Easing function (easeInOutCubic - Anda bisa ganti dengan easing function lain)
             const easing = percent < 0.5
                 ? 4 * percent * percent * percent
                 : 1 - Math.pow(-2 * percent + 2, 3) / 2;
@@ -24,13 +24,13 @@ document.addEventListener('DOMContentLoaded', function() {
             window.scrollTo(0, startingY + diff * easing);
 
             if (time < duration) {
-                window.requestAnimationFrame(step);
+                window.requestAnimationFrame(step); // Lanjutkan animasi di frame berikutnya
             }
         }
-        window.requestAnimationFrame(step);
+        window.requestAnimationFrame(step); // Mulai animasi
     }
 
-    //fungsi cek support smooth scroll
+     //fungsi cek support smooth scroll
     function supportsSmoothScroll() {
         let supports = false;
         try {
@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return supports;
     }
 
+
     // Fungsi utama smooth scrolling (dengan fallback)
     function smoothScrollToAnchor() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -56,8 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const targetElement = document.querySelector(this.getAttribute('href'));
 
                 if (targetElement) {
-                     if (supportsSmoothScroll()) {
-                        // Gunakan cara modern jika didukung
+                    if (supportsSmoothScroll()) {
+                        //Gunakan native jika support
                         targetElement.scrollIntoView({ behavior: 'smooth' });
                     } else {
                         // Fallback ke animasi manual
@@ -69,10 +70,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    smoothScrollToAnchor();
+    smoothScrollToAnchor();  // Panggil fungsi untuk mengaktifkan smooth scrolling
 
 
     // --- Hamburger Menu ---
+
     const hamburgerMenu = document.querySelector('.hamburger-menu');
     const navLinks = document.querySelector('.nav-links');
 
@@ -80,8 +82,9 @@ document.addEventListener('DOMContentLoaded', function() {
         navLinks.classList.toggle('active');
     });
 
+
     // --- Fungsi untuk mendapatkan posisi elemen relatif terhadap dokumen ---
-      function getElementPosition(el) {
+    function getElementPosition(el) {
         let rect = el.getBoundingClientRect();
         let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -90,45 +93,48 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // --- Animasi Saat Scroll (Heading) ---
+
     const headings = document.querySelectorAll('#about h2, #skills h2, #projects h2, #contact h2');
 
     function animateHeadings() {
         headings.forEach(heading => {
-            const headingTop = getElementPosition(heading).top;
+            const headingTop = getElementPosition(heading).top;  // Gunakan getElementPosition()
             const windowHeight = window.innerHeight;
 
             if (headingTop < windowHeight * 0.8) {
                 heading.classList.add('animate-heading');
-            }
-            else{
-              heading.classList.remove('animate-heading');
+            } else {
+                heading.classList.remove('animate-heading'); // Hapus class jika tidak terlihat
             }
         });
     }
 
+
     // --- Animasi Saat Scroll (Skill Items) ---
+
     const skills = document.querySelectorAll('.skill');
 
     function animateSkills() {
         skills.forEach(skill => {
-            const skillTop =  getElementPosition(skill).top;
+            const skillTop = getElementPosition(skill).top; // Gunakan getElementPosition()
             const windowHeight = window.innerHeight;
 
             if (skillTop < windowHeight * 0.8) {
                 skill.classList.add('animate-skill');
             } else {
-                skill.classList.remove('animate-skill'); // Hapus class jika tidak terlihat
+                skill.classList.remove('animate-skill');  // Hapus class jika tidak terlihat
             }
         });
     }
 
 
-    // --- Fungsi untuk menyesuaikan ukuran font h3 ---
+   // --- Fungsi untuk menyesuaikan ukuran font h3 ---
     function adjustSkillTitleFontSize() {
         const skills = document.querySelectorAll('.skill');
 
         skills.forEach(skill => {
             const h3 = skill.querySelector('h3');
+
             if (!h3) {
                 console.warn("Tidak ada elemen h3 di dalam .skill:", skill);
                 return;
@@ -137,32 +143,43 @@ document.addEventListener('DOMContentLoaded', function() {
             let containerWidth = skill.offsetWidth;
             let titleWidth = h3.offsetWidth;
             let currentFontSize = parseFloat(window.getComputedStyle(h3).fontSize);
-            const minFontSize = 10;
+            const minFontSize = 10; // Batas bawah ukuran font
             let counter = 0;
 
+            // Selama judul lebih lebar dari container, font masih di atas batas minimum, dan belum mencapai batas iterasi
             while (titleWidth > containerWidth && currentFontSize > minFontSize && counter < 50) {
-                currentFontSize -= 0.5;
-                h3.style.fontSize = currentFontSize + 'px';
+                currentFontSize -= 0.5; // Kurangi ukuran font sedikit
+                h3.style.fontSize = currentFontSize + 'px'; // Terapkan ukuran font baru
+
+                // Update lebar setelah perubahan ukuran font (PENTING)
                 titleWidth = h3.offsetWidth;
                 containerWidth = skill.offsetWidth;
-                counter++;
+                counter++;  // Tambah counter
             }
+
             if(counter >= 50){
-              console.warn("Loop penyesuaian font mencapai batas iterasi:", h3);
+                console.warn("Loop penyesuaian font mencapai batas iterasi:", h3);
             }
         });
     }
 
+
     // --- Panggil fungsi-fungsi saat halaman pertama kali dimuat ---
     animateHeadings();
     animateSkills();
-    adjustSkillTitleFontSize();
+     adjustSkillTitleFontSize();
 
     // --- Event Listener ---
+
+    // 1. Saat scroll terjadi
     window.addEventListener('scroll', function() {
         animateHeadings();
         animateSkills();
     });
+
+    // 2. Saat ukuran window berubah (resize).
     window.addEventListener('resize', adjustSkillTitleFontSize);
-     window.addEventListener('load', adjustSkillTitleFontSize); // Panggil saat load juga
+
+    // 3. Saat window selesai dimuat (load).
+    window.addEventListener('load', adjustSkillTitleFontSize);
 });
