@@ -29,7 +29,7 @@ You can see a live demo of this website at:
 ## 📁 Project Structure
 ```
 your-repository/
-├── docs/                   <-- Main folder for GitHub Pages (could also be the root, depending on settings)
+├── docs/                   <-- Main folder for GitHub Pages
 │   ├── index.html          <-- Main portfolio page
 │   ├── style.css           <-- Main page CSS
 │   ├── script.js           <-- Main page JavaScript
@@ -41,9 +41,9 @@ your-repository/
 │   │   ├── Coming Soon.png
 │   │   ├── Coming Soon 2.png
 │   │   ├── Coming Soon 3.png
-│   │   └── ... (other images)
+│   │   └── ... (Other images in progress)
 │   └── favicon.ico
-└── README.md               <-- This file
+└── README.md               <-- My README File
 ```
 ## 🧑‍💻 About Me
 
