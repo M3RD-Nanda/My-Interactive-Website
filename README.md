@@ -16,7 +16,6 @@ You can see a live demo of this website at:
 *   **Responsive Design:**  This website is optimized for viewing on a variety of devices, from desktops to mobile phones.
 *   **Interactive Animations:**  Website elements have smooth animations on scroll and hover, providing a more dynamic user experience.
 *   **Comprehensive Information:** Presents information about myself, my skills, projects, and contact information clearly and in an organized manner.
-*   **Contact Form:** *[Plan to add a contact form in the future, or remove this section if not relevant]*.
 *   **"Coming Soon" Page:** Indicates that an exciting project is currently under development.
 
 ## 🛠️ Technologies Used
