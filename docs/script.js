@@ -4,14 +4,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- Smooth Scrolling ---
 
+    // Fungsi untuk menambahkan perilaku smooth scrolling ke tautan anchor.
     function smoothScrollToAnchor() {
-        
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {.
+            // Tambahkan event listener 'click' ke setiap tautan.
+            anchor.addEventListener('click', function(e) {
+                
                 e.preventDefault();
 
+                // Ambil elemen target berdasarkan nilai href tautan.
                 const targetElement = document.querySelector(this.getAttribute('href'));
-.
+
+                // Jika elemen target ditemukan, scroll ke elemen tersebut dengan animasi.
                 if (targetElement) {
                     targetElement.scrollIntoView({
                         behavior: 'smooth' // Ini yang membuat scrolling menjadi halus.
@@ -30,9 +34,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburgerMenu = document.querySelector('.hamburger-menu');
     const navLinks = document.querySelector('.nav-links');
 
+    // Tambahkan event listener 'click' ke hamburger menu.
     hamburgerMenu.addEventListener('click', function() {
         // Toggle (tambahkan/hapus) class 'active' pada daftar tautan.
-        // Class 'active' ini digunakan oleh CSS untuk menampilkan/menyembunyikan menu.
+        
         navLinks.classList.toggle('active');
     });
 
