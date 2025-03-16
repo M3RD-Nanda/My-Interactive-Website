@@ -1,6 +1,5 @@
 /* style.css */
 
-/* Reset and Gaya Umum */
 * {
     margin: 0;
     padding: 0;
@@ -141,7 +140,6 @@ nav {
     height: auto;
     border-radius: 50%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* width dan height sebaiknya diatur di sini, bukan inline */
 }
 
 /* Bagian About */
