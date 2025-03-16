@@ -6,17 +6,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Fungsi untuk animasi smooth scrolling (polyfill sederhana)
     function smoothScrollTo(targetY, duration) {
-        const startingY = window.pageYOffset; // Posisi scroll saat ini
-        const diff = targetY - startingY;     // Selisih jarak
+        const startingY = window.pageYOffset;
+        const diff = targetY - startingY;
         let start;
 
         // Fungsi animasi (dijalankan setiap frame)
         function step(timestamp) {
             if (!start) start = timestamp;
-            const time = timestamp - start; // Waktu yang berlalu
-            const percent = Math.min(time / duration, 1); // Persentase animasi (0 - 1)
+            const time = timestamp - start;
+            const percent = Math.min(time / duration, 1);
 
-            // Animasi easing (easeInOutCubic - Anda bisa ganti dengan easing function lain)
+            // Easing function (easeInOutCubic)
             const easing = percent < 0.5
                 ? 4 * percent * percent * percent
                 : 1 - Math.pow(-2 * percent + 2, 3) / 2;
@@ -24,10 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
             window.scrollTo(0, startingY + diff * easing);
 
             if (time < duration) {
-                window.requestAnimationFrame(step); // Lanjutkan animasi di frame berikutnya
+                window.requestAnimationFrame(step);
             }
         }
-        window.requestAnimationFrame(step); // Mulai animasi
+        window.requestAnimationFrame(step);
     }
 
     //fungsi cek support smooth scroll
@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return supports;
     }
 
-
     // Fungsi utama smooth scrolling (dengan fallback)
     function smoothScrollToAnchor() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -57,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const targetElement = document.querySelector(this.getAttribute('href'));
 
                 if (targetElement) {
-                    if (supportsSmoothScroll()) {
+                     if (supportsSmoothScroll()) {
                         // Gunakan cara modern jika didukung
                         targetElement.scrollIntoView({ behavior: 'smooth' });
                     } else {
@@ -70,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    smoothScrollToAnchor();  // Panggil fungsi untuk mengaktifkan smooth scrolling
+    smoothScrollToAnchor();
 
 
     // --- Hamburger Menu ---
@@ -82,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // --- Fungsi untuk mendapatkan posisi elemen relatif terhadap dokumen ---
-    function getElementPosition(el) {
+      function getElementPosition(el) {
         let rect = el.getBoundingClientRect();
         let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -100,25 +99,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (headingTop < windowHeight * 0.8) {
                 heading.classList.add('animate-heading');
-            } else {
-                heading.classList.remove('animate-heading');
+            }
+            else{
+              heading.classList.remove('animate-heading');
             }
         });
     }
-
 
     // --- Animasi Saat Scroll (Skill Items) ---
     const skills = document.querySelectorAll('.skill');
 
     function animateSkills() {
         skills.forEach(skill => {
-            const skillTop = getElementPosition(skill).top;
+            const skillTop =  getElementPosition(skill).top;
             const windowHeight = window.innerHeight;
 
             if (skillTop < windowHeight * 0.8) {
                 skill.classList.add('animate-skill');
             } else {
-                skill.classList.remove('animate-skill');
+                skill.classList.remove('animate-skill'); // Hapus class jika tidak terlihat
             }
         });
     }
@@ -130,7 +129,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         skills.forEach(skill => {
             const h3 = skill.querySelector('h3');
-
             if (!h3) {
                 console.warn("Tidak ada elemen h3 di dalam .skill:", skill);
                 return;
@@ -139,22 +137,19 @@ document.addEventListener('DOMContentLoaded', function() {
             let containerWidth = skill.offsetWidth;
             let titleWidth = h3.offsetWidth;
             let currentFontSize = parseFloat(window.getComputedStyle(h3).fontSize);
-            const minFontSize = 10; // Batas bawah ukuran font
+            const minFontSize = 10;
             let counter = 0;
 
-            // Selama judul lebih lebar dari container dan font masih di atas batas minimum:
             while (titleWidth > containerWidth && currentFontSize > minFontSize && counter < 50) {
-                currentFontSize -= 0.5; // Kurangi ukuran font
-                h3.style.fontSize = currentFontSize + 'px'; // Terapkan ukuran font baru
-
-                // Update lebar setelah perubahan ukuran font (PENTING)
+                currentFontSize -= 0.5;
+                h3.style.fontSize = currentFontSize + 'px';
                 titleWidth = h3.offsetWidth;
                 containerWidth = skill.offsetWidth;
                 counter++;
             }
-             if(counter >= 50){
-              console.warn("Loop penyesuaian font mencapai batas iterasi:", h3); // Log yang lebih deskriptif
-             }
+            if(counter >= 50){
+              console.warn("Loop penyesuaian font mencapai batas iterasi:", h3);
+            }
         });
     }
 
@@ -164,16 +159,10 @@ document.addEventListener('DOMContentLoaded', function() {
     adjustSkillTitleFontSize();
 
     // --- Event Listener ---
-
-    // 1. Saat scroll terjadi.
     window.addEventListener('scroll', function() {
         animateHeadings();
         animateSkills();
     });
-
-    // 2. Saat ukuran window berubah (resize).
     window.addEventListener('resize', adjustSkillTitleFontSize);
-
-    // 3. Saat window selesai dimuat (load).
-    window.addEventListener('load', adjustSkillTitleFontSize);
+     window.addEventListener('load', adjustSkillTitleFontSize); // Panggil saat load juga
 });
