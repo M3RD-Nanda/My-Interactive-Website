@@ -1,4 +1,4 @@
-/* style.css (Portofolio Utama - Lengkap) */
+/* style.css */
 
 /* --- Reset and Gaya Umum --- */
 * {
@@ -157,12 +157,11 @@ nav {
 
 #about h2 {
     font-size: 2.5rem;
-    margin-bottom: 0;/*Hapus margin*/
+    margin-bottom: 0;  /*Hapus margin*/
     color: var(--primary-color);
-    opacity: 1;          /* Awalnya terlihat */
-    transform: translateY(0); /* Awalnya di posisi normal */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transisi */
-
+    opacity: 1;          /* Pastikan ini 1 (terlihat) */
+    transform: translateY(0); /* Pastikan ini 0 (posisi normal) */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transisi (tapi tidak aktif sebelum .animate-heading ditambahkan) */
 }
 
 .about-container {
@@ -194,7 +193,7 @@ nav {
     text-align: center;
     max-width: 1200px;
     margin: auto;
-    overflow-x: auto; /* Jika skill terlalu banyak, biarkan scroll horizontal */
+    overflow-x: auto;
 }
 
 #skills h2 {
@@ -224,7 +223,7 @@ nav {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
     opacity: 0;            /* Awalnya tersembunyi */
-    transform: scale(1);   /* Awalnya dengan ukuran normal */
+    transform: scale(1);  /* Awalnya dengan ukuran normal */
     transition: opacity 0.4s ease-out, transform 0.4s ease-out; /* Transisi */
     overflow: hidden;      /* Pastikan konten yang melebihi batas terpotong */
 }
@@ -244,7 +243,7 @@ nav {
     font-size: 1.72rem;
     margin-bottom: 10px;
     word-wrap: break-word; /* Pecahkan kata jika terlalu panjang */
-     /*white-space: normal;   <-- Hapus ini JIKA ADA.  Gunakan word-wrap: break-word; */
+    /* white-space: normal;  <-- Hapus ini JIKA ADA */
     line-height: 1.2;     /* Jarak antar baris */
     /* Pastikan TIDAK ADA white-space: nowrap; */
 }
@@ -252,11 +251,13 @@ nav {
 .skill p {
     font-size: 1rem;
 }
+
 /* Class untuk memicu animasi skill */
 .animate-skill {
     opacity: 1;          /* Munculkan skill */
-    transform: scale(1);  /* Kembalikan ke ukuran normal */
+    transform: scale(1); /* Kembalikan ke ukuran normal */
 }
+
 
 /* --- Bagian Projects --- */
 #projects {
@@ -323,8 +324,7 @@ nav {
 .project-info h3 {
     font-size: 1.5rem;
     margin-bottom: 10px;
-    word-wrap: break-word; /* Pecahkan kata jika terlalu panjang */
-
+    word-wrap: break-word;
 }
 
 .project-info p {
@@ -357,12 +357,12 @@ nav {
 }
 
 #contact h2 {
-      font-size: 2.5rem;
+    font-size: 2.5rem;
     text-align: center;
     margin-bottom: 30px;
     color: var(--primary-color);
-     opacity: 0;                 /* Awalnya tersembunyi */
-    transform: translateY(50px);  /* Awalnya di bawah */
+    opacity: 0;               /* Awalnya tersembunyi */
+    transform: translateY(50px);/* Awalnya di bawah */
     transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transisi */
 }
 
@@ -422,13 +422,15 @@ footer {
 }
 
 /* --- Media Query (Responsif) --- */
+
+/* Tablet dan layar yang lebih kecil */
 @media (max-width: 768px) {
     .nav-links {
         display: none; /* Sembunyikan menu navigasi di layar kecil */
         flex-direction: column; /* Susun menu secara vertikal */
         width: 100%;
         position: absolute;
-        top: 60px; /* Sesuaikan dengan tinggi header */
+        top: 60px;         /* Sesuaikan dengan tinggi header */
         left: 0;
         background-color: #fff;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -439,8 +441,8 @@ footer {
     }
 
     .nav-links.active {
-        display: flex; /* Tampilkan menu saat aktif */
-        transform: translateY(0); /* Munculkan dari atas */
+        display: flex;        /* Tampilkan menu saat aktif */
+        transform: translateY(0);  /* Munculkan dari atas */
         opacity: 1;
     }
 
@@ -457,8 +459,8 @@ footer {
     .nav-links a {
         padding: 15px;
     }
-
-    nav {
+    
+nav {
         justify-content: space-between; /* Hamburger menu di kanan */
     }
 
@@ -480,7 +482,8 @@ footer {
     .hero-content h1 {
         font-size: 2.5rem;
     }
-.animated-text {
+
+    .animated-text {
         font-size: 1.2rem;
     }
 
@@ -503,13 +506,14 @@ footer {
         padding: 40px 20px;
     }
 
-    .hero-image img {
-        width: 200px; /* Sesuaikan ukuran gambar di layar kecil */
+    .hero-image img {  /*Perbaikan pada image di mobile*/
+        width: 200px;
         height: 200px;
     }
-    #contact .contact-links{
-      justify-content: center;
-      align-items: center;
+
+    #contact .contact-links {
+        justify-content: center;
+        align-items: center;
     }
 
     /* Animasi pada icon hamburger */
@@ -518,10 +522,12 @@ footer {
     }
 }
 
+/* Smartphone dan layar yang sangat kecil */
 @media (max-width: 480px) {
     .projects-container {
         grid-template-columns: 1fr; /* Satu kolom di layar sangat kecil */
     }
+
     .hero-content h1 {
         font-size: 2rem;
     }
