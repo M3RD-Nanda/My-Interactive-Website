@@ -186,7 +186,7 @@ nav {
     border-radius: 20px;
 }
 
-/* --- Bagian Skills --- */
+/* Bagian Skills */
 #skills {
     padding: 40px 20px;
     text-align: center;
@@ -200,10 +200,11 @@ nav {
     margin-bottom: 30px;
     color: var(--primary-color);
 }
+
 /* Animasi heading (digunakan oleh #about h2, #skills h2, #projects h2) */
 .animate-heading {
-     opacity: 1;          /* Munculkan heading */
-    transform: translateY(0); /* Kembalikan ke posisi normal */
+    opacity: 1;
+    transform: translateY(0);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
@@ -223,11 +224,11 @@ nav {
     opacity: 0;            /* Awalnya tersembunyi */
     transform: scale(1);  /* Awalnya dengan ukuran normal */
     transition: opacity 0.4s ease-out, transform 0.4s ease-out; /* Transisi */
-    overflow: hidden;
+    overflow: hidden;      /* Pastikan konten yang melebihi batas terpotong */
 }
 
 .skill:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px); /* Efek "melayang" saat hover */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -241,16 +242,18 @@ nav {
     font-size: 1.72rem;
     margin-bottom: 10px;
     word-wrap: break-word;
-    /* white-space: nowrap;  <-- Hapus ini JIKA ADA */
-    line-height: 1.2;
+    /* white-space: normal;  <-- Hapus ini JIKA ADA */
+    line-height: 1.2;     /* Jarak antar baris */
+    /* Pastikan TIDAK ADA white-space: nowrap; */
 }
 
 .skill p {
     font-size: 1rem;
 }
- /* Class untuk memicu animasi skill */
+
+  /* Class untuk memicu animasi skill */
 .animate-skill {
-     opacity: 1;          /* Munculkan skill */
+    opacity: 1;          /* Munculkan skill */
     transform: scale(1);  /* Kembalikan ke ukuran normal */
 }
 
