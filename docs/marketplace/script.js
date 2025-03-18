@@ -1,6 +1,7 @@
 // script.js (Marketplace)
 
-// Data Produk
+// Data Produk - DIISI FIKTIF, dalam Bahasa Inggris
+// TAMBAHKAN 1 PRODUK LAGI
 const produkData = [
     {
         id: 1,
@@ -55,7 +56,27 @@ const produkData = [
             </ul>
             <p>This webinar is suitable for business owners, managers, analysts, and anyone who wants to improve their data analysis skills.</p>
         `
-    }
+    },
+    // TAMBAHKAN PRODUK INI
+    {
+        id: 4,
+        nama: "WordPress Website Creation Course",
+        deskripsiSingkat: "Learn how to create a professional website with WordPress, even with no coding experience.",
+        harga: 180000,
+        gambar: "https://via.placeholder.com/150", // GANTI URL
+        detail: `
+            <p>This course will teach you everything you need to know to build a stunning and functional website using WordPress:</p>
+            <ul>
+                <li>Installing and setting up WordPress</li>
+                <li>Choosing the right theme and plugins</li>
+                <li>Creating pages and posts</li>
+                <li>Customizing the design of your website</li>
+                <li>Adding essential features (contact forms, galleries, etc.)</li>
+                <li>SEO basics for WordPress</li>
+            </ul>
+            <p>Perfect for beginners and anyone who wants to create a website without coding.</p>
+        `,
+    },
 ];
 
 
@@ -63,7 +84,7 @@ const produkData = [
 let produkYgDipesan = "";
 let hargaYgDipesan = 0;
 
-// --- FUNGSI RENDER PRODUK (DIPERBAIKI) ---
+// Fungsi untuk merender produk ke HTML
 function renderProduk() {
     const daftarProdukDiv = document.getElementById('daftar-produk');
     daftarProdukDiv.innerHTML = ''; // Kosongkan dulu
@@ -72,15 +93,15 @@ function renderProduk() {
         const produkDiv = document.createElement('div');
         produkDiv.classList.add('produk');
         produkDiv.innerHTML = `
-            <img src="${produk.gambar}" alt="Image ${produk.nama}">
-            <div class="produk-info">
-                <h2>${produk.nama}</h2>
+            <img src="${produk.gambar}" alt="Image <span class="math-inline">\{produk\.nama\}"\>
+<div class\="produk\-info"\>
+<h2\></span>{produk.nama}</h2>
                 <p class="deskripsiSingkat">${produk.deskripsiSingkat}</p>
-                <p class="harga">Rp ${produk.harga.toLocaleString('id-ID')}</p>
-                <button class="tombol-detail cta-button" data-id="${produk.id}">View Detail</button>
+                <p class="harga">Rp <span class="math-inline">\{produk\.harga\.toLocaleString\('id\-ID'\)\}</p\>
+<button class\="tombol\-detail cta\-button" data\-id\="</span>{produk.id}">View Detail</button>
                 <div class="detail-produk">
-                    ${produk.detail}
-                    <a class="link-form cta-button" href="#form-pemesanan" data-id="${produk.id}">Order Now</a>
+                    <span class="math-inline">\{produk\.detail\}
+<a class\="link\-form cta\-button" href\="\#form\-pemesanan" data\-id\="</span>{produk.id}">Order Now</a>
                 </div>
                 <button class="cta-button" data-id="${produk.id}">Buy Now</button>
             </div>
@@ -92,7 +113,7 @@ function renderProduk() {
     addEventListeners();
 }
 
-// --- EVENT LISTENERS (DIPERBAIKI) ---
+// Fungsi untuk menambah event listener ke tombol dan link
 function addEventListeners() {
     // Tombol Lihat Detail / View Detail
     document.querySelectorAll('.tombol-detail').forEach(button => {
@@ -102,7 +123,7 @@ function addEventListeners() {
     });
 
     // Tombol Beli Sekarang dan Link Pesan Sekarang / Buy Now and Order Now
-    document.querySelectorAll('.produk button:not(.tombol-detail), .link-form').forEach(button => {
+   document.querySelectorAll('.produk button:not(.tombol-detail), .link-form').forEach(button => {
     button.addEventListener('click', function() {
         const produkId = parseInt(this.dataset.id);
         const produk = produkData.find(p => p.id === produkId);
@@ -180,7 +201,6 @@ window.addEventListener('click', (event) => {
 // --- Event listener untuk tombol Kembali ---
 tombolKembali.addEventListener('click', () => {
     document.getElementById('form-pemesanan').style.display = 'none'; // Sembunyikan formulir
-    // document.getElementById('daftar-produk').style.display = 'flex'; // Hapus baris ini
     renderProduk();
     document.getElementById('daftar-produk').scrollIntoView({ behavior: 'smooth' });
 
@@ -245,7 +265,7 @@ tombolBayarModal.addEventListener("click", function(){
         pesanWA = encodeURIComponent(pesanWA);
 
         const nomorWA = "628xxxxxxxxxx"; // Ganti dengan nomor WhatsApp Anda!
-        window.open(`https://wa.me/${nomorWA}?text=${pesanWA}`, '_blank');
+        window.open(`https://wa.me/<span class="math-inline">\{nomorWA\}?text\=</span>{pesanWA}`, '_blank');
     } else{
         alert("Please select a payment method.") // Pesan error dalam Bahasa Inggris
     }
@@ -298,3 +318,10 @@ document.addEventListener('DOMContentLoaded', () => {
 // Panggil adjustProductTitleFontSize() juga saat window di-resize dan load
 window.addEventListener('resize', adjustProductTitleFontSize);
 window.addEventListener('load', adjustProductTitleFontSize);
+
+// --- FUNGSI UNTUK MENANGANI TOMBOL KEMBALI ---
+tombolKembali.addEventListener('click', () => {
+    document.getElementById('form-pemesanan').style.display = 'none'; // Sembunyikan formulir
+    renderProduk(); // Panggil renderProduk() untuk menampilkan kembali produk
+    document.getElementById('daftar-produk').scrollIntoView({ behavior: 'smooth' });
+});
