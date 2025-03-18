@@ -177,6 +177,10 @@ nav {
     text-align: justify;
 }
 
+.about-text p {
+    margin-bottom: 1rem; /* Tambahkan spasi antar paragraf */
+}
+
 .about-image {
     flex: 1;
 }
@@ -278,6 +282,18 @@ nav {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex; /* Tambahkan ini */
     flex-direction: column; /* Tambahkan ini */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transisi untuk hover */
+}
+
+/* Efek hover untuk desktop */
+.project:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Efek active (touch) untuk mobile */
+.project:active .project-image {
+    transform: scale(1.05); /* Sedikit perbesar gambar */
 }
 
 .project-image {
@@ -434,10 +450,17 @@ footer {
 
     .hero-content h1 {
         font-size: 2.5rem;  /* Perkecil ukuran font */
+        text-align: center; /* Pusatkan teks */
     }
 
     .animated-text {
         font-size: 1.2rem;  /* Perkecil ukuran font */
+        text-align: center; /* Pusatkan teks */
+    }
+
+     .cta-button {
+        display: flex; /* Jadikan flex container */
+        justify-content: center; /* Pusatkan kontennya */
     }
     /* --- */
 
