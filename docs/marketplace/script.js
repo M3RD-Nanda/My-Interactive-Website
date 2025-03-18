@@ -1,5 +1,6 @@
 // script.js (Marketplace)
 
+// Data Produk
 const produkData = [
     {
         id: 1,
@@ -62,7 +63,7 @@ const produkData = [
 let produkYgDipesan = "";
 let hargaYgDipesan = 0;
 
-// Fungsi untuk merender produk ke HTML
+// --- FUNGSI RENDER PRODUK (DIPERBAIKI) ---
 function renderProduk() {
     const daftarProdukDiv = document.getElementById('daftar-produk');
     daftarProdukDiv.innerHTML = ''; // Kosongkan dulu
@@ -76,14 +77,14 @@ function renderProduk() {
                 <h2>${produk.nama}</h2>
                 <p class="deskripsiSingkat">${produk.deskripsiSingkat}</p>
                 <p class="harga">Rp ${produk.harga.toLocaleString('id-ID')}</p>
-                <button class="tombol-detail" data-id="${produk.id}">View Detail</button>
+                <button class="tombol-detail cta-button" data-id="${produk.id}">View Detail</button>
                 <div class="detail-produk">
                     ${produk.detail}
-                    <a class="link-form" href="#form-pemesanan" data-id="${produk.id}">Order Now</a>
+                    <a class="link-form cta-button" href="#form-pemesanan" data-id="${produk.id}">Order Now</a>
                 </div>
-                <button data-id="${produk.id}">Buy Now</button>
+                <button class="cta-button" data-id="${produk.id}">Buy Now</button>
             </div>
-        `;
+        `; // Semua tombol sekarang punya class cta-button
         daftarProdukDiv.appendChild(produkDiv);
     });
 
@@ -91,7 +92,7 @@ function renderProduk() {
     addEventListeners();
 }
 
-// Fungsi untuk menambah event listener ke tombol dan link
+// --- EVENT LISTENERS (DIPERBAIKI) ---
 function addEventListeners() {
     // Tombol Lihat Detail / View Detail
     document.querySelectorAll('.tombol-detail').forEach(button => {
@@ -102,17 +103,27 @@ function addEventListeners() {
 
     // Tombol Beli Sekarang dan Link Pesan Sekarang / Buy Now and Order Now
     document.querySelectorAll('.produk button:not(.tombol-detail), .link-form').forEach(button => {
-        button.addEventListener('click', function() {
-            const produkId = parseInt(this.dataset.id);
-            const produk = produkData.find(p => p.id === produkId);
-            if (produk) {
-                pesanProduk(produk.nama, produk.harga);
-                document.getElementById('form-pemesanan').style.display = 'block';
-                document.getElementById('daftar-produk').style.display = 'none'; // Sembunyikan daftar produk
-                document.getElementById('form-pemesanan').scrollIntoView({ behavior: 'smooth' });
-            }
-        });
+    button.addEventListener('click', function() {
+        const produkId = parseInt(this.dataset.id);
+        const produk = produkData.find(p => p.id === produkId);
+        if (produk) {
+            pesanProduk(produk.nama, produk.harga);
+            // Sembunyikan daftar produk, tampilkan formulir
+            document.getElementById('form-pemesanan').style.display = 'block';
+            document.getElementById('daftar-produk').style.display = 'none';
+            document.getElementById('form-pemesanan').scrollIntoView({ behavior: 'smooth' });
+
+            // Sembunyikan tombol "Buy Now" dan "Order Now"
+            const buttons = this.closest('.produk').querySelectorAll('button, a.link-form');
+            buttons.forEach(btn => {
+              if (btn !== this && !btn.classList.contains('tombol-detail')) { // Jangan sembunyikan tombol detail
+                btn.style.display = 'none';
+              }
+            });
+
+        }
     });
+});
 }
 
 // Fungsi Toggle Detail yang Ditingkatkan
@@ -170,6 +181,7 @@ window.addEventListener('click', (event) => {
 tombolKembali.addEventListener('click', () => {
     document.getElementById('form-pemesanan').style.display = 'none'; // Sembunyikan formulir
     // document.getElementById('daftar-produk').style.display = 'flex'; // Hapus baris ini
+    renderProduk();
     document.getElementById('daftar-produk').scrollIntoView({ behavior: 'smooth' });
 
 });

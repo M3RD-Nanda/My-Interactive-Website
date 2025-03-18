@@ -1,22 +1,21 @@
 /* style.css (Marketplace) */
 
-/* Variabel CSS - Diambil dari laman Utama */
 :root {
     --primary-color: #663399;  /* Ungu Rebecca Purple */
     --secondary-color: #8058a5; /* Ungu yang sedikit lebih terang */
     --text-color: #333;
     --background-color: #f4f4f4;
     --light-gray: #eee;
-    --border-color: #ddd; /* Pertahankan ini dari kode Marketplace asli */
+    --border-color: #ddd;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Sama seperti laman Utama */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    background-color: var(--background-color); /* Dari variabel */
-    color: var(--text-color); /* Dari variabel */
+    background-color: var(--background-color);
+    color: var(--text-color);
     line-height: 1.6;
-    overflow-x: hidden; /* Cegah horizontal scrollbar */
+    overflow-x: hidden;
 }
 
 .container {
@@ -24,45 +23,42 @@ body {
     margin: 40px auto;
     background-color: white;
     padding: 30px;
-    border-radius: 15px; /* Sedikit lebih membulat, seperti about */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow lebih subtle */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
 
 h1 {
     text-align: center;
-    color: var(--primary-color); /* Warna utama */
+    color: var(--primary-color);
     margin-bottom: 10px;
-    font-size: 2.5rem; /* Perbesar ukuran font */
+    font-size: 2.5rem;
 }
 
 .deskripsi-toko {
     text-align: center;
-    color: #666;  /* Pertahankan ini */
+    color: #666;
     margin-bottom: 30px;
-    font-size: 1.1rem; /* Perbesar sedikit */
+    font-size: 1.1rem;
 }
 
-/* --- DAFTAR PRODUK (PERBAIKAN) --- */
+/* --- DAFTAR PRODUK --- */
 #daftar-produk {
-    display: grid; /* Ubah jadi grid */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Grid responsif */
-    gap: 20px; /* Jarak antar item */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
     justify-content: center; /* Pusatkan grid */
 }
 
 .produk {
     border: 1px solid var(--border-color);
     padding: 20px;
-    margin-bottom: 25px;
     border-radius: 10px;
     background-color: #fff;
     display: flex;
-    flex-direction: column; /* Ubah jadi flex column */
-    align-items: flex-start; /* Rata kiri */
+    flex-direction: column;
+    align-items: flex-start;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    /* Hapus ini jika menyebabkan masalah justify-content di mobile: */
-    /* justify-content: space-between;  */
 }
 
 .produk:hover {
@@ -71,25 +67,23 @@ h1 {
 }
 
 .produk img {
-    width: 100%; /* Gambar mengisi lebar container */
-    height: auto; /* Tinggi otomatis */
-    max-height: 200px; /* Batasi tinggi gambar */
-    object-fit: cover; /* Pastikan proporsi gambar */
-    margin-right: 0; /* Hapus margin kanan */
-    margin-bottom: 15px; /* Beri jarak ke teks */
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+    margin-bottom: 15px;
     border-radius: 10px;
 }
 
 .produk-info {
     flex: 1; /* Isi sisa ruang */
-    display: flex; /* Flexbox lagi untuk .produk-info */
-    flex-direction: column; /* Susun elemen secara vertikal */
-
+    display: flex;
+    flex-direction: column;
 }
 
 .produk h2 {
     margin-top: 0;
-    font-size: 1.5rem; /* Sedikit kecilkan judul */
+    font-size: 1.5rem;
     color: var(--primary-color);
     line-height: 1.2;
     margin-bottom: 0.5rem;
@@ -99,18 +93,15 @@ h1 {
     font-weight: bold;
     color: var(--secondary-color);
     margin-top: auto; /* Dorong harga ke bawah */
-    margin-bottom: 10px; /* Beri jarak ke tombol */
+    margin-bottom: 10px;
     font-size: 1.1em;
 }
 
-/* Tombol */
+/* --- Tombol (Konsisten) --- */
+.cta-button,
 .produk button,
-.link-form,
-#tombolLanjutPembayaran,
-#tombolBayarModal,
-#tombolKembali
-{
-     display: inline-block;
+.link-form {  /* SEMUA tombol pakai .cta-button */
+    display: inline-block;
     background-color: var(--primary-color);
     color: #fff;
     padding: 12px 25px;
@@ -123,19 +114,16 @@ h1 {
     cursor: pointer;
 }
 
+.cta-button:hover,
 .produk button:hover,
-.link-form:hover,
-#tombolLanjutPembayaran:hover,
-#tombolBayarModal:hover,
-#tombolKembali:hover
-{
+.link-form:hover {
     background-color: var(--secondary-color);
     transform: translateY(-3px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .tombol-detail {
-   background: none;
+    background: none;
     border: none;
     color: var(--primary-color);
     cursor: pointer;
@@ -145,9 +133,8 @@ h1 {
     display: inline-block;
     font-weight: bold;
 }
-
-.tombol-detail:hover {
-    text-decoration: underline;
+.tombol-detail:hover{
+     text-decoration: underline;
 }
 
 .detail-produk {
@@ -167,21 +154,21 @@ h1 {
 }
 
 
-/* --- FORMULIR PEMESANAN (PERBAIKAN) --- */
+/* --- FORMULIR PEMESANAN --- */
 #form-pemesanan {
     border-top: 2px solid var(--primary-color);
     padding-top: 20px;
     margin-top: 30px;
 }
 
-#form-pemesanan h2 {
+#form-pemesanan h2, .modal-content h2 {
     color: var(--primary-color);
     margin-bottom: 20px;
     font-size: 2rem;
-    text-align: center; /* Pusatkan judul */
+    text-align: center;
 }
 
-#formPesan label {
+#formPesan label, .modal-content label {
     font-weight: bold;
     display: block;
     margin-bottom: 5px;
@@ -190,16 +177,17 @@ h1 {
 #formPesan input[type="text"],
 #formPesan input[type="email"],
 #formPesan textarea,
-#formPesan select
+#formPesan select,
+#modalPembayaran select
 {
     border-radius: 5px;
     width: 100%;
-    padding: 12px; /* Padding lebih besar */
-    margin-bottom: 20px; /* Margin lebih besar */
+    padding: 12px;
+    margin-bottom: 20px;
     border: 1px solid var(--border-color);
     box-sizing: border-box;
     font-size: 1em;
-    transition: border-color 0.3s ease; /* Transisi border */
+    transition: border-color 0.3s ease;
 }
 
 #formPesan input[type="text"]:focus,
@@ -207,8 +195,8 @@ h1 {
 #formPesan textarea:focus,
 #formPesan select:focus
 {
-    border-color: var(--primary-color); /* Warna border saat fokus */
-    outline: none; /* Hapus outline bawaan */
+    border-color: var(--primary-color);
+    outline: none;
 }
 
 #formPesan textarea {
@@ -217,15 +205,15 @@ h1 {
 
 /* Tombol dalam Formulir */
 #formPesan .cta-button {
-    margin-right: 10px; /* Jarak antar tombol */
+  margin-right: 10px; /* Jarak antar tombol di formulir */
 }
+
 
 #formPesan{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
 #formPesan > form{
     width: 100%;
     max-width: 500px;
@@ -233,29 +221,22 @@ h1 {
     flex-direction: column;
 }
 
-/* --- (Sisa kode CSS - modal, navigasi, dll. - TIDAK BERUBAH) --- */
 
-/* Modal */
+/* --- MODAL --- */
 .modal {
-    display: none; /* Sembunyikan secara default */
-    position: fixed; /* Tetap di tempat */
-    z-index: 1000; /* Di atas konten lain */
+    display: none;
+    position: fixed;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto; /* Jika konten modal lebih besar dari layar */
-    background-color: rgba(0, 0, 0, 0.4); /* Background transparan */
-}
-
-#modalInstruksiPembayaran{
-    padding: .8em;
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
-    border-radius: 15px; /* Lebih membulat */
+    border-radius: 15px;
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
@@ -280,6 +261,13 @@ h1 {
     color: black;
     text-decoration: none;
 }
+
+#modalInstruksiPembayaran{
+    padding: .8em;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+}
+
 
 /* --- Navigasi --- */
 header {
