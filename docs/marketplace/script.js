@@ -1,6 +1,5 @@
 // script.js (Marketplace)
 
-// Data Produk - DIISI FIKTIF, dalam Bahasa Inggris
 const produkData = [
     {
         id: 1,
@@ -72,14 +71,15 @@ function renderProduk() {
         const produkDiv = document.createElement('div');
         produkDiv.classList.add('produk');
         produkDiv.innerHTML = `
-            <img src="${produk.gambar}" alt="Image <span class="math-inline">\{produk\.nama\}"\>
-<div class\="produk\-info"\>
-<h2\></span>{produk.nama}</h2>
+            <img src="${produk.gambar}" alt="Image ${produk.nama}">
+            <div class="produk-info">
+                <h2>${produk.nama}</h2>
                 <p class="deskripsiSingkat">${produk.deskripsiSingkat}</p>
-                <p class="harga">Rp <span class="math-inline">\{produk\.harga\.toLocaleString\('id\-ID'\)\}</p\>  <button class\="tombol\-detail" data\-id\="</span>{produk.id}">View Detail</button>
+                <p class="harga">Rp ${produk.harga.toLocaleString('id-ID')}</p>
+                <button class="tombol-detail" data-id="${produk.id}">View Detail</button>
                 <div class="detail-produk">
-                    <span class="math-inline">\{produk\.detail\}
-<a class\="link\-form" href\="\#form\-pemesanan" data\-id\="</span>{produk.id}">Order Now</a>
+                    ${produk.detail}
+                    <a class="link-form" href="#form-pemesanan" data-id="${produk.id}">Order Now</a>
                 </div>
                 <button data-id="${produk.id}">Buy Now</button>
             </div>
@@ -233,7 +233,7 @@ tombolBayarModal.addEventListener("click", function(){
         pesanWA = encodeURIComponent(pesanWA);
 
         const nomorWA = "628xxxxxxxxxx"; // Ganti dengan nomor WhatsApp Anda!
-        window.open(`https://wa.me/<span class="math-inline">\{nomorWA\}?text\=</span>{pesanWA}`, '_blank');
+        window.open(`https://wa.me/${nomorWA}?text=${pesanWA}`, '_blank');
     } else{
         alert("Please select a payment method.") // Pesan error dalam Bahasa Inggris
     }
