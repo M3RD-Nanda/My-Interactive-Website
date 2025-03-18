@@ -4,56 +4,56 @@
 const produkData = [
     {
         id: 1,
-        nama: "Ebook Panduan Lengkap JavaScript",
-        deskripsiSingkat: "Pelajari JavaScript dari dasar hingga mahir dengan contoh proyek nyata.",
-        harga: 150000,
-        gambar: "https://via.placeholder.com/150",
+        nama: "Ebook Premium: Rahasia Sukses Bisnis Online",
+        deskripsiSingkat: "Panduan lengkap langkah demi langkah membangun bisnis online yang menguntungkan dari nol.",
+        harga: 250000,
+        gambar: "https://via.placeholder.com/150", // Ganti dengan URL gambar yang sesuai
         detail: `
-            <p>Ebook ini mencakup semua yang Anda butuhkan untuk menjadi developer JavaScript handal:</p>
+            <p>Ebook ini membahas tuntas strategi, taktik, dan tools yang Anda butuhkan untuk meraih kesuksesan di dunia bisnis online:</p>
             <ul>
-                <li>Dasar-dasar JavaScript (variabel, tipe data, operator, dll.)</li>
-                <li>Struktur kontrol (percabangan, perulangan)</li>
-                <li>Fungsi dan Objek</li>
-                <li>DOM Manipulation</li>
-                <li>Asynchronous JavaScript (Promises, Async/Await)</li>
-                <li>...dan banyak lagi!</li>
+                <li>Riset pasar dan penentuan niche yang profitable</li>
+                <li>Membuat website/toko online profesional</li>
+                <li>Strategi pemasaran digital (SEO, social media, email marketing, dll.)</li>
+                <li>Manajemen keuangan bisnis</li>
+                <li>Studi kasus dan contoh sukses</li>
             </ul>
+            <p>Dapatkan bonus template website, checklist, dan akses ke grup diskusi eksklusif!</p>
         `,
     },
     {
         id: 2,
-        nama: "Paket Template Website Responsif",
-        deskripsiSingkat: "10 template website HTML & CSS siap pakai untuk berbagai keperluan.",
-        harga: 75000,
-        gambar: "https://via.placeholder.com/150",
+        nama: "Paket Desain Grafis Lengkap untuk Media Sosial",
+        deskripsiSingkat: "Template siap pakai untuk branding media sosial yang profesional dan menarik.",
+        harga: 125000,
+        gambar: "https://via.placeholder.com/150",  // Ganti dengan URL gambar yang sesuai
         detail: `
-            <p>Paket ini berisi template untuk:</p>
+            <p>Tingkatkan engagement dan konversi di media sosial Anda dengan paket desain grafis ini:</p>
             <ul>
-                <li>Landing Page</li>
-                <li>Portfolio</li>
-                <li>Blog</li>
-                <li>Toko Online Sederhana</li>
-                <li>...dan 6 template lainnya!</li>
+                <li>100+ template postingan Instagram (feed & story)</li>
+                <li>50+ template postingan Facebook</li>
+                <li>20+ template header/banner (YouTube, Twitter, LinkedIn, dll.)</li>
+                <li>Panduan penggunaan dan tips branding</li>
+                <li>Bonus ikon dan elemen grafis</li>
             </ul>
-            <p>Semua template sudah responsif (tampilan menyesuaikan di berbagai ukuran layar) dan mudah dikustomisasi.</p>
+             <p>Semua template mudah diedit menggunakan Canva (gratis) atau software desain grafis lainnya.</p>
         `,
     },
     {
         id: 3,
-        nama: 'Kursus Online: Desain Grafis untuk Pemula',
-        deskripsiSingkat: 'Kuasai dasar-dasar desain grafis dan buat desain menarik dengan mudah.',
-        harga: 200000,
-        gambar: 'https://via.placeholder.com/150',
+        nama: 'Webinar Eksklusif: Data Analysis for Business Growth',
+        deskripsiSingkat: 'Pelajari cara menganalisis data bisnis untuk pengambilan keputusan yang lebih baik.',
+        harga: 350000,
+        gambar: 'https://via.placeholder.com/150', // Ganti dengan URL gambar yang sesuai
         detail: `
-            <p>Dalam kursus ini, Anda akan belajar:</p>
+            <p>Dalam webinar ini, Anda akan mendapatkan:</p>
             <ul>
-                <li>Prinsip dasar desain (tipografi, warna, komposisi)</li>
-                <li>Menggunakan software desain grafis (Adobe Photoshop & Illustrator)</li>
-                <li>Membuat logo</li>
-                <li>Mendesain postingan media sosial</li>
-                <li>...dan banyak lagi!</li>
+                <li>Pemahaman mendalam tentang konsep dan teknik analisis data</li>
+                <li>Hands-on experience menggunakan tools analisis data populer (Excel, Tableau)</li>
+                <li>Studi kasus nyata penerapan data analysis di berbagai industri</li>
+                <li>Sesi tanya jawab dengan pakar data</li>
+                <li>Rekaman webinar dan materi presentasi</li>
             </ul>
-            <p>Kursus ini dilengkapi dengan video tutorial, studi kasus, dan latihan praktik.</p>
+            <p>Webinar ini cocok untuk pemilik bisnis, manajer, analis, dan siapa saja yang ingin meningkatkan skill data analysis.</p>
         `
     }
 ];
@@ -72,15 +72,15 @@ function renderProduk() {
         const produkDiv = document.createElement('div');
         produkDiv.classList.add('produk');
         produkDiv.innerHTML = `
-            <img src="${produk.gambar}" alt="Gambar <span class="math-inline">\{produk\.nama\}"\>
-<div class\="produk\-info"\>
-<h2\></span>{produk.nama}</h2>
+            <img src="${produk.gambar}" alt="Gambar ${produk.nama}">
+            <div class="produk-info">
+                <h2>${produk.nama}</h2>
                 <p class="deskripsi-singkat">${produk.deskripsiSingkat}</p>
-                <p class="harga">Rp <span class="math-inline">\{produk\.harga\.toLocaleString\('id\-ID'\)\}</p\>
-<button class\="tombol\-detail" data\-id\="</span>{produk.id}">Lihat Detail</button>
+                <p class="harga">Rp ${produk.harga.toLocaleString('id-ID')}</p>
+                <button class="tombol-detail" data-id="${produk.id}">Lihat Detail</button>
                 <div class="detail-produk">
-                    <span class="math-inline">\{produk\.detail\}
-<a class\="link\-form" href\="\#form\-pemesanan" data\-id\="</span>{produk.id}">Pesan Sekarang</a>
+                    ${produk.detail}
+                    <a class="link-form" href="#form-pemesanan" data-id="${produk.id}">Pesan Sekarang</a>
                 </div>
                 <button data-id="${produk.id}">Beli Sekarang</button>
             </div>
@@ -163,7 +163,7 @@ window.addEventListener('click', (event) => {
     }
 });
 
-// Fungsi untuk menampilkan instruksi pembayaran (di dalam modal) - lanjutan
+// Fungsi untuk menampilkan instruksi pembayaran (di dalam modal)
 function tampilkanInstruksiPembayaranModal(metode) {
     const instruksiDiv = document.getElementById("modalInstruksiPembayaran");
     instruksiDiv.innerHTML = ""; //kosongkan dulu
@@ -171,14 +171,33 @@ function tampilkanInstruksiPembayaranModal(metode) {
 
     if(metode === "transfer"){
         instruksiDiv.innerHTML = `
-            <p>Silakan transfer sejumlah <strong>Rp ${hargaYgDipesan.toLocaleString('id-ID')}</strong> ke rekening berikut:</p>
-            <ul>
-                <li>Bank: [Nama Bank Anda]</li>
-                <li>Nomor Rekening: [Nomor Rekening Anda]</li>
-                <li>Atas Nama: [Nama Pemilik Rekening]</li>
-            </ul>
-            <p>Setelah transfer, mohon konfirmasi pembayaran dengan mengirimkan bukti transfer ke [Nomor WhatsApp/Email Anda].</p>
+        <div class="payment-instructions">
+            <div class="bank-transfer-info">
+                <p>Silakan transfer sejumlah <strong>Rp ${hargaYgDipesan.toLocaleString('id-ID')}</strong> ke rekening berikut:</p>
+                <div class="bank-details">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png" alt="Logo BCA" class="bank-logo">
+                    <div class="account-details">
+                        <p>Bank: <strong>BCA (Bank Central Asia)</strong></p>
+                        <p>Nomor Rekening: <strong>123-456-7890</strong></p>
+                        <p>Atas Nama: <strong>Nama Anda</strong></p>
+                    </div>
+                </div>
+
+               <div class="bank-details">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.svg" alt="Logo Mandiri" class="bank-logo">
+                    <div class="account-details">
+                        <p>Bank: <strong>Mandiri</strong></p>
+                        <p>Nomor Rekening: <strong>987-654-3210</strong></p>
+                        <p>Atas Nama: <strong>Nama Anda</strong></p>
+                    </div>
+               </div>
+            </div>
+             <p class = "important-note"><strong>Penting:</strong></p>
+            <p>Setelah melakukan transfer, mohon segera konfirmasi pembayaran Anda dengan mengirimkan bukti transfer (foto/screenshot) melalui WhatsApp ke nomor <strong>0812-3456-7890</strong> atau email ke <strong>pembayaran@example.com</strong>. Sertakan juga <strong>nama lengkap</strong> dan <strong>nama produk</strong> yang Anda pesan.</p>
+        </div>
         `;
+
+
     } else if (metode === "midtrans" || metode === "xendit"){
           instruksiDiv.innerHTML = `<p>Anda akan diarahkan ke halaman pembayaran ${metode} setelah menekan tombol "Bayar".</p>`;
     } else {

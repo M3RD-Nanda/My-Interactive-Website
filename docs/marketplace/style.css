@@ -267,13 +267,14 @@ h1 {
 }
 
 /* --- Navigasi --- */
+/* Ukuran dan padding navbar disamakan dengan laman Utama */
 header {
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
     z-index: 100;
-    padding: 1rem 0;
+    padding: 1rem 0; /* Padding atas-bawah */
 }
 
 nav {
@@ -282,11 +283,11 @@ nav {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 20px; /* Padding kiri-kanan */
 }
 .logo {
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.2rem; /* Ukuran font logo */
 }
 .nav-links {
     list-style: none;
@@ -299,7 +300,7 @@ nav {
 .nav-links a {
     text-decoration: none;
     color: var(--text-color);
-    padding: 8px 15px;
+    padding: 8px 15px; /* Padding link */
     border-radius: 5px;
     transition: background-color 0.3s ease, color 0.3s ease;
     display: block;
@@ -326,26 +327,7 @@ nav {
 
 /* Media Query untuk Navigasi */
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 60px; /* Sesuaikan dengan tinggi header */
-        left: 0;
-        background-color: #fff;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        z-index: 10;
-        transform: translateY(-100%);
-        opacity: 0;
-        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-    }
-
-    .nav-links.active {
-        display: flex;
-        transform: translateY(0);
-        opacity: 1;
-    }
+    /* ... (kode sebelumnya) ... */
 
     .nav-links li {
         margin: 0;
@@ -358,18 +340,61 @@ nav {
     }
 
     .nav-links a {
-        padding: 15px;
+        padding: 15px;  /* Padding lebih besar di mobile */
     }
 
     nav {
-        justify-content: space-between;
+        justify-content: space-between; /* Logo dan hamburger di ujung */
     }
 
     .hamburger-menu {
-        display: block;
+        display: block; /* Tampilkan hamburger */
     }
       /* Animasi pada icon hamburger */
     .nav-links.active + .hamburger-menu i {
         transform: rotate(90deg);
     }
+}
+
+/* Style untuk popup pembayaran (tambahkan di docs/marketplace/style.css) */
+
+.payment-instructions {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .bank-transfer-info {
+      margin-bottom: 20px;
+  }
+  
+  .bank-details {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #eee;
+      border-radius: 5px;
+      background-color: #fff;
+  }
+  
+  .bank-logo {
+    width: 80px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.account-details p {
+    margin: 5px 0;
+}
+
+.important-note {
+    font-weight: bold;
+    margin-top: 20px;
+    color: #c0392b; /* Warna merah untuk emphasis */
+}
+
+.important-note + p { /* Style untuk paragraf setelah .important-note */
+  margin-top: 5px;
 }
