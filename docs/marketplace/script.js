@@ -1,6 +1,7 @@
 // script.js (Marketplace)
 
-// Data Produk
+// --- (Kode data produk, renderProduk, dll. - SEBELUM hamburger menu) ---
+// Data Produk - DIISI FIKTIF
 const produkData = [
     {
         id: 1,
@@ -72,15 +73,15 @@ function renderProduk() {
         const produkDiv = document.createElement('div');
         produkDiv.classList.add('produk');
         produkDiv.innerHTML = `
-            <img src="${produk.gambar}" alt="Gambar ${produk.nama}">
-            <div class="produk-info">
-                <h2>${produk.nama}</h2>
+            <img src="${produk.gambar}" alt="Gambar <span class="math-inline">\{produk\.nama\}"\>
+<div class\="produk\-info"\>
+<h2\></span>{produk.nama}</h2>
                 <p class="deskripsi-singkat">${produk.deskripsiSingkat}</p>
-                <p class="harga">Rp ${produk.harga.toLocaleString('id-ID')}</p>
-                <button class="tombol-detail" data-id="${produk.id}">Lihat Detail</button>
+                <p class="harga">Rp <span class="math-inline">\{produk\.harga\.toLocaleString\('id\-ID'\)\}</p\>
+<button class\="tombol\-detail" data\-id\="</span>{produk.id}">Lihat Detail</button>
                 <div class="detail-produk">
-                    ${produk.detail}
-                    <a class="link-form" href="#form-pemesanan" data-id="${produk.id}">Pesan Sekarang</a>
+                    <span class="math-inline">\{produk\.detail\}
+<a class\="link\-form" href\="\#form\-pemesanan" data\-id\="</span>{produk.id}">Pesan Sekarang</a>
                 </div>
                 <button data-id="${produk.id}">Beli Sekarang</button>
             </div>
@@ -257,23 +258,20 @@ function adjustProductTitleFontSize() {
     });
 }
 
-// --- Hamburger Menu ---
-// Pilih elemen hamburger menu dan daftar tautan navigasi.
+// --- Hamburger Menu --- (versi yang disederhanakan)
 const hamburgerMenu = document.querySelector('.hamburger-menu');
 const navLinks = document.querySelector('.nav-links');
 
-// Tambahkan event listener 'click' ke hamburger menu.
-hamburgerMenu.addEventListener('click', function() {
-  // Toggle class 'active' pada daftar tautan navigasi.
-  navLinks.classList.toggle('active');
+hamburgerMenu.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
 });
+// --- (Akhir bagian Hamburger Menu) ---
 
 
 // Jalankan renderProduk() dan adjustProductTitleFontSize() saat halaman selesai dimuat
 document.addEventListener('DOMContentLoaded', () => {
     renderProduk();
     adjustProductTitleFontSize(); // Panggil setelah render produk
-    // --- Hamburger Menu --- TIDAK PERLU LAGI, karena sudah ada di atas
 
 });
 

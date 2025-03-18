@@ -272,6 +272,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
+    padding: 1rem 0;
 }
 
 nav {
@@ -321,7 +322,7 @@ nav {
 }
 
 .hamburger-menu i {
-    color: black;  /* Ganti warna icon jika perlu */
+    color: black;
     transition: transform 0.3s ease;
 }
 
@@ -332,17 +333,14 @@ nav {
         flex-direction: column;
         width: 100%;
         position: absolute;
-        /* top: 60px;  Ganti ini */
-        top: 100%; /* Lebih baik pakai 100% */
+        top: 65px; /* Sesuaikan dengan tinggi header */
         left: 0;
         background-color: #fff;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        z-index: 999;
+        z-index: 10;
         transform: translateY(-100%);
         opacity: 0;
         transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-        /* Tambahkan ini: */
-        text-align: center; /* Pusatkan item menu */
     }
 
     .nav-links.active {
@@ -353,18 +351,15 @@ nav {
 
     .nav-links li {
         margin: 0;
-        /* text-align: center;  Pindahkan ke .nav-links */
+        text-align: center;
         border-bottom: 1px solid var(--light-gray);
     }
-
-    .nav-links li:last-child {
+     .nav-links li:last-child{
         border-bottom: none;
     }
 
     .nav-links a {
         padding: 15px;
-        /* Tambahkan ini */
-        display: block; /* Agar padding full width */
     }
 
     nav {
@@ -374,7 +369,7 @@ nav {
     .hamburger-menu {
         display: block;
     }
-
+      /* Animasi pada icon hamburger */
     .nav-links.active + .hamburger-menu i {
         transform: rotate(90deg);
     }
