@@ -1,0 +1,375 @@
+/* style.css (Marketplace) */
+
+/* Variabel CSS - Diambil dari laman Utama */
+:root {
+    --primary-color: #663399;  /* Ungu Rebecca Purple */
+    --secondary-color: #8058a5; /* Ungu yang sedikit lebih terang */
+    --text-color: #333;
+    --background-color: #f4f4f4;
+    --light-gray: #eee;
+    --border-color: #ddd; /* Pertahankan ini dari kode Marketplace asli */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Sama seperti laman Utama */
+    margin: 0;
+    padding: 0 20px;
+    background-color: var(--background-color); /* Dari variabel */
+    color: var(--text-color); /* Dari variabel */
+    line-height: 1.6;
+    overflow-x: hidden; /* Cegah horizontal scrollbar */
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px; /* Sedikit lebih membulat, seperti about */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow lebih subtle */
+    overflow: hidden;
+}
+
+h1 {
+    text-align: center;
+    color: var(--primary-color); /* Warna utama */
+    margin-bottom: 10px;
+    font-size: 2.5rem; /* Perbesar ukuran font */
+}
+
+.deskripsi-toko {
+    text-align: center;
+    color: #666;  /* Pertahankan ini */
+    margin-bottom: 30px;
+    font-size: 1.1rem; /* Perbesar sedikit */
+}
+
+/* Gaya Produk - Sesuaikan dengan tema */
+.produk {
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 10px; /* Lebih membulat */
+    background-color: #fff;
+    display: flex;
+    align-items: flex-start;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.produk:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Shadow hover */
+}
+
+.produk img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 25px;
+    border-radius: 10px; /* Lebih membulat */
+}
+
+.produk-info {
+    flex: 1;
+}
+
+.produk h2 {
+    margin-top: 0;
+    font-size: 1.72rem; /* Perbesar, sesuaikan dengan skill title */
+    color: var(--primary-color);
+    line-height: 1.2; /* Sesuaikan line-height */
+    margin-bottom: .5rem;
+}
+
+.produk .harga {
+    font-weight: bold;
+    color: var(--secondary-color); /* Warna secondary */
+    margin-top: 8px;
+    font-size: 1.1em;
+}
+
+/* Tombol - Gunakan gaya cta-button dari laman Utama */
+.produk button,
+.link-form,
+#tombolLanjutPembayaran,
+#tombolBayarModal
+{
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    border: none; /* Hapus border */
+    margin-top: 15px; /* Jarak antar tombol/elemen */
+    font-size: 1em; /* Ukuran font */
+    cursor: pointer; /* Kursor pointer */
+}
+
+.produk button:hover,
+.link-form:hover,
+#tombolLanjutPembayaran:hover,
+#tombolBayarModal:hover
+{
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Tombol Detail */
+.tombol-detail {
+    background: none;
+    border: none;
+    color: var(--primary-color); /* Warna primary */
+    cursor: pointer;
+    padding: 0;
+    margin-top: 8px;
+    font-size: 0.9em;
+    display: inline-block;
+    font-weight: bold; /* Tebalkan */
+}
+
+.tombol-detail:hover {
+    text-decoration: underline;
+}
+
+
+.detail-produk {
+  display: none; /* Sembunyikan detail secara default */
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color);
+  line-height: 1.7; /* Spasi antar baris */
+  color: #555;
+}
+.detail-produk + button{
+  display: none;
+}
+
+.detail-produk p {
+    margin-bottom: 0.8em;
+}
+
+/* Formulir dan Modal */
+/* Sesuaikan border-radius, warna tombol, dll. agar konsisten */
+#form-pemesanan {
+    border-top: 2px solid var(--primary-color);
+    padding-top: 20px;
+    margin-top: 30px;
+}
+
+#form-pemesanan h2, .modal-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 2rem; /* Perbesar */
+}
+
+#formPesan label, .modal-content label {
+    font-weight: bold; /* Tebalkan label */
+    display: block;
+    margin-bottom: 5px;
+}
+
+#formPesan input[type="text"],
+#formPesan input[type="email"],
+#formPesan textarea,
+#formPesan select,
+#modalPembayaran select
+{
+    border-radius: 5px; /* Sesuaikan */
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    box-sizing: border-box;
+    font-size: 1em;
+}
+#formPesan select{
+    cursor: pointer;
+}
+#formPesan textarea {
+    resize: vertical; /* Agar textarea bisa di-resize vertikal */
+}
+#instruksiPembayaran{
+    padding: .8em;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+}
+
+.modal-content {
+    border-radius: 15px; /* Lebih membulat */
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+}
+
+.close-button {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+}
+
+/* Modal */
+.modal {
+    display: none; /* Sembunyikan secara default */
+    position: fixed; /* Tetap di tempat */
+    z-index: 1000; /* Di atas konten lain */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Jika konten modal lebih besar dari layar */
+    background-color: rgba(0, 0, 0, 0.4); /* Background transparan */
+}
+
+#modalInstruksiPembayaran{
+    padding: .8em;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+}
+
+/* Media query - Sesuaikan jika perlu */
+@media (max-width: 600px) {
+    /* ... (Sesuaikan gaya responsif) ... */
+     .produk {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .produk img {
+        margin-right: 0;
+        margin-bottom: 15px;
+        width: 100%;
+        height: auto;
+    }
+    #formPesan input[type="text"],
+    #formPesan input[type="email"],
+    #formPesan textarea,
+    #formPesan select {
+        font-size: .95em;
+    }
+}
+
+/* --- Navigasi --- */
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 1rem 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.logo {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: block;
+}
+
+.nav-links a:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none; /* Sembunyikan di layar besar */
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 10px;
+    z-index: 1000;
+}
+
+.hamburger-menu i {
+    color: black;
+    transition: transform 0.3s ease;
+}
+
+/* Media Query untuk Navigasi */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px; /* Sesuaikan dengan tinggi header */
+        left: 0;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    }
+
+    .nav-links.active {
+        display: flex;
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .nav-links li {
+        margin: 0;
+        text-align: center;
+        border-bottom: 1px solid var(--light-gray);
+    }
+
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links a {
+        padding: 15px;
+    }
+
+    nav {
+        justify-content: space-between;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+      /* Animasi pada icon hamburger */
+    .nav-links.active + .hamburger-menu i {
+        transform: rotate(90deg);
+    }
+}
