@@ -88,11 +88,8 @@ h1 {
 }
 
 /* Tombol - Gunakan gaya cta-button dari laman Utama */
-.produk button,
-.link-form,
-#tombolLanjutPembayaran,
-#tombolBayarModal
-{
+/* Style untuk tombol "Continue to Payment" (dan sekarang juga "Back") */
+.cta-button {
     display: inline-block;
     background-color: var(--primary-color);
     color: #fff;
@@ -101,17 +98,13 @@ h1 {
     border-radius: 5px;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    border: none; /* Hapus border */
-    margin-top: 15px; /* Jarak antar tombol/elemen */
-    font-size: 1em; /* Ukuran font */
-    cursor: pointer; /* Kursor pointer */
+    border: none;
+    margin-top: 15px;
+    font-size: 1em;
+    cursor: pointer;
 }
 
-.produk button:hover,
-.link-form:hover,
-#tombolLanjutPembayaran:hover,
-#tombolBayarModal:hover
-{
+.cta-button:hover { /* Style untuk hover pada tombol */
     background-color: var(--secondary-color);
     transform: translateY(-3px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -243,6 +236,12 @@ h1 {
     border: 1px solid #ddd;
 }
 
+/* --- DAFTAR PRODUK (PENTING) --- */
+#daftar-produk {
+    display: flex;  /* SELALU flexbox */
+    flex-wrap: wrap; /* Agar item produk wrap ke bawah */
+    justify-content: space-between; /* Distribusi ruang antar produk */
+}
 /* Media query - Sesuaikan jika perlu */
 @media (max-width: 600px) {
     /* ... (Sesuaikan gaya responsif) ... */
@@ -262,6 +261,9 @@ h1 {
     #formPesan textarea,
     #formPesan select {
         font-size: .95em;
+    }
+    #daftar-produk{
+        justify-content: center;/*pusatkan item di mobile*/
     }
 }
 
@@ -332,7 +334,7 @@ nav {
         flex-direction: column;
         width: 100%;
         position: absolute;
-        top: 60px;
+        top: 40px; /* Tetap 40px */
         left: 0;
         background-color: #fff;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -381,7 +383,6 @@ nav {
         transform: rotate(90deg);
     }
 }
-
 /* Style untuk popup pembayaran */
 .payment-instructions {
     padding: 15px;
