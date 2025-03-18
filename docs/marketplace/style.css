@@ -136,15 +136,15 @@ h1 {
 
 
 .detail-produk {
-    display: none; /* Sembunyikan detail secara default */
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid var(--border-color);
-    line-height: 1.7; /* Spasi antar baris */
-    color: #555;
+  display: none; /* Sembunyikan detail secara default */
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color);
+  line-height: 1.7; /* Spasi antar baris */
+  color: #555;
 }
 .detail-produk + button{
-    display: none;
+  display: none;
 }
 
 .detail-produk p {
@@ -209,13 +209,13 @@ h1 {
 }
 
 .close-button {
-    color: #aaa;
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .close-button:hover,
@@ -245,7 +245,8 @@ h1 {
 
 /* Media query - Sesuaikan jika perlu */
 @media (max-width: 600px) {
-    .produk {
+    /* ... (Sesuaikan gaya responsif) ... */
+     .produk {
         flex-direction: column;
         align-items: center;
     }
@@ -271,8 +272,6 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
-    /* Hapus padding ini */
-    /* padding: 1rem 0; */
 }
 
 nav {
@@ -333,8 +332,7 @@ nav {
         flex-direction: column;
         width: 100%;
         position: absolute;
-        /* Ubah top menjadi 40px: */
-        top: 40px;
+        top: 60px;
         left: 0;
         background-color: #fff;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -345,7 +343,6 @@ nav {
         text-align: center;
     }
 
-    /* Ubah .nav-links.active: */
     .nav-links.active {
         display: flex;
         transform: translateY(0);
@@ -420,9 +417,9 @@ nav {
 .important-note {
     font-weight: bold;
     margin-top: 20px;
-    color: #c0392b; /* Warna merah untuk emphasis */
+    color: #c0392b;  /* Warna merah untuk emphasis */
 }
 
-.important-note + p { /* Style untuk paragraf setelah .important-note */
+.important-note + p {  /* Style untuk paragraf setelah .important-note */
     margin-top: 5px;
 }

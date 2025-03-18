@@ -1,59 +1,59 @@
 // script.js (Marketplace)
 
-// Data Produk - DIISI FIKTIF
+// Data Produk - DIISI FIKTIF, dalam Bahasa Inggris
 const produkData = [
     {
         id: 1,
-        nama: "Ebook Premium: Rahasia Sukses Bisnis Online",
-        deskripsiSingkat: "Panduan lengkap langkah demi langkah membangun bisnis online yang menguntungkan dari nol.",
+        nama: "Premium Ebook: The Secrets to Online Business Success",
+        deskripsiSingkat: "A comprehensive step-by-step guide to building a profitable online business from scratch.",
         harga: 250000,
         gambar: "https://via.placeholder.com/150", // Ganti dengan URL gambar yang sesuai
         detail: `
-            <p>Ebook ini membahas tuntas strategi, taktik, dan tools yang Anda butuhkan untuk meraih kesuksesan di dunia bisnis online:</p>
+            <p>This ebook covers all the strategies, tactics, and tools you need to achieve success in the online business world:</p>
             <ul>
-                <li>Riset pasar dan penentuan niche yang profitable</li>
-                <li>Membuat website/toko online profesional</li>
-                <li>Strategi pemasaran digital (SEO, social media, email marketing, dll.)</li>
-                <li>Manajemen keuangan bisnis</li>
-                <li>Studi kasus dan contoh sukses</li>
+                <li>Market research and identifying a profitable niche</li>
+                <li>Creating a professional website/online store</li>
+                <li>Digital marketing strategies (SEO, social media, email marketing, etc.)</li>
+                <li>Business financial management</li>
+                <li>Case studies and success examples</li>
             </ul>
-            <p>Dapatkan bonus template website, checklist, dan akses ke grup diskusi eksklusif!</p>
+            <p>Get bonus website templates, checklists, and access to an exclusive discussion group!</p>
         `,
     },
     {
         id: 2,
-        nama: "Paket Desain Grafis Lengkap untuk Media Sosial",
-        deskripsiSingkat: "Template siap pakai untuk branding media sosial yang profesional dan menarik.",
+        nama: "Complete Graphic Design Package for Social Media",
+        deskripsiSingkat: "Ready-to-use templates for professional and engaging social media branding.",
         harga: 125000,
         gambar: "https://via.placeholder.com/150",  // Ganti dengan URL gambar yang sesuai
         detail: `
-            <p>Tingkatkan engagement dan konversi di media sosial Anda dengan paket desain grafis ini:</p>
+            <p>Increase engagement and conversions on your social media with this graphic design package:</p>
             <ul>
-                <li>100+ template postingan Instagram (feed & story)</li>
-                <li>50+ template postingan Facebook</li>
-                <li>20+ template header/banner (YouTube, Twitter, LinkedIn, dll.)</li>
-                <li>Panduan penggunaan dan tips branding</li>
-                <li>Bonus ikon dan elemen grafis</li>
+                <li>100+ Instagram post templates (feed & story)</li>
+                <li>50+ Facebook post templates</li>
+                <li>20+ header/banner templates (YouTube, Twitter, LinkedIn, etc.)</li>
+                <li>Usage guide and branding tips</li>
+                <li>Bonus icons and graphic elements</li>
             </ul>
-             <p>Semua template mudah diedit menggunakan Canva (gratis) atau software desain grafis lainnya.</p>
+             <p>All templates are easily editable using Canva (free) or other graphic design software.</p>
         `,
     },
     {
         id: 3,
-        nama: 'Webinar Eksklusif: Data Analysis for Business Growth',
-        deskripsiSingkat: 'Pelajari cara menganalisis data bisnis untuk pengambilan keputusan yang lebih baik.',
+        nama: 'Exclusive Webinar: Data Analysis for Business Growth',
+        deskripsiSingkat: 'Learn how to analyze business data for better decision-making.',
         harga: 350000,
         gambar: 'https://via.placeholder.com/150', // Ganti dengan URL gambar yang sesuai
         detail: `
-            <p>Dalam webinar ini, Anda akan mendapatkan:</p>
+            <p>In this webinar, you will get:</p>
             <ul>
-                <li>Pemahaman mendalam tentang konsep dan teknik analisis data</li>
-                <li>Hands-on experience menggunakan tools analisis data populer (Excel, Tableau)</li>
-                <li>Studi kasus nyata penerapan data analysis di berbagai industri</li>
-                <li>Sesi tanya jawab dengan pakar data</li>
-                <li>Rekaman webinar dan materi presentasi</li>
+                <li>In-depth understanding of data analysis concepts and techniques</li>
+                <li>Hands-on experience using popular data analysis tools (Excel, Tableau)</li>
+                <li>Real-world case studies of data analysis applications in various industries</li>
+                <li>Q&A session with a data expert</li>
+                <li>Webinar recording and presentation materials</li>
             </ul>
-            <p>Webinar ini cocok untuk pemilik bisnis, manajer, analis, dan siapa saja yang ingin meningkatkan skill data analysis.</p>
+            <p>This webinar is suitable for business owners, managers, analysts, and anyone who wants to improve their data analysis skills.</p>
         `
     }
 ];
@@ -72,17 +72,17 @@ function renderProduk() {
         const produkDiv = document.createElement('div');
         produkDiv.classList.add('produk');
         produkDiv.innerHTML = `
-            <img src="${produk.gambar}" alt="Gambar ${produk.nama}">
+            <img src="${produk.gambar}" alt="Image ${produk.nama}">
             <div class="produk-info">
                 <h2>${produk.nama}</h2>
-                <p class="deskripsi-singkat">${produk.deskripsiSingkat}</p>
+                <p class="deskripsiSingkat">${produk.deskripsiSingkat}</p>
                 <p class="harga">Rp ${produk.harga.toLocaleString('id-ID')}</p>
-                <button class="tombol-detail" data-id="${produk.id}">Lihat Detail</button>
+                <button class="tombol-detail" data-id="${produk.id}">View Detail</button>
                 <div class="detail-produk">
                     ${produk.detail}
-                    <a class="link-form" href="#form-pemesanan" data-id="${produk.id}">Pesan Sekarang</a>
+                    <a class="link-form" href="#form-pemesanan" data-id="${produk.id}">Order Now</a>
                 </div>
-                <button data-id="${produk.id}">Beli Sekarang</button>
+                <button data-id="${produk.id}">Buy Now</button>
             </div>
         `;
         daftarProdukDiv.appendChild(produkDiv);
@@ -94,14 +94,14 @@ function renderProduk() {
 
 // Fungsi untuk menambah event listener ke tombol dan link
 function addEventListeners() {
-    // Tombol Lihat Detail
+    // Tombol Lihat Detail / View Detail
     document.querySelectorAll('.tombol-detail').forEach(button => {
         button.addEventListener('click', function() {
             toggleDetail(this); // 'this' mengacu pada tombol yang diklik
         });
     });
 
-    // Tombol Beli Sekarang dan Link Pesan Sekarang
+    // Tombol Beli Sekarang dan Link Pesan Sekarang / Buy Now and Order Now
     document.querySelectorAll('.produk button:not(.tombol-detail), .link-form').forEach(button => {
         button.addEventListener('click', function() {
             const produkId = parseInt(this.dataset.id);
@@ -109,6 +109,7 @@ function addEventListeners() {
             if (produk) {
                 pesanProduk(produk.nama, produk.harga);
                 document.getElementById('form-pemesanan').style.display = 'block';
+                document.getElementById('daftar-produk').style.display = 'none'; // Sembunyikan daftar produk
                 document.getElementById('form-pemesanan').scrollIntoView({ behavior: 'smooth' });
             }
         });
@@ -119,11 +120,12 @@ function addEventListeners() {
 function toggleDetail(button) {
         const detailProduk = button.nextElementSibling;
         detailProduk.style.display = detailProduk.style.display === 'none' ? 'block' : 'none';
-        button.textContent = detailProduk.style.display === 'none' ? 'Lihat Detail' : 'Sembunyikan Detail';
+        button.textContent = detailProduk.style.display === 'none' ? 'View Detail' : 'Hide Detail';
 
 }
 
 // Fungsi Pesan Produk
+//(Tidak perlu diubah karena hanya mengisi value, datanya sudah dalam Bahasa Inggris)
 function pesanProduk(namaProduk, hargaProduk) {
     document.getElementById('produk').value = namaProduk;
     document.getElementById('harga').value = "Rp " + hargaProduk.toLocaleString('id-ID');
@@ -136,12 +138,14 @@ const modal = document.getElementById('modalPembayaran');
 const tombolLanjutPembayaran = document.getElementById('tombolLanjutPembayaran');
 const tombolTutupModal = document.querySelector('.close-button');
 const tombolBayarModal = document.getElementById("tombolBayarModal");
+// Tombol Kembali
+const tombolKembali = document.getElementById('tombolKembali'); // Ambil elemen tombol Kembali
 
 // Buka modal
 tombolLanjutPembayaran.addEventListener('click', () => {
     //validasi form
     if(!document.getElementById('nama').value || !document.getElementById('email').value){
-        alert("Silahkan Isi Nama dan Email Terlebih Dahulu");
+        alert("Please fill in your name and email first."); // Pesan error dalam Bahasa Inggris
         return;
     }
     // Isi data produk ke dalam modal
@@ -163,6 +167,14 @@ window.addEventListener('click', (event) => {
     }
 });
 
+// --- Event listener untuk tombol Kembali ---
+tombolKembali.addEventListener('click', () => {
+    document.getElementById('form-pemesanan').style.display = 'none'; // Sembunyikan formulir
+    document.getElementById('daftar-produk').style.display = 'flex';    // Tampilkan kembali daftar produk
+     document.getElementById('daftar-produk').scrollIntoView({ behavior: 'smooth' });
+
+});
+
 // Fungsi untuk menampilkan instruksi pembayaran (di dalam modal)
 function tampilkanInstruksiPembayaranModal(metode) {
     const instruksiDiv = document.getElementById("modalInstruksiPembayaran");
@@ -173,13 +185,13 @@ function tampilkanInstruksiPembayaranModal(metode) {
         instruksiDiv.innerHTML = `
         <div class="payment-instructions">
             <div class="bank-transfer-info">
-                <p>Silakan transfer sejumlah <strong>Rp ${hargaYgDipesan.toLocaleString('id-ID')}</strong> ke rekening berikut:</p>
+                <p>Please transfer the amount of <strong>Rp ${hargaYgDipesan.toLocaleString('id-ID')}</strong> to the following account:</p>
                 <div class="bank-details">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png" alt="Logo BCA" class="bank-logo">
                     <div class="account-details">
                         <p>Bank: <strong>BCA (Bank Central Asia)</strong></p>
-                        <p>Nomor Rekening: <strong>123-456-7890</strong></p>
-                        <p>Atas Nama: <strong>Nama Anda</strong></p>
+                        <p>Account Number: <strong>123-456-7890</strong></p>
+                        <p>Account Name: <strong>Your Name</strong></p>
                     </div>
                 </div>
 
@@ -187,19 +199,19 @@ function tampilkanInstruksiPembayaranModal(metode) {
                     <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.svg" alt="Logo Mandiri" class="bank-logo">
                     <div class="account-details">
                         <p>Bank: <strong>Mandiri</strong></p>
-                        <p>Nomor Rekening: <strong>987-654-3210</strong></p>
-                        <p>Atas Nama: <strong>Nama Anda</strong></p>
+                        <p>Account Number: <strong>987-654-3210</strong></p>
+                        <p>Account Name: <strong>Your Name</strong></p>
                     </div>
                </div>
             </div>
-             <p class = "important-note"><strong>Penting:</strong></p>
-            <p>Setelah melakukan transfer, mohon segera konfirmasi pembayaran Anda dengan mengirimkan bukti transfer (foto/screenshot) melalui WhatsApp ke nomor <strong>0812-3456-7890</strong> atau email ke <strong>pembayaran@example.com</strong>. Sertakan juga <strong>nama lengkap</strong> dan <strong>nama produk</strong> yang Anda pesan.</p>
+             <p class = "important-note"><strong>Important:</strong></p>
+            <p>After making the transfer, please confirm your payment by sending proof of transfer (photo/screenshot) via WhatsApp to <strong>0812-3456-7890</strong> or email to <strong>pembayaran@example.com</strong>. Also include your <strong>full name</strong> and the <strong>product name</strong> you ordered.</p>
         </div>
         `;
 
 
     } else if (metode === "midtrans" || metode === "xendit"){
-          instruksiDiv.innerHTML = `<p>Anda akan diarahkan ke halaman pembayaran ${metode} setelah menekan tombol "Bayar".</p>`;
+          instruksiDiv.innerHTML = `<p>You will be redirected to the ${metode} payment page after clicking the "Pay" button.</p>`;
     } else {
         instruksiDiv.style.display = "none";
     }
@@ -209,7 +221,7 @@ function tampilkanInstruksiPembayaranModal(metode) {
 tombolBayarModal.addEventListener("click", function(){
     const metode = document.getElementById("modalMetodePembayaran").value;
     if (metode === "midtrans" || metode === "xendit") {
-         alert("Integrasi Midtrans/Xendit memerlukan backend dan konfigurasi yang kompleks.  Ini di luar cakupan contoh ini.");
+         alert("Midtrans/Xendit integration requires backend and complex configuration. This is beyond the scope of this example.");
     } else if(metode === "transfer"){
         //untuk metode transfer, kirimkan data ke whatsapp
         const nama = document.getElementById("nama").value;
@@ -218,15 +230,17 @@ tombolBayarModal.addEventListener("click", function(){
         const harga = "Rp " +  hargaYgDipesan.toLocaleString('id-ID');
         const catatan = document.getElementById("catatan").value;
 
-        let pesanWA = `Halo, saya ingin memesan produk digital:\n\nNama: ${nama}\nEmail: ${email}\nProduk: ${produk}\nHarga: ${harga}\nCatatan: ${catatan}\n\nMetode Pembayaran: Transfer Bank`;
+        let pesanWA = `Hello, I would like to order a digital product:\n\nName: ${nama}\nEmail: ${email}\nProduct: ${produk}\nPrice: ${harga}\nNotes: ${catatan}\n\nPayment Method: Bank Transfer`;
         pesanWA = encodeURIComponent(pesanWA);
 
         const nomorWA = "628xxxxxxxxxx"; // Ganti dengan nomor WhatsApp Anda!
         window.open(`https://wa.me/${nomorWA}?text=${pesanWA}`, '_blank');
     } else{
-        alert("Silahkan Pilih Metode Pembayaran")
+        alert("Please select a payment method.") // Pesan error dalam Bahasa Inggris
     }
 })
+
+
 
 // --- Fungsi Penyesuaian Ukuran Font Judul Produk ---
 function adjustProductTitleFontSize() {
