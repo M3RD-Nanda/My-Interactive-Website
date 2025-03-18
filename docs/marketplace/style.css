@@ -13,7 +13,6 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Sama seperti laman Utama */
     margin: 0;
-    padding: 0 20px;
     background-color: var(--background-color); /* Dari variabel */
     color: var(--text-color); /* Dari variabel */
     line-height: 1.6;
@@ -274,7 +273,6 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
-    padding: 1rem 0; /* Padding atas-bawah */
 }
 
 nav {
@@ -285,6 +283,7 @@ nav {
     margin: 0 auto;
     padding: 0 20px; /* Padding kiri-kanan */
 }
+
 .logo {
     font-weight: bold;
     font-size: 1.2rem; /* Ukuran font logo */
