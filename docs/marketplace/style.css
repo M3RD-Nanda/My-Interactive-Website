@@ -466,7 +466,6 @@ nav {
 /* --- MEDIA QUERY (Mobile) --- */
 @media (max-width: 600px) {
     #daftar-produk {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 1 kolom di mobile */
         gap: 10px;
     }
 
