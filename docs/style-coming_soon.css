@@ -1,99 +1,58 @@
-/* coming-soon.css */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    --primary-color: #663399; /* Samakan dengan style.css */
-    --secondary-color: #8058a5; /* Samakan dengan style.css */
-    --text-color: #333;
-    --background-color: #f4f4f4;
-    --light-gray: #eee;
-}
+/* style-coming_soon.css */
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--background-color);
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Penting agar konten di tengah vertikal */
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0; /* Reset margin default */
 }
 
 .container {
     text-align: center;
-    max-width: 800px; /* Lebar maksimum konten */
     padding: 20px;
     background-color: #fff;
-    border-radius: 15px;
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px; /* Batasi lebar maksimum */
+    width: 90%; /* Lebar responsif */
 }
 
-header {
-    margin-bottom: 30px;
-}
-
-header h1 {
+h1 {
     font-size: 3rem;
-    color: var(--primary-color);
-    margin-bottom: 10px;
+    color: #663399;
+    margin-bottom: 15px;
 }
 
-.subtitle {
-    font-size: 1.5rem;
-    color: var(--secondary-color);
-}
-
-.content {
-    margin-bottom: 30px;
-}
-
-.content i {
+p {
+    font-size: 1.2rem;
     margin-bottom: 20px;
-    color: var(--primary-color);
-}
-.back-button {
-    display: inline-block; /* Agar padding, margin, dll. berfungsi dengan baik */
-    padding: 10px 20px;
-    background-color: var(--primary-color);
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease; /* Efek hover */
-    margin-top: 20px;
-     display: inline-flex; /* Menggunakan flexbox */
-    align-items: center;   /* Pusatkan secara vertikal */
-    justify-content: center; /* Pusatkan secara horizontal */
+    line-height: 1.5; /* Improved readability */
 }
 
-.back-button:hover {
-    background-color: var(--secondary-color); /* Warna saat hover */
+.fa-hourglass-half {
+    color: #663399;
+    margin-bottom: 25px;
 }
 
-.back-button i {
-    margin-right: 8px; /* Jarak antara ikon dan teks */
+.social-icons {
+    margin-top: 30px;
 }
 
-footer {
-    color: #666; /* Warna footer lebih soft */
-    margin-top: 20px;
+.social-icons a {
+    display: inline-block; /* Allows setting width/height */
+    margin: 0 10px;
+    color: #663399;
+    font-size: 2rem;
+    transition: color 0.3s ease, transform 0.3s ease;  /* Add transform transition */
+    text-decoration: none; /* Remove underline */
+
 }
 
-/* Media query (responsif) */
-@media (max-width: 768px) {
-    .container {
-        width: 90%; /* Lebih lebar di layar kecil */
-        padding: 15px;
-    }
-    header h1 {
-        font-size: 2.5rem; /* Ukuran font disesuaikan */
-    }
-    .subtitle {
-        font-size: 1.2rem;
-    }
+.social-icons a:hover {
+    color: #8058a5;
+    transform: scale(1.1); /* Add a slight scale effect */
 }

@@ -1,365 +1,353 @@
-// script.js (Marketplace)
+document.addEventListener('DOMContentLoaded', function() {
 
-// Data Produk - DIISI FIKTIF, dalam Bahasa Inggris
-const produkData = [
-    {
-        id: 1,
-        nama: "Premium Ebook: The Secrets to Online Business Success",
-        deskripsiSingkat: "A comprehensive step-by-step guide to building a profitable online business from scratch.",
-        harga: 250000,
-        gambar: "https://via.placeholder.com/150", // GANTI dengan URL gambar
-        detail: `
-            <p>This ebook covers all the strategies, tactics, and tools you need to achieve success in the online business world:</p>
-            <ul>
-                <li>Market research and identifying a profitable niche</li>
-                <li>Creating a professional website/online store</li>
-                <li>Digital marketing strategies (SEO, social media, email marketing, etc.)</li>
-                <li>Business financial management</li>
-                <li>Case studies and success examples</li>
-            </ul>
-            <p>Get bonus website templates, checklists, and access to an exclusive discussion group!</p>
-        `,
-    },
-    {
-        id: 2,
-        nama: "Complete Graphic Design Package for Social Media",
-        deskripsiSingkat: "Ready-to-use templates for professional and engaging social media branding.",
-        harga: 125000,
-        gambar: "https://via.placeholder.com/150",  // GANTI dengan URL gambar
-        detail: `
-            <p>Increase engagement and conversions on your social media with this graphic design package:</p>
-            <ul>
-                <li>100+ Instagram post templates (feed & story)</li>
-                <li>50+ Facebook post templates</li>
-                <li>20+ header/banner templates (YouTube, Twitter, LinkedIn, etc.)</li>
-                <li>Usage guide and branding tips</li>
-                <li>Bonus icons and graphic elements</li>
-            </ul>
-             <p>All templates are easily editable using Canva (free) or other graphic design software.</p>
-        `,
-    },
-    {
-        id: 3,
-        nama: 'Exclusive Webinar: Data Analysis for Business Growth',
-        deskripsiSingkat: 'Learn how to analyze business data for better decision-making.',
-        harga: 350000,
-        gambar: 'https://via.placeholder.com/150', // GANTI dengan URL gambar
-        detail: `
-            <p>In this webinar, you will get:</p>
-            <ul>
-                <li>In-depth understanding of data analysis concepts and techniques</li>
-                <li>Hands-on experience using popular data analysis tools (Excel, Tableau)</li>
-                <li>Real-world case studies of data analysis applications in various industries</li>
-                <li>Q&A session with a data expert</li>
-                <li>Webinar recording and presentation materials</li>
-            </ul>
-            <p>This webinar is suitable for business owners, managers, analysts, and anyone who wants to improve their data analysis skills.</p>
-        `
-    },
-    {
-        id: 4,
-        nama: "WordPress Website Creation Course",
-        deskripsiSingkat: "Learn how to create a professional website with WordPress, even with no coding experience.",
-        harga: 180000,
-        gambar: "https://via.placeholder.com/150", // GANTI URL
-        detail: `
-            <p>This course will teach you everything you need to know to build a stunning and functional website using WordPress:</p>
-            <ul>
-                <li>Installing and setting up WordPress</li>
-                <li>Choosing the right theme and plugins</li>
-                <li>Creating pages and posts</li>
-                <li>Customizing the design of your website</li>
-                <li>Adding essential features (contact forms, galleries, etc.)</li>
-                <li>SEO basics for WordPress</li>
-            </ul>
-            <p>Perfect for beginners and anyone who wants to create a website without coding.</p>
-        `,
-    },
-];
+    // Data Produk (Simulasi dari API)
+    const produkData = [
+        {
+            id: 1,
+            nama: "Financial Statement Creation Service",
+            harga: 500000,
+            detail: "Comprehensive financial statement creation service, including balance sheets, income statements, and cash flow statements, tailored to your business needs.",
+            gambar: "path/ke/gambar1.jpg",
+            tersedia: true
+        },
+        {
+            id: 2,
+            nama: "Graphic Design Service",
+            harga: 300000,
+            detail: "Professional graphic design services for logos, brochures, posters, and social media content. Enhance your brand's visual identity.",
+            gambar: "path/ke/gambar2.jpg",
+            tersedia: true
+        },
+        {
+            id: 3,
+            nama: "Business Data Analysis Service",
+            harga: 400000,
+            detail: "In-depth business data analysis services using Excel, SPSS, and other tools to provide actionable insights for your business.",
+            gambar: "path/ke/gambar3.jpg",
+            tersedia: false // Contoh produk tidak tersedia
+        }
+    ];
 
+    // --- Fungsi untuk Merender Produk ---
+    const produkContainer = document.getElementById('produk-container');
 
-// Variabel Global
-let produkYgDipesan = "";
-let hargaYgDipesan = 0;
+    function renderProduk() {
+        produkContainer.innerHTML = ''; // Bersihkan container
+        produkData.forEach(produk => {
 
-// --- FUNGSI UNTUK MERENDER PRODUK KE HTML ---
-function renderProduk() {
-    const daftarProdukDiv = document.getElementById('daftar-produk');
-    daftarProdukDiv.innerHTML = ''; // Kosongkan dulu
+            // Buat elemen produk
+            const produkEl = document.createElement('div');
+            produkEl.classList.add('produk');
+            produkEl.dataset.id = produk.id;
 
-    produkData.forEach(produk => {
-        const produkDiv = document.createElement('div');
-        produkDiv.classList.add('produk');
-        produkDiv.innerHTML = `
-            <img src="${produk.gambar}" alt="Image ${produk.nama}">
-            <div class="produk-info">
-                <h2>${produk.nama}</h2>
-                <p class="deskripsiSingkat">${produk.deskripsiSingkat}</p>
-                <p class="harga">Rp ${produk.harga.toLocaleString('id-ID')}</p>
-                <button class="tombol-detail cta-button" data-id="${produk.id}">View Detail</button>
-                <div class="detail-produk">
-                    ${produk.detail}
-                    <a class="link-form cta-button" href="#form-pemesanan" data-id="${produk.id}">Order Now</a>
-                </div>
-                <button class="cta-button" data-id="${produk.id}">Buy Now</button>
-            </div>
-        `;
-        daftarProdukDiv.appendChild(produkDiv);
-    });
+            const gambarEl = document.createElement('img');
+            gambarEl.src = produk.gambar;
+            gambarEl.alt = `${produk.nama} Image`; // Alt text yang baik
+            gambarEl.loading = "lazy"; // Lazy loading
+            produkEl.appendChild(gambarEl);
 
-    addEventListeners();  // Panggil setelah render
-}
+            const namaEl = document.createElement('h3');
+            namaEl.textContent = produk.nama;
+            produkEl.appendChild(namaEl);
 
-// --- FUNGSI UNTUK MENAMBAHKAN EVENT LISTENERS ---
-function addEventListeners() {
-    // Tombol "View Detail"
-    document.querySelectorAll('.tombol-detail').forEach(button => {
-        button.addEventListener('click', function(event) {
-            event.stopPropagation(); // Hentikan event bubbling
-            toggleDetail(this);
-        });
-    });
+            const hargaEl = document.createElement('p');
+            hargaEl.classList.add('harga');
+            hargaEl.textContent = formatRupiah(produk.harga);
+            produkEl.appendChild(hargaEl);
 
-   // Tombol "Buy Now" dan "Order Now"
-document.querySelectorAll('.produk button:not(.tombol-detail), .link-form').forEach(button => {
-    button.addEventListener('click', function(event) {
-        event.stopPropagation();
-        const produkId = parseInt(this.dataset.id);
-        const produk = produkData.find(p => p.id === produkId);
-
-        if (produk) {
-            pesanProduk(produk.nama, produk.harga);
-            // Sembunyikan daftar produk, tampilkan formulir
-            document.getElementById('form-pemesanan').style.display = 'block';
-            document.getElementById('daftar-produk').style.display = 'none';
-            document.getElementById('form-pemesanan').scrollIntoView({ behavior: 'smooth' });
-
-            // Sembunyikan tombol "Buy Now" dan "Order Now" pada produk yang dipilih
-            const produkDiv = this.closest('.produk'); // Dapatkan elemen .produk terdekat
-            if (produkDiv) {
-                const buttons = produkDiv.querySelectorAll('button:not(.tombol-detail), a.link-form');
-                buttons.forEach(btn => {
-                    if (btn !== this  && !btn.classList.contains('tombol-detail')) { // Jangan sembunyikan tombol detail, dan tombol yang di click
-                         btn.style.display = 'none';
-                    }
-                });
+              // Tombol "Lihat Detail" / "Stok Habis"
+            const button = document.createElement('button');
+            button.classList.add('cta-button');
+            if (produk.tersedia) {
+                button.textContent = 'View Details';
+                button.addEventListener('click', () => tampilkanDetailProduk(produk.id));
+            } else {
+                button.textContent = 'Out of Stock';
+                button.disabled = true; // Disable tombol
             }
-        }
-    });
-});
-}
+            produkEl.appendChild(button);
 
-// --- FUNGSI-FUNGSI LAINNYA ---
-
-function toggleDetail(button) {
-    const detailProduk = button.closest('.produk-info').querySelector('.detail-produk');
-    if (detailProduk) {
-        detailProduk.style.display = detailProduk.style.display === 'none' ? 'block' : 'none';
-        button.textContent = detailProduk.style.display === 'none' ? 'View Detail' : 'Hide Detail';
-    }
-}
-
-function pesanProduk(namaProduk, hargaProduk) {
-    document.getElementById('produk').value = namaProduk;
-    document.getElementById('harga').value = "Rp " + hargaProduk.toLocaleString('id-ID');
-    produkYgDipesan = namaProduk;
-    hargaYgDipesan = hargaProduk;
-}
-
-// --- MODAL ---
-const modal = document.getElementById('modalPembayaran');
-const tombolLanjutPembayaran = document.getElementById('tombolLanjutPembayaran');
-const tombolTutupModal = document.querySelector('.close-button');
-const tombolBayarModal = document.getElementById("tombolBayarModal");
-const tombolKembali = document.getElementById('tombolKembali');
-
-tombolLanjutPembayaran.addEventListener('click', () => {
-    if (!document.getElementById('nama').value || !document.getElementById('email').value) {
-        alert("Please fill in your name and email first.");
-        return;
-    }
-    document.getElementById('modalProduk').textContent = produkYgDipesan;
-    document.getElementById('modalHarga').textContent = "Rp " + hargaYgDipesan.toLocaleString('id-ID');
-    modal.style.display = 'block';
-    document.getElementById('form-pemesanan').style.display = 'none';
-});
-
-// --- Event listener untuk tombol tutup modal (DIPERBAIKI) ---
-tombolTutupModal.addEventListener('click', () => {
-    modal.style.display = 'none';
-    document.getElementById('daftar-produk').style.display = ''; // Tampilkan kembali daftar produk
-    //munculkan kembali produk button dan link form
-     document.querySelectorAll('.produk button, .produk a.link-form').forEach(button => {
-        button.style.display = ''; // Kosongkan style.display (kembalikan ke default)
-    });
-});
-
-// --- Event listener untuk klik di luar modal (DIPERBAIKI) ---
-window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-        modal.style.display = 'none';
-        document.getElementById('daftar-produk').style.display = ''; // Tampilkan kembali daftar produk
-        //munculkan kembali produk button dan link form
-        document.querySelectorAll('.produk button, .produk a.link-form').forEach(button => {
-        button.style.display = ''; // Kosongkan style.display (kembalikan ke default)
+            produkContainer.appendChild(produkEl);
         });
+         adjustProductTitleFontSize();
     }
-});
 
-// --- Event listener untuk tombol Kembali (DIPERBAIKI) ---
-tombolKembali.addEventListener('click', () => {
-    document.getElementById('form-pemesanan').style.display = 'none';
-    document.getElementById('daftar-produk').style.display = ''; // KOSONGKAN display
-    document.getElementById('daftar-produk').scrollIntoView({ behavior: 'smooth' });
-    //munculkan kembali produk button dan link form
-     document.querySelectorAll('.produk button, .produk a.link-form').forEach(button => {
-        button.style.display = ''; // Kosongkan style.display (kembalikan ke default)
-    });
-});
 
-function tampilkanInstruksiPembayaranModal(metode) {
-    const instruksiDiv = document.getElementById("modalInstruksiPembayaran");
-    instruksiDiv.innerHTML = "";
-    instruksiDiv.style.display = "block";
+    // --- Modal Detail Produk ---
+    const modalProduk = document.getElementById('modal-produk');
+    const closeModalProduk = document.getElementById('close-modal-produk');
+    const modalNamaProduk = document.getElementById('modal-nama-produk');
+    const modalGambarProduk = document.getElementById('modal-gambar-produk');
+    const modalDetailProduk = document.getElementById('modal-detail-produk');
+    const modalHargaProduk = document.getElementById('modal-harga-produk');
+    const pesanSekarangBtn = document.getElementById('pesan-sekarang');
 
-    if (metode === "transfer") {
-        instruksiDiv.innerHTML = `
-        <div class="payment-instructions">
-            <div class="bank-transfer-info">
-                <p>Please transfer the amount of <strong>Rp ${hargaYgDipesan.toLocaleString('id-ID')}</strong> to the following account:</p>
-                <div class="bank-details">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png" alt="Logo BCA" class="bank-logo">
-                    <div class="account-details">
-                        <p>Bank: <strong>BCA (Bank Central Asia)</strong></p>
-                        <p>Account Number: <strong>123-456-7890</strong></p>
-                        <p>Account Name: <strong>Your Name</strong></p>
-                    </div>
-                </div>
+    function tampilkanDetailProduk(produkId) {
+        const produk = produkData.find(p => p.id === produkId);
+        if (!produk) return;
 
-               <div class="bank-details">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.svg" alt="Logo Mandiri" class="bank-logo">
-                    <div class="account-details">
-                        <p>Bank: <strong>Mandiri</strong></p>
-                        <p>Account Number: <strong>987-654-3210</strong></p>
-                        <p>Account Name: <strong>Your Name</strong></p>
-                    </div>
-               </div>
-            </div>
-             <p class = "important-note"><strong>Important:</strong></p>
-            <p>After making the transfer, please confirm your payment by sending proof of transfer (photo/screenshot) via WhatsApp to <strong>0812-3456-7890</strong> or email to <strong>pembayaran@example.com</strong>. Also include your <strong>full name</strong> and the <strong>product name</strong> you ordered.</p>
-        </div>
-        `;
-    } else if (metode === "midtrans" || metode === "xendit") {
-        instruksiDiv.innerHTML = `<p>You will be redirected to the ${metode} payment page after clicking the "Pay" button.</p>`;
-    } else {
-        instruksiDiv.style.display = "none";
+        modalNamaProduk.textContent = produk.nama;
+        modalGambarProduk.src = produk.gambar;
+        modalGambarProduk.alt = `${produk.nama} Image`;
+        modalDetailProduk.textContent = produk.detail;
+        modalHargaProduk.textContent = formatRupiah(produk.harga);
+
+        // Event listener untuk tombol "Order Now"
+        pesanSekarangBtn.onclick = () => {
+          tampilkanFormulirPemesanan(produk.id);
+          modalProduk.style.display = 'none'; // Sembunyikan modal detail
+        };
+
+        modalProduk.style.display = 'block';
     }
-}
 
-tombolBayarModal.addEventListener("click", function() {
-    const metode = document.getElementById("modalMetodePembayaran").value;
-    if (metode === "midtrans" || metode === "xendit") {
-        alert("Midtrans/Xendit integration requires backend and complex configuration.  This is beyond the scope of this example.");
-    } else if (metode === "transfer") {
-        const nama = document.getElementById("nama").value;
-        const email = document.getElementById("email").value;
-        const produk = produkYgDipesan;
-        const harga = "Rp " + hargaYgDipesan.toLocaleString('id-ID');
-        const catatan = document.getElementById("catatan").value;
+    closeModalProduk.onclick = () => {
+        modalProduk.style.display = 'none';
+    };
 
-        let pesanWA = `Hello, I would like to order a digital product:\n\nName: ${nama}\nEmail: ${email}\nProduct: ${produk}\nPrice: ${harga}\nNotes: ${catatan}\n\nPayment Method: Bank Transfer`;
-        pesanWA = encodeURIComponent(pesanWA);
+    // --- Formulir Pemesanan ---
+    const formulirPemesanan = document.getElementById('formulir-pemesanan');
+    const tutupFormulir = document.getElementById('tutup-formulir');
+    const namaProdukPesanan = document.getElementById('nama-produk-pesanan');
+    const formPemesanan = document.getElementById('form-pemesanan');
+    const lanjutPembayaranBtn = document.getElementById('lanjut-pembayaran');
 
-        const nomorWA = "628xxxxxxxxxx"; // GANTI DENGAN NOMOR WHATSAPP ANDA!
-        window.open(`https://wa.me/${nomorWA}?text=${pesanWA}`, '_blank');
-    } else {
-        alert("Please select a payment method.");
+    let produkIdTerpilih = null; // Menyimpan ID produk yang dipesan
+
+
+    function tampilkanFormulirPemesanan(produkId) {
+      produkIdTerpilih = produkId;
+      const produk = produkData.find(p => p.id === produkId);
+      if(produk) {
+        namaProdukPesanan.textContent = produk.nama; // Set nama produk di form
+      }
+      formulirPemesanan.style.display = 'block';
     }
-});
 
-// --- Hamburger Menu ---
-const hamburgerMenu = document.querySelector('.hamburger-menu');
-const navLinks = document.querySelector('.nav-links');
+      tutupFormulir.onclick = () => {
+        formulirPemesanan.style.display = 'none';
+          resetFormulir();
+    };
 
-hamburgerMenu.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-});
+    // --- Validasi Formulir (Real-time) ---
+    const namaInput = document.getElementById('nama');
+    const emailInput = document.getElementById('email');
+    const errorNama = document.getElementById('error-nama');
+    const errorEmail = document.getElementById('error-email');
 
-// --- Penyesuaian Ukuran Font Judul Produk (Opsional) ---
-function adjustProductTitleFontSize() {
-    const products = document.querySelectorAll('.produk');
-    products.forEach(product => {
-        const h2 = product.querySelector('h2');
-        if (!h2) return;
-
-        let containerWidth = product.querySelector('.produk-info').offsetWidth;
-        let titleWidth = h2.offsetWidth;
-        let currentFontSize = parseFloat(window.getComputedStyle(h2).fontSize);
-        const minFontSize = 10;
-        let counter = 0;
-
-        while (titleWidth > containerWidth && currentFontSize > minFontSize && counter < 50) {
-            currentFontSize -= 0.5;
-            h2.style.fontSize = currentFontSize + 'px';
-            titleWidth = h2.offsetWidth;  // Update
-            containerWidth = product.querySelector('.produk-info').offsetWidth;  //Update
-            counter++;
+    function validateName() {
+        if (namaInput.value.trim() === '') {
+            errorNama.textContent = 'Name is required.';
+            return false;
         }
-        if(counter >= 50){
-            console.warn("Loop adjust font reach the limit", h2)
-        }
-    });
-}
-
-
-// --- PANGGIL FUNGSI-FUNGSI AWAL ---
-document.addEventListener('DOMContentLoaded', () => {
-    renderProduk();
-    adjustProductTitleFontSize();
-});
-
-// --- EVENT LISTENER TAMBAHAN (Opsional) ---
-window.addEventListener('resize', adjustProductTitleFontSize);
-window.addEventListener('load', adjustProductTitleFontSize);
-
-//Fungsi untuk reset tampilan tombol "Buy Now" dan "Order Now"
-function resetTombolBeli() {
-    document.querySelectorAll('.produk button, .produk a.link-form').forEach(button => {
-        button.style.display = ''; // Kembalikan ke default
-    });
-}
-
-//FUNGSI UNTUK MENYEMBUNYIKAN TOMBOL KECUALI YANG DIKLIK
-function sembunyikanTombolBeli(clickedButton){
-     const produkDiv = clickedButton.closest('.produk');
-    if (produkDiv) {
-      const buttons = produkDiv.querySelectorAll('button:not(.tombol-detail), a.link-form');
-        buttons.forEach(btn => {
-          if (btn !== clickedButton && !btn.classList.contains('tombol-detail')) {
-            btn.style.display = 'none';
-        }
-      });
+        errorNama.textContent = ''; // Hapus pesan error
+        return true;
     }
-}
 
-// Fungsi untuk menampilkan kembali semua tombol
-function resetTombolBeli() {
-    document.querySelectorAll('.produk button, .produk a.link-form').forEach(button => {
-        button.style.display = ''; // Kosongkan style.display (kembalikan ke default)
+     function validateEmail() {
+        const email = emailInput.value.trim();
+        if (email === '') {
+            errorEmail.textContent = 'Email is required.';
+            return false;
+        }
+        // Validasi format email (lebih baik dari sebelumnya)
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            errorEmail.textContent = 'Invalid email format.';
+            return false;
+        }
+        errorEmail.textContent = '';
+        return true;
+    }
+
+    // Event listener untuk validasi real-time
+    namaInput.addEventListener('input', validateName);
+    namaInput.addEventListener('blur', validateName); // Cek juga saat blur
+    emailInput.addEventListener('input', validateEmail);
+    emailInput.addEventListener('blur', validateEmail);
+
+
+    // --- Modal Pembayaran ---
+    const modalPembayaran = document.getElementById('modal-pembayaran');
+    const tutupModalPembayaran = document.getElementById('tutup-modal-pembayaran');
+    const detailPembayaran = document.getElementById('detail-pembayaran');
+    const totalPembayaran = document.getElementById('total-pembayaran');
+    const bayarSekarangBtn = document.getElementById('bayar-sekarang');
+    const konfirmasiTransfer = document.getElementById('konfirmasi-transfer');
+    const konfirmasiSudahTransferBtn = document.getElementById('konfirmasi-sudah-transfer');
+
+    lanjutPembayaranBtn.addEventListener('click', () => {
+
+      if (!validateName() || !validateEmail()) {
+        // Jangan tampilkan modal jika ada error
+        return;
+      }
+        const produk = produkData.find(p => p.id === produkIdTerpilih);
+        if(!produk) return;
+
+        const jumlah = parseInt(document.getElementById('jumlah').value, 10);
+        const total = produk.harga * jumlah;
+
+      // Tampilkan modal pembayaran
+      modalPembayaran.style.display = 'block';
+      formulirPemesanan.style.display = 'none'; // Sembunyikan formulir
+      totalPembayaran.textContent = `Total Payment: ${formatRupiah(total)}`;
     });
-}
+
+      tutupModalPembayaran.onclick = () => {
+        modalPembayaran.style.display = 'none';
+    };
+
+    // --- Event Listener untuk Metode Pembayaran ---
+    const metodePembayaranRadios = document.querySelectorAll('input[name="metode-pembayaran"]');
+
+    metodePembayaranRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            tampilkanDetailPembayaran(this.value);
+        });
+    });
+
+      function tampilkanDetailPembayaran(metode) {
+        const produk = produkData.find(p => p.id === produkIdTerpilih);
+        if (!produk) return;
+
+        const jumlah = parseInt(document.getElementById('jumlah').value, 10);
+        const total = produk.harga * jumlah;
+
+        let detailHTML = '';
+        if (metode === 'transfer') {
+            detailHTML = `
+                <p>Please transfer the total amount of <strong>${formatRupiah(total)}</strong> to the following account:</p>
+                <p><strong>Bank:</strong> BSI</p>
+                <p><strong>Account Number:</strong> 1234567890</p>
+                <p><strong>Account Name:</strong> Muhammad Trinanda</p>
+            `;
+              konfirmasiTransfer.style.display = 'block';
+              konfirmasiSudahTransferBtn.style.display = 'inline-block'; // Tampilkan tombol
+        } else if (metode === 'qris') {
+            detailHTML = `
+                <p>Please scan the QRIS code below to pay <strong>${formatRupiah(total)}</strong>:</p>
+                <img src="path/ke/qris.png" alt="QRIS Code" width="200">
+            `;
+             konfirmasiTransfer.style.display = 'none';
+              konfirmasiSudahTransferBtn.style.display = 'none';
+        }
+        detailPembayaran.innerHTML = detailHTML;
+    }
+
+        // Event listener untuk tombol "Bayar Sekarang"
+    bayarSekarangBtn.addEventListener('click', function() {
+        const metodeTerpilih = document.querySelector('input[name="metode-pembayaran"]:checked').value;
+
+        if (metodeTerpilih === 'transfer') {
+            // Buka WhatsApp dengan data yang sudah diisi (termasuk format pesan)
+            const nama = document.getElementById('nama').value;
+            const email = document.getElementById('email').value;
+            const telepon = document.getElementById('telepon').value;
+            const alamat = document.getElementById('alamat').value;
+            const jumlah = document.getElementById('jumlah').value;
+            const catatan = document.getElementById('catatan').value;
+            const produk = produkData.find(p => p.id === produkIdTerpilih);
+            const total = produk.harga * jumlah;
 
 
-// --- EVENT LISTENER TAMBAHAN (Opsional) ---
-window.addEventListener('resize', adjustProductTitleFontSize);
-window.addEventListener('load', adjustProductTitleFontSize);
+            const pesan = `Order Confirmation\n\nName: ${nama}\nEmail: ${email}\nPhone: ${telepon}\nAddress: ${alamat}\nProduct: ${produk.nama}\nQuantity: ${jumlah}\nTotal: ${formatRupiah(total)}\nNotes: ${catatan}\n\nPlease send proof of transfer.`;
+            const encodedPesan = encodeURIComponent(pesan);
+            window.open(`https://wa.me/6282294092939?text=${encodedPesan}`);
+        } else {
+           alert("QRIS integration will be available soon!");
+        }
+    });
+
+     // Event listener untuk tombol "Saya Sudah Transfer"
+    konfirmasiSudahTransferBtn.addEventListener('click', function() {
+        modalPembayaran.style.display = 'none';
+        alert('Thank you for your order! We will process it soon.');
+        resetFormulir(); // Reset formulir setelah konfirmasi
+    });
 
 
-// Panggil fungsi resetTombolBeli() saat halaman pertama kali dimuat
-document.addEventListener('DOMContentLoaded', () => {
-    renderProduk();
-    adjustProductTitleFontSize();
-    resetTombolBeli(); // PENTING: Panggil di sini
+     // --- Fungsi Reset Formulir ---
+    function resetFormulir() {
+      formPemesanan.reset();
+      // Hapus pesan error
+      errorNama.textContent = '';
+      errorEmail.textContent = '';
+       // Reset juga input tersembunyi jika ada
+    }
+
+     // --- Fungsi Utilitas (Format Rupiah) ---
+    function formatRupiah(angka) {
+        return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(angka);
+    }
+    // --- Hamburger Menu ---
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
+      const navLinksContainer = document.querySelector('.nav-links');
+      const hamburgerIcon = document.querySelector('.hamburger-menu i');
+
+    hamburgerMenu.addEventListener('click', function() {
+        navLinksContainer.classList.toggle('show');
+        if (navLinksContainer.classList.contains('show')) {
+            hamburgerIcon.classList.remove('fa-bars');
+            hamburgerIcon.classList.add('fa-xmark');
+        } else {
+            hamburgerIcon.classList.remove('fa-xmark');
+            hamburgerIcon.classList.add('fa-bars');
+        }
+    });
+      function adjustProductTitleFontSize() {
+        const productTitles = document.querySelectorAll('.produk h3');
+        const maxWidth = 250;
+
+        productTitles.forEach(title => {
+            const containerWidth = title.parentElement.offsetWidth;
+            let fontSize = 1.25;
+
+            if(containerWidth < maxWidth) {
+              const scale = containerWidth / maxWidth;
+              fontSize = Math.max(1, fontSize * scale)
+            }
+             title.style.fontSize = `${fontSize}rem`;
+
+            // Reset white-space jika sudah pernah diubah.
+            title.style.whiteSpace = 'normal';
+            if(title.scrollHeight > title.clientHeight) {
+                title.style.whiteSpace = 'nowrap';
+            }
+        })
+      }
+
+      // --- Panggil fungsi-fungsi yang diperlukan ---
+    renderProduk(); // Panggil saat halaman dimuat
+
+
+    // --- Event Listener untuk menutup modal (klik di luar modal) ---
+    window.addEventListener('click', function(event) {
+        if (event.target === modalProduk) {
+            modalProduk.style.display = 'none';
+        }
+        if (event.target === formulirPemesanan) {
+            formulirPemesanan.style.display = 'none';
+              resetFormulir();
+        }
+        if (event.target === modalPembayaran) {
+            modalPembayaran.style.display = 'none';
+        }
+    });
+
+     function throttledAdjustProductTitleFontSize() {
+        let ticking = false;
+
+        return function() {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    adjustProductTitleFontSize();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+    }
+    const optimizedAdjustProductTitleFontSize = throttledAdjustProductTitleFontSize();
+     window.addEventListener('resize', optimizedAdjustProductTitleFontSize);
+
 });
-
-// --- (Akhir kode script.js) ---

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Product Marketplace</title>
+    <meta name="description" content="Marketplace for Muhammad Trinanda's products and services.">
+    <title>Nanda's Marketplace</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -11,67 +12,118 @@
 <body>
     <header>
         <nav>
-            <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">My Marketplace</a></div>
-             <a href="#" class="hamburger-menu">
+            <div class="logo">Nanda's Marketplace</div>
+              <a href="#" class="hamburger-menu" aria-label="Menu">
                 <i class="fas fa-bars"></i>
-              </a>
+            </a>
             <ul class="nav-links">
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="../index-coming_soon.html#projects">Projects</a></li> <li><a href="../index.html#contact">Contact</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="#product-list">Products</a></li>
+                <li><a href="#contact-us">Contact Us</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="container">
-        <h1>My Digital Product Store</h1>
-        <p class="deskripsi-toko">Discover high-quality digital products for your needs.</p>
+    <main>
+        <section id="about-us">
+            <h2>Welcome to My Marketplace</h2>
+            <p>
+                Discover a variety of high-quality products and services that I offer, ranging from financial statement creation services, graphic design,
+                to business data analysis. I am committed to providing the best service and solutions
+                tailored to your needs.
+            </p>
+        </section>
 
-        <div id="daftar-produk">
+        <section id="product-list">
+            <h2>Products and Services</h2>
+            <div class="produk-grid" id="produk-container">
+                </div>
+        </section>
+
+        <section id="contact-us">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or would like to place an order, please don't hesitate to contact me.</p>
+            <div class="contact-links">
+                <a href="mailto:m.3rd.nanda@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i> Email</a>
+                <a href="https://www.linkedin.com/in/muhammad-trinanda/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="https://www.instagram.com/trinanda321" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i> Instagram</a>
             </div>
-
-        <div id="form-pemesanan" style="display:none;">
-            <h2>Order Form</h2>
-            <form id="formPesan">
-                <label for="nama">Full Name:</label>
-                <input type="text" id="nama" name="nama" required>
-
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="produk">Product:</label>
-                <input type="text" id="produk" name="produk" readonly>
-
-                <label for="harga">Price:</label>
-                <input type="text" id="harga" name="harga" readonly>
-
-                <label for="catatan">Additional Notes (Optional):</label>
-                <textarea id="catatan" name="catatan" rows="4"></textarea>
-
-                <button type="button" id="tombolKembali" class="cta-button">Back</button>
-                <button type="button" id="tombolLanjutPembayaran" class="cta-button">Continue to Payment</button>
-            </form>
+        </section>
+        <div class="modal-popup" id="modal-produk">
+          <div class="modal-content">
+            <span class="close-button" id="close-modal-produk">&times;</span>
+            <h3 id="modal-nama-produk"></h3>
+            <img id="modal-gambar-produk" src="" alt="" loading="lazy">
+            <p id="modal-detail-produk"></p>
+            <p><strong>Price:</strong> <span id="modal-harga-produk"></span></p>
+            <button class="cta-button" id="pesan-sekarang">Order Now</button>
+          </div>
         </div>
 
-          <div id="modalPembayaran" class="modal">
+        <div id="formulir-pemesanan" class="modal-popup">
             <div class="modal-content">
-                <span class="close-button">&times;</span>
-                <h2>Payment Details</h2>
-                <p><strong>Product:</strong> <span id="modalProduk"></span></p>
-                <p><strong>Price:</strong> <span id="modalHarga"></span></p>
+                <span class="close-button" id="tutup-formulir">&times;</span>
+                <h2>Order Form</h2>
+                <p>Please fill out the form below to order <strong id="nama-produk-pesanan"></strong>:</p>
+                <form id="form-pemesanan">
+                    <label for="nama">Full Name:</label>
+                    <input type="text" id="nama" name="nama" required>
+                    <div class="error-message" id="error-nama"></div>
 
-                <label for="modalMetodePembayaran">Payment Method:</label>
-                <select id="modalMetodePembayaran" onchange="tampilkanInstruksiPembayaranModal(this.value)">
-                    <option value="">-- Choose Payment Method --</option>
-                    <option value="transfer">Bank Transfer</option>
-                    <option value="midtrans">Midtrans (Example)</option>
-                    <option value="xendit">Xendit (Example)</option>
-                </select>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <div class="error-message" id="error-email"></div>
 
-                 <div id="modalInstruksiPembayaran">
-                 </div>
-                <button type="button" id="tombolBayarModal" class="cta-button">Pay</button> </div>
+                    <label for="telepon">Phone Number (WhatsApp):</label>
+                    <input type="tel" id="telepon" name="telepon">
+
+                    <label for="alamat">Shipping Address:</label>
+                    <textarea id="alamat" name="alamat"></textarea>
+
+                    <label for="jumlah">Quantity:</label>
+                    <input type="number" id="jumlah" name="jumlah" value="1" min="1" required>
+
+                    <label for="catatan">Additional Notes:</label>
+                    <textarea id="catatan" name="catatan"></textarea>
+
+                    <button type="button" class="cta-button" id="lanjut-pembayaran">Proceed to Payment</button>
+                </form>
+            </div>
         </div>
-    </div>
+
+          <div id="modal-pembayaran" class="modal-popup">
+            <div class="modal-content">
+                <span class="close-button" id="tutup-modal-pembayaran">&times;</span>
+                <h2>Payment</h2>
+                <p>Please select a payment method:</p>
+
+                <div class="metode-pembayaran">
+                  <label>
+                    <input type="radio" name="metode-pembayaran" value="transfer" checked>
+                    Bank Transfer (BSI)
+                  </label><br>
+                  <label>
+                    <input type="radio" name="metode-pembayaran" value="qris">
+                    QRIS
+                  </label>
+                </div>
+
+                <div id="detail-pembayaran">
+                    </div>
+              <p id="total-pembayaran"></p>
+
+                <button class="cta-button" id="bayar-sekarang">Pay Now</button>
+                <p id="konfirmasi-transfer" style="display: none;">Please send proof of transfer via WhatsApp after making the payment.</p>
+                <button class="cta-button" id="konfirmasi-sudah-transfer" style="display:none;">I Have Transferred</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Muhammad Trinanda. All rights reserved.</p>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,103 +1,130 @@
-// script.js
+document.addEventListener('DOMContentLoaded', function() {
 
-// --- Smooth Scrolling ---
-function smoothScrollToAnchor() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+    // --- Smooth Scrolling ---
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
             e.preventDefault();
-
-            const targetId = this.getAttribute('href'); // Ambil ID target (misal: '#about')
-            const targetElement = document.querySelector(targetId); // Dapatkan elemen target
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
                 targetElement.scrollIntoView({
                     behavior: 'smooth'
                 });
+
+                // Sembunyikan menu setelah klik di mobile
+                if (window.innerWidth <= 768) {
+                  navLinksContainer.classList.remove('show');
+                  hamburgerIcon.classList.remove('fa-xmark');
+                  hamburgerIcon.classList.add('fa-bars');
+                }
             }
         });
     });
-}
 
-// --- Hamburger Menu ---
-const hamburgerMenu = document.querySelector('.hamburger-menu');
-const navLinks = document.querySelector('.nav-links');
+    // --- Hamburger Menu ---
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const navLinksContainer = document.querySelector('.nav-links');
+    const hamburgerIcon = document.querySelector('.hamburger-menu i');
 
-hamburgerMenu.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
+
+    hamburgerMenu.addEventListener('click', function() {
+        navLinksContainer.classList.toggle('show');
+        // Ganti ikon hamburger
+        if (navLinksContainer.classList.contains('show')) {
+            hamburgerIcon.classList.remove('fa-bars');
+            hamburgerIcon.classList.add('fa-xmark');
+        } else {
+            hamburgerIcon.classList.remove('fa-xmark');
+            hamburgerIcon.classList.add('fa-bars');
+        }
+    });
+
+    // --- Animasi Teks Hero ---
+    const animatedText = document.querySelector('.animated-text');
+    animatedText.style.opacity = 1; // Langsung tampilkan
+
+    // --- Animasi Scroll (Heading dan Skill) ---
+    function animateOnScroll() {
+      const headings = document.querySelectorAll('.animate-heading'); // Semua heading
+      const skills = document.querySelectorAll('.skill');          // Semua skill
+
+      animateElements(headings);
+      animateElements(skills, 'animate-skill');  // Tambahkan class khusus skill
+  }
+
+  function animateElements(elements, animateClass = '') {
+      elements.forEach(element => {
+          const elementTop = element.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+
+          if (elementTop < windowHeight * 0.8) {
+              if(animateClass) {
+                  element.classList.add(animateClass);
+              }
+              element.classList.add('animate-heading');
+              element.classList.remove('animate-out'); // Hapus kelas animate-out
+
+          } else {
+              if (animateClass){
+                element.classList.remove(animateClass);
+              }
+
+              element.classList.remove('animate-heading');
+              element.classList.add('animate-out');     // Tambahkan kelas animate-out
+          }
+      });
+    }
+
+
+
+    animateOnScroll(); // Panggil sekali saat load
+    window.addEventListener('scroll', animateOnScroll);
+
+
+    // --- Penyesuaian Ukuran Font Judul Skill ---
+    function adjustSkillTitleFontSize() {
+        const skillTitles = document.querySelectorAll('.skill h3');
+        const maxWidth = 250; // Lebar maksimum container skill
+
+        skillTitles.forEach(title => {
+            const containerWidth = title.parentElement.offsetWidth;
+            let fontSize = 1.75; // Ukuran font awal
+
+            if (containerWidth < maxWidth) {
+                const scale = containerWidth / maxWidth;
+                fontSize = Math.max(1.2, fontSize * scale);
+            }
+            title.style.fontSize = `${fontSize}rem`;
+
+            // Reset white-space jika sudah pernah diubah.
+            title.style.whiteSpace = 'normal';
+            if(title.scrollHeight > title.clientHeight) {
+                title.style.whiteSpace = 'nowrap';
+            }
+        });
+    }
+      //gunakan requestAnimationFrame
+      function throttledAdjustSkillTitleFontSize() {
+        let ticking = false;
+
+        return function() {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    adjustSkillTitleFontSize();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+    }
+    const optimizedAdjustSkillTitleFontSize = throttledAdjustSkillTitleFontSize();
+
+
+    optimizedAdjustSkillTitleFontSize(); // Panggil sekali saat load
+    window.addEventListener('resize', optimizedAdjustSkillTitleFontSize);
+
+
 });
-
-// --- Animasi Saat Scroll (Heading) ---
-function animateHeadings() {
-    const headings = document.querySelectorAll('#about h2, #skills h2, #projects h2, #contact h2');
-    const windowHeight = window.innerHeight;
-
-    headings.forEach(heading => {
-        const headingTop = heading.getBoundingClientRect().top;
-
-        if (headingTop < windowHeight * 0.8) { // Muncul saat 80% heading terlihat
-            heading.classList.add('animate-heading');
-        }
-    });
-}
-
-// --- Animasi Saat Scroll (Skill Items) ---
-function animateSkills() {
-    const skills = document.querySelectorAll('.skill');
-    const windowHeight = window.innerHeight;
-
-    skills.forEach(skill => {
-        const skillTop = skill.getBoundingClientRect().top;
-
-        if (skillTop < windowHeight * 0.8) { // Muncul saat 80% skill terlihat
-            skill.classList.add('animate-skill');
-        }
-    });
-}
-
-// --- Fungsi Penyesuaian Ukuran Font Skill Title ---
-function adjustSkillTitleFontSize() {
-    const skills = document.querySelectorAll('.skill');
-
-    skills.forEach(skill => {
-        const h3 = skill.querySelector('h3'); // Ambil elemen h3
-        if (!h3) return; // Jika tidak ada h3 (seharusnya tidak terjadi, tapi untuk jaga-jaga)
-
-        let containerWidth = skill.offsetWidth; // Lebar container (.skill)
-        let titleWidth = h3.offsetWidth; // Lebar judul (h3)
-        let currentFontSize = parseFloat(window.getComputedStyle(h3).fontSize); // Ukuran font saat ini
-        const minFontSize = 10; // Ukuran font minimal
-        let counter = 0;
-
-        // Loop selama lebar judul > lebar container, ukuran font > minimal, dan counter < 50
-        while (titleWidth > containerWidth && currentFontSize > minFontSize && counter < 50) {
-            currentFontSize -= 0.5; // Kurangi ukuran font
-            h3.style.fontSize = currentFontSize + 'px'; // Terapkan ukuran font baru
-            titleWidth = h3.offsetWidth; // Hitung ulang lebar judul (karena font berubah)
-            containerWidth = skill.offsetWidth;
-            counter++; // Increment counter
-        }
-        if(counter >= 50){
-            console.warn("Loop adjust font reach the limit", h3)
-        }
-    });
-}
-
-// --- Event Listener ---
-document.addEventListener('DOMContentLoaded', () => {
-    smoothScrollToAnchor();
-    animateHeadings();
-    animateSkills();
-    adjustSkillTitleFontSize();
-
-
-     // --- Event Listener tambahan ---
-    // Panggil fungsi-fungsi animasi saat scroll
-    window.addEventListener('scroll', () => {
-        animateHeadings();
-        animateSkills();
-    });
-});
-
-// Panggil adjustSkillTitleFontSize() saat window di-resize dan load
-window.addEventListener('resize', adjustSkillTitleFontSize);
-window.addEventListener('load', adjustSkillTitleFontSize);
