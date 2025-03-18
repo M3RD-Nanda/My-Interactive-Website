@@ -19,12 +19,14 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 600px; /* Batasi lebar maksimum */
     width: 90%; /* Lebar responsif */
+     animation: fadeIn 1s ease; /* Tambahkan animasi */
 }
 
 h1 {
     font-size: 3rem;
     color: #663399;
     margin-bottom: 15px;
+     animation: pulse 2s infinite;
 }
 
 p {
@@ -33,9 +35,12 @@ p {
     line-height: 1.5; /* Improved readability */
 }
 
-.fa-hourglass-half {
+/* Animasi putar untuk ikon hourglass */
+.animated-hourglass {
+    animation: rotate 2s linear infinite;
     color: #663399;
     margin-bottom: 25px;
+    display: inline-block; /* Penting untuk animasi putar */
 }
 
 .social-icons {
@@ -43,16 +48,61 @@ p {
 }
 
 .social-icons a {
-    display: inline-block; /* Allows setting width/height */
+    display: inline-block;
     margin: 0 10px;
     color: #663399;
     font-size: 2rem;
-    transition: color 0.3s ease, transform 0.3s ease;  /* Add transform transition */
-    text-decoration: none; /* Remove underline */
+    transition: color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
 
 }
 
 .social-icons a:hover {
     color: #8058a5;
-    transform: scale(1.1); /* Add a slight scale effect */
+    transform: scale(1.1);
+}
+/* Tombol Kembali ke Portfolio */
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #663399;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #8058a5;
+}
+.back-button i{
+    margin-right: 8px;
+}
+
+/* Keyframes untuk animasi */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }

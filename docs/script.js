@@ -7,9 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
 
-            // --- PERUBAHAN DI SINI ---
             if (targetId.startsWith("#")) { // Cek apakah ini anchor link
-                e.preventDefault(); // Hentikan perilaku default *hanya* jika ini anchor link
+                e.preventDefault();
                 const targetElement = document.querySelector(targetId);
 
                 if (targetElement) {
@@ -17,8 +16,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         behavior: 'smooth'
                     });
                 }
+            } else {
+                // Untuk link eksternal (bukan anchor), ganti halaman
+                window.location.href = targetId; // Ubah di sini
             }
-            // --- AKHIR PERUBAHAN ---
+
 
             // Sembunyikan menu setelah klik di mobile (taruh di luar if)
             if (window.innerWidth <= 768) {
@@ -58,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const skills = document.querySelectorAll('.skill');          // Semua skill
 
       animateElements(headings);
-      animateElements(skills, 'animate-skill');  // Tambahkan class khusus skill
+      animateElements(skills, 'animate-skill');
   }
 
   function animateElements(elements, animateClass = '') {
@@ -71,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   element.classList.add(animateClass);
               }
               element.classList.add('animate-heading');
-              element.classList.remove('animate-out'); // Hapus kelas animate-out
+              element.classList.remove('animate-out');
 
           } else {
               if (animateClass){
@@ -79,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
               }
 
               element.classList.remove('animate-heading');
-              element.classList.add('animate-out');     // Tambahkan kelas animate-out
+              element.classList.add('animate-out');
           }
       });
     }

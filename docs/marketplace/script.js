@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
             detail: "In-depth business data analysis services using Excel, SPSS, and other tools to provide actionable insights for your business.",
             gambar: "path/ke/gambar3.jpg"
         },
-        { // Produk Baru
+        {
             id: 4,
             nama: "Website Development Service",
             harga: 1000000,
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
             hargaEl.textContent = formatRupiah(produk.harga);
             produkEl.appendChild(hargaEl);
 
-            const detailEl = document.createElement('p'); // Tambahkan detail
+            const detailEl = document.createElement('p');
             detailEl.textContent = produk.detail;
             produkEl.appendChild(detailEl);
 
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             produkContainer.appendChild(produkEl);
         });
-        adjustProductTitleFontSize(); // Panggil setelah render
+        adjustProductTitleFontSize();
     }
 
 
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Modal Pembayaran (Midtrans - Simulasi) ---
     const modalPembayaran = document.getElementById('modal-pembayaran');
     const tutupModalPembayaran = document.getElementById('tutup-modal-pembayaran');
-    const totalPembayaran = document.getElementById('total-pembayaran'); // Element total
+    const totalPembayaran = document.getElementById('total-pembayaran');
     const bayarSekarangBtn = document.getElementById('bayar-sekarang');
 
 
@@ -178,12 +178,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const produk = produkData.find(p => p.id === produkIdTerpilih);
         if (!produk) return;
 
-        // Hitung total (karena produk digital, asumsikan jumlah = 1)
         const total = produk.harga;
 
         modalPembayaran.style.display = 'block';
         formulirPemesanan.style.display = 'none';
-        totalPembayaran.textContent = `Total: ${formatRupiah(total)}`; // Tampilkan total
+        totalPembayaran.textContent = `Total: ${formatRupiah(total)}`;
     });
 
     tutupModalPembayaran.onclick = () => {
@@ -191,15 +190,15 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     bayarSekarangBtn.addEventListener('click', () => {
-      // SIMULASI integrasi Midtrans (ganti dengan kode asli dari Midtrans)
+      // SIMULASI integrasi Midtrans
       alert('Redirecting to Midtrans for payment...');
-      // Di sini Anda akan memanggil fungsi/API Midtrans untuk mendapatkan snap token,
-      // lalu menampilkan popup/redirect ke halaman pembayaran Midtrans.
+      // Kode integrasi Midtrans yang sebenarnya akan di sini
 
         modalPembayaran.style.display = 'none';
         resetFormulir();
 
     });
+
 
     // --- Fungsi Reset Formulir ---
     function resetFormulir() {
@@ -229,24 +228,39 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-      function adjustProductTitleFontSize() {
+     function adjustProductTitleFontSize() {
         const productTitles = document.querySelectorAll('.produk h3');
         const maxWidth = 250;
 
         productTitles.forEach(title => {
-            const containerWidth = title.parentElement.offsetWidth;
+            const container = title.closest('.produk'); // Dapatkan container .produk
+            if (!container) return; // Jika tidak ada container, lewati
+
+            const containerWidth = container.offsetWidth;
             let fontSize = 1.25;
+
 
             if(containerWidth < maxWidth) {
               const scale = containerWidth / maxWidth;
-              fontSize = Math.max(1, fontSize * scale)
+              fontSize = Math.max(1, fontSize * scale);
+
             }
-             title.style.fontSize = `${fontSize}rem`;
+            title.style.fontSize = `${fontSize}rem`;
+
             // Reset white-space jika sudah pernah diubah.
             title.style.whiteSpace = 'normal';
-            if(title.scrollHeight > title.clientHeight) {
-                title.style.whiteSpace = 'nowrap';
+
+            // Cek apakah teksnya melebihi 2 baris
+            const lineHeight = parseInt(window.getComputedStyle(title).lineHeight, 10);
+             if (title.scrollHeight > lineHeight * 2) {
+                title.style.whiteSpace = 'nowrap'; // Jika ya, set ke nowrap
+                title.style.overflow = 'hidden'; // Sembunyikan teks yang overflow
+                title.style.textOverflow = 'ellipsis'; // Tambahkan ellipsis (...)
+            } else {
+                title.style.overflow = '';       // Reset overflow
+                title.style.textOverflow = '';   // Reset text-overflow
             }
+
         })
       }
 
@@ -267,7 +281,8 @@ document.addEventListener('DOMContentLoaded', function() {
             modalPembayaran.style.display = 'none';
         }
     });
-    function throttledAdjustProductTitleFontSize() {
+
+      function throttledAdjustProductTitleFontSize() {
         let ticking = false;
 
         return function() {
@@ -281,6 +296,6 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
     const optimizedAdjustProductTitleFontSize = throttledAdjustProductTitleFontSize();
-     window.addEventListener('resize', optimizedAdjustProductTitleFontSize);
+    window.addEventListener('resize', optimizedAdjustProductTitleFontSize);
 
 });
