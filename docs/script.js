@@ -5,22 +5,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            e.preventDefault();
             const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
 
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
+            // --- PERUBAHAN DI SINI ---
+            if (targetId.startsWith("#")) { // Cek apakah ini anchor link
+                e.preventDefault(); // Hentikan perilaku default *hanya* jika ini anchor link
+                const targetElement = document.querySelector(targetId);
 
-                // Sembunyikan menu setelah klik di mobile
-                if (window.innerWidth <= 768) {
-                  navLinksContainer.classList.remove('show');
-                  hamburgerIcon.classList.remove('fa-xmark');
-                  hamburgerIcon.classList.add('fa-bars');
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 }
             }
+            // --- AKHIR PERUBAHAN ---
+
+            // Sembunyikan menu setelah klik di mobile (taruh di luar if)
+            if (window.innerWidth <= 768) {
+              navLinksContainer.classList.remove('show');
+              hamburgerIcon.classList.remove('fa-xmark');
+              hamburgerIcon.classList.add('fa-bars');
+            }
+
         });
     });
 
