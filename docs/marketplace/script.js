@@ -114,7 +114,7 @@ function renderProduk() {
 function addEventListeners() {
     // Tombol "View Detail"
     document.querySelectorAll('.tombol-detail').forEach(button => {
-        button.addEventListener('click', function(event) { // Tambahkan event
+        button.addEventListener('click', function(event) {
             event.stopPropagation(); // Hentikan event bubbling
             toggleDetail(this);
         });
@@ -122,36 +122,38 @@ function addEventListeners() {
 
    // Tombol "Buy Now" dan "Order Now"
     document.querySelectorAll('.produk button:not(.tombol-detail), .link-form').forEach(button => {
-        button.addEventListener('click', function(event) {
-            event.stopPropagation(); // Hentikan event bubbling
-            const produkId = parseInt(this.dataset.id);
-            const produk = produkData.find(p => p.id === produkId);
-            if (produk) {
-                pesanProduk(produk.nama, produk.harga);
-                document.getElementById('form-pemesanan').style.display = 'block';
-                document.getElementById('daftar-produk').style.display = 'none';
-                document.getElementById('form-pemesanan').scrollIntoView({ behavior: 'smooth' });
+    button.addEventListener('click', function(event) {
+        event.stopPropagation();
+        const produkId = parseInt(this.dataset.id);
+        const produk = produkData.find(p => p.id === produkId);
 
-                // Sembunyikan tombol "Buy Now" dan "Order Now" pada produk yang dipilih
-                const produkDiv = this.closest('.produk'); // Dapatkan elemen .produk terdekat
-                    if (produkDiv) {
-                    const buttons = produkDiv.querySelectorAll('button:not(.tombol-detail), a.link-form');
-                    buttons.forEach(btn => {
-                        if (btn !== this) { // Sembunyikan semua tombol KECUALI tombol yang diklik dan tombol detail
-                            btn.style.display = 'none';
-                        }
-                    });
-                }
+        if (produk) {
+            pesanProduk(produk.nama, produk.harga);
+            // Sembunyikan daftar produk, tampilkan formulir
+            document.getElementById('form-pemesanan').style.display = 'block';
+            document.getElementById('daftar-produk').style.display = 'none';
+            document.getElementById('form-pemesanan').scrollIntoView({ behavior: 'smooth' });
+
+            // Sembunyikan tombol "Buy Now" dan "Order Now" pada produk yang dipilih
+            const produkDiv = this.closest('.produk'); // Dapatkan elemen .produk terdekat
+            if (produkDiv) {
+                const buttons = produkDiv.querySelectorAll('button:not(.tombol-detail), a.link-form');
+                buttons.forEach(btn => {
+                  if (btn !== this && !btn.classList.contains('tombol-detail')) { // Jangan sembunyikan tombol detail
+                    btn.style.display = 'none';
+                  }
+                });
             }
-        });
+          }
     });
+});
 }
 
 // --- FUNGSI-FUNGSI LAINNYA ---
 
 function toggleDetail(button) {
-    const detailProduk = button.parentElement.querySelector('.detail-produk'); // Lebih spesifik
-    if (detailProduk) { // Cek apakah detailProduk ada
+    const detailProduk = button.closest('.produk-info').querySelector('.detail-produk'); // Perbaiki selektor
+    if (detailProduk) {
         detailProduk.style.display = detailProduk.style.display === 'none' ? 'block' : 'none';
         button.textContent = detailProduk.style.display === 'none' ? 'View Detail' : 'Hide Detail';
     }
@@ -160,8 +162,8 @@ function toggleDetail(button) {
 function pesanProduk(namaProduk, hargaProduk) {
     document.getElementById('produk').value = namaProduk;
     document.getElementById('harga').value = "Rp " + hargaProduk.toLocaleString('id-ID');
-    produkYgDipesan = namaProduk;  // Simpan di variabel global
-    hargaYgDipesan = hargaProduk; // Simpan di variabel global
+    produkYgDipesan = namaProduk;
+    hargaYgDipesan = hargaProduk;
 }
 
 // --- MODAL ---
@@ -192,12 +194,12 @@ window.addEventListener('click', (event) => {
     }
 });
 
+// --- Event listener untuk tombol Kembali ---
 tombolKembali.addEventListener('click', () => {
-    document.getElementById('form-pemesanan').style.display = 'none';
-    renderProduk(); // Panggil renderProduk() untuk menampilkan kembali semua produk
+    document.getElementById('form-pemesanan').style.display = 'none'; // Sembunyikan formulir
+    renderProduk(); // Panggil renderProduk() lagi!
     document.getElementById('daftar-produk').scrollIntoView({ behavior: 'smooth' });
-
-     // Menampilkan kembali tombol yang disembunyikan
+    //munculkan kembali produk button dan link form
      document.querySelectorAll('.produk button, .produk a.link-form').forEach(button => {
         button.style.display = ''; // Kosongkan style.display (kembalikan ke default)
     });
@@ -205,7 +207,7 @@ tombolKembali.addEventListener('click', () => {
 
 function tampilkanInstruksiPembayaranModal(metode) {
     const instruksiDiv = document.getElementById("modalInstruksiPembayaran");
-    instruksiDiv.innerHTML = ""; // Kosongkan
+    instruksiDiv.innerHTML = "";
     instruksiDiv.style.display = "block";
 
     if (metode === "transfer") {
@@ -245,7 +247,7 @@ function tampilkanInstruksiPembayaranModal(metode) {
 tombolBayarModal.addEventListener("click", function() {
     const metode = document.getElementById("modalMetodePembayaran").value;
     if (metode === "midtrans" || metode === "xendit") {
-        alert("Midtrans/Xendit integration requires backend and complex configuration. This is beyond the scope of this example.");
+        alert("Midtrans/Xendit integration requires backend and complex configuration.  This is beyond the scope of this example.");
     } else if (metode === "transfer") {
         const nama = document.getElementById("nama").value;
         const email = document.getElementById("email").value;
@@ -292,7 +294,7 @@ function adjustProductTitleFontSize() {
             counter++;
         }
         if(counter >= 50){
-            console.warn("Loop adjust font reach the limit", h2);
+            console.warn("Loop adjust font reach the limit", h2)
         }
     });
 }
@@ -300,14 +302,10 @@ function adjustProductTitleFontSize() {
 
 // --- PANGGIL FUNGSI-FUNGSI AWAL ---
 document.addEventListener('DOMContentLoaded', () => {
-    renderProduk(); // Render produk saat halaman dimuat
-    adjustProductTitleFontSize(); // Sesuaikan ukuran font judul (opsional)
-
-    // Event listener untuk scroll (jika Anda ingin animasi, tambahkan di sini)
-    window.addEventListener('scroll', () => {
-        // ... (kode animasi saat scroll, jika ada) ...
-    });
+    renderProduk();
+    adjustProductTitleFontSize();
 });
 
-window.addEventListener('resize', adjustProductTitleFontSize); //jika ingin function dijalankan pada saat perubahan ukuran
-window.addEventListener('load', adjustProductTitleFontSize); //jika ingin function dijalankan pada saat load
+// --- EVENT LISTENER TAMBAHAN (Opsional) ---
+window.addEventListener('resize', adjustProductTitleFontSize);
+window.addEventListener('load', adjustProductTitleFontSize);
