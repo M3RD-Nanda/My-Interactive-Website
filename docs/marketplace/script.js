@@ -85,7 +85,7 @@ let hargaYgDipesan = 0;
 // --- FUNGSI UNTUK MERENDER PRODUK KE HTML ---
 function renderProduk() {
     const daftarProdukDiv = document.getElementById('daftar-produk');
-    daftarProdukDiv.innerHTML = ''; // Kosongkan
+    daftarProdukDiv.innerHTML = ''; // Kosongkan dulu
 
     produkData.forEach(produk => {
         const produkDiv = document.createElement('div');
@@ -108,7 +108,6 @@ function renderProduk() {
     });
 
     addEventListeners();  // Panggil setelah render
-    resetTombolBeli(); // Panggil di sini!
 }
 
 // --- FUNGSI UNTUK MENAMBAHKAN EVENT LISTENERS ---
@@ -116,13 +115,13 @@ function addEventListeners() {
     // Tombol "View Detail"
     document.querySelectorAll('.tombol-detail').forEach(button => {
         button.addEventListener('click', function(event) {
-            event.stopPropagation();
+            event.stopPropagation(); // Hentikan event bubbling
             toggleDetail(this);
         });
     });
 
-    // Tombol "Buy Now" dan "Order Now"
-  document.querySelectorAll('.produk button:not(.tombol-detail), .link-form').forEach(button => {
+   // Tombol "Buy Now" dan "Order Now"
+document.querySelectorAll('.produk button:not(.tombol-detail), .link-form').forEach(button => {
     button.addEventListener('click', function(event) {
         event.stopPropagation();
         const produkId = parseInt(this.dataset.id);
@@ -130,35 +129,24 @@ function addEventListeners() {
 
         if (produk) {
             pesanProduk(produk.nama, produk.harga);
+            // Sembunyikan daftar produk, tampilkan formulir
             document.getElementById('form-pemesanan').style.display = 'block';
             document.getElementById('daftar-produk').style.display = 'none';
             document.getElementById('form-pemesanan').scrollIntoView({ behavior: 'smooth' });
 
             // Sembunyikan tombol "Buy Now" dan "Order Now" pada produk yang dipilih
-             sembunyikanTombolBeli(this);
-
-
+            const produkDiv = this.closest('.produk'); // Dapatkan elemen .produk terdekat
+            if (produkDiv) {
+                const buttons = produkDiv.querySelectorAll('button:not(.tombol-detail), a.link-form');
+                buttons.forEach(btn => {
+                    if (btn !== this  && !btn.classList.contains('tombol-detail')) { // Jangan sembunyikan tombol detail, dan tombol yang di click
+                         btn.style.display = 'none';
+                    }
+                });
+            }
         }
     });
 });
-}
-//---FUNGSI UNTUK MENANGANI PENAMPILAN TOMBOL "BUY NOW" dan "ORDER NOW"---
-function sembunyikanTombolBeli(clickedButton) {
-  const produkDiv = clickedButton.closest('.produk');
-    if (produkDiv) {
-      const buttons = produkDiv.querySelectorAll('button:not(.tombol-detail), a.link-form');
-        buttons.forEach(btn => {
-          if (btn !== clickedButton) {
-            btn.style.display = 'none';
-        }
-      });
-    }
-}
-
-function resetTombolBeli() {
-  document.querySelectorAll('.produk button, .produk a.link-form').forEach(button => {
-        button.style.display = ''; // Kosongkan style.display (kembalikan ke default)
-    });
 }
 
 // --- FUNGSI-FUNGSI LAINNYA ---
@@ -206,11 +194,15 @@ window.addEventListener('click', (event) => {
     }
 });
 
-// --- Event listener untuk tombol Kembali ---
+// --- Event listener untuk tombol Kembali (DIPERBAIKI) ---
 tombolKembali.addEventListener('click', () => {
-    document.getElementById('form-pemesanan').style.display = 'none'; // Sembunyikan formulir
-    renderProduk(); //Panggil fungsi Render ulang produk
+    document.getElementById('form-pemesanan').style.display = 'none';
+    document.getElementById('daftar-produk').style.display = ''; // KOSONGKAN display
     document.getElementById('daftar-produk').scrollIntoView({ behavior: 'smooth' });
+    //munculkan kembali produk button dan link form
+     document.querySelectorAll('.produk button, .produk a.link-form').forEach(button => {
+        button.style.display = ''; // Kosongkan style.display (kembalikan ke default)
+    });
 });
 
 function tampilkanInstruksiPembayaranModal(metode) {
@@ -309,6 +301,24 @@ function adjustProductTitleFontSize() {
     });
 }
 
+// --- Fungsi untuk menyembunyikan/menampilkan kembali tombol Buy Now/Order Now ---
+function sembunyikanTombolBeli(clickedButton) {
+  const produkDiv = clickedButton.closest('.produk');
+    if (produkDiv) {
+      const buttons = produkDiv.querySelectorAll('button:not(.tombol-detail), a.link-form');
+        buttons.forEach(btn => {
+          if (btn !== clickedButton && !btn.classList.contains('tombol-detail')) {
+            btn.style.display = 'none';
+        }
+      });
+    }
+}
+// --- Fungsi menampilkan semua tombol Buy Now/Order Now ---
+function resetTombolBeli() {
+  document.querySelectorAll('.produk button, .produk a.link-form').forEach(button => {
+        button.style.display = ''; // Kosongkan style.display (kembalikan ke default)
+    });
+}
 
 // --- PANGGIL FUNGSI-FUNGSI AWAL ---
 document.addEventListener('DOMContentLoaded', () => {
