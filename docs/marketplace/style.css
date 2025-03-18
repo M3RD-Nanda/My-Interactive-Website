@@ -333,14 +333,15 @@ nav {
         flex-direction: column;
         width: 100%;
         position: absolute;
-        top: 65px; /* Sesuaikan dengan tinggi header */
+        top: 100%; /* Sudah benar */
         left: 0;
         background-color: #fff;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        z-index: 10;
+        z-index: 999;
         transform: translateY(-100%);
         opacity: 0;
         transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        text-align: center; /* Sudah benar */
     }
 
     .nav-links.active {
@@ -351,15 +352,17 @@ nav {
 
     .nav-links li {
         margin: 0;
-        text-align: center;
         border-bottom: 1px solid var(--light-gray);
+        width: 100%; /* TAMBAHKAN INI */
     }
-     .nav-links li:last-child{
+
+    .nav-links li:last-child {
         border-bottom: none;
     }
 
     .nav-links a {
         padding: 15px;
+        display: block; /* Sudah benar */
     }
 
     nav {
@@ -369,7 +372,7 @@ nav {
     .hamburger-menu {
         display: block;
     }
-      /* Animasi pada icon hamburger */
+
     .nav-links.active + .hamburger-menu i {
         transform: rotate(90deg);
     }
