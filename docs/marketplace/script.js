@@ -1,6 +1,5 @@
 // script.js (Marketplace)
 
-// Data Produk
 const produkData = [
     {
         id: 1,
@@ -258,16 +257,14 @@ function adjustProductTitleFontSize() {
 }
 
 // --- Hamburger Menu ---
-
 // Pilih elemen hamburger menu dan daftar tautan navigasi.
 const hamburgerMenu = document.querySelector('.hamburger-menu');
 const navLinks = document.querySelector('.nav-links');
 
 // Tambahkan event listener 'click' ke hamburger menu.
 hamburgerMenu.addEventListener('click', function() {
- // Toggle (tambahkan/hapus) class 'active' pada daftar tautan.
- // Class 'active' ini digunakan oleh CSS untuk menampilkan/menyembunyikan menu.
- navLinks.classList.toggle('active');
+  // Toggle class 'active' pada daftar tautan navigasi.
+  navLinks.classList.toggle('active');
 });
 
 
@@ -275,6 +272,8 @@ hamburgerMenu.addEventListener('click', function() {
 document.addEventListener('DOMContentLoaded', () => {
     renderProduk();
     adjustProductTitleFontSize(); // Panggil setelah render produk
+    // --- Hamburger Menu --- TIDAK PERLU LAGI, karena sudah ada di atas
+
 });
 
 // Panggil adjustProductTitleFontSize() juga saat window di-resize dan load
