@@ -327,54 +327,56 @@ nav {
 
 /* Media Query untuk Navigasi */
 @media (max-width: 768px) {
-    /* ... (kode sebelumnya) ... */
     .nav-links {
-        display: none; /* Sembunyikan menu secara default di mobile */
-        flex-direction: column; /* Susun item menu secara vertikal */
+        display: none;
+        flex-direction: column;
         width: 100%;
         position: absolute;
-        top: 60px;  /* Sesuaikan dengan tinggi header Anda */
+        /* top: 60px;  Ganti ini */
+        top: 100%; /* Lebih baik pakai 100% */
         left: 0;
-        background-color: #fff; /* Warna background menu */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow */
-        z-index: 999; /* Pastikan di bawah hamburger */
-        /* Animasi: */
-        transform: translateY(-100%); /* Sembunyikan di atas */
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+        transform: translateY(-100%);
         opacity: 0;
         transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        /* Tambahkan ini: */
+        text-align: center; /* Pusatkan item menu */
     }
 
     .nav-links.active {
-        display: flex; /* Tampilkan menu saat class 'active' ada */
-        transform: translateY(0); /* Munculkan dari atas */
+        display: flex;
+        transform: translateY(0);
         opacity: 1;
     }
 
     .nav-links li {
         margin: 0;
-        text-align: center; /* Pusatkan teks */
-        border-bottom: 1px solid var(--light-gray); /* Garis pemisah */
-    }
-      .nav-links li:last-child {
-        border-bottom: none; /* Hilangkan border di item terakhir */
+        /* text-align: center;  Pindahkan ke .nav-links */
+        border-bottom: 1px solid var(--light-gray);
     }
 
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
 
     .nav-links a {
-        padding: 15px; /* Padding lebih besar */
+        padding: 15px;
+        /* Tambahkan ini */
+        display: block; /* Agar padding full width */
     }
 
     nav {
-        justify-content: space-between; /* Logo dan hamburger di ujung */
+        justify-content: space-between;
     }
 
     .hamburger-menu {
-        display: block; /* Tampilkan hamburger */
+        display: block;
     }
 
-    /* Animasi icon hamburger (opsional) */
     .nav-links.active + .hamburger-menu i {
-        transform: rotate(90deg); /* Putar icon 90 derajat */
+        transform: rotate(90deg);
     }
 }
 
