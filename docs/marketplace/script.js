@@ -197,7 +197,6 @@ window.addEventListener('click', (event) => {
 // --- Event listener untuk tombol Kembali ---
 tombolKembali.addEventListener('click', () => {
     document.getElementById('form-pemesanan').style.display = 'none'; // Sembunyikan formulir
-    renderProduk(); // Panggil renderProduk() lagi!
     document.getElementById('daftar-produk').scrollIntoView({ behavior: 'smooth' });
     //munculkan kembali produk button dan link form
      document.querySelectorAll('.produk button, .produk a.link-form').forEach(button => {
