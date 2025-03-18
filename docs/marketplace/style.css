@@ -17,17 +17,17 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: hidden;  /* Cegah scroll horizontal */
 }
 
 .container {
     max-width: 800px;
-    margin: 40px auto;
+    margin: 40px auto;  /* Margin atas/bawah, dan pusatkan */
     background-color: white;
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* PENTING */
+    overflow: hidden; /* PENTING untuk child yang di-float/grid */
 }
 
 h1 {
@@ -54,14 +54,14 @@ h1 {
 
 .produk {
     border: 1px solid var(--border-color);
-    padding: 15px;  /* Kurangi padding */
+    padding: 15px;
     border-radius: 10px;
     background-color: #fff;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    overflow: hidden; /* PENTING */
+    overflow: hidden;  /* PENTING: Cegah konten keluar dari border */
 }
 
 .produk:hover {
@@ -87,66 +87,64 @@ h1 {
 
 .produk h2 {
     margin-top: 0;
-    font-size: 1.2rem;  /* Perkecil ukuran font */
+    font-size: 1.2rem;
     color: var(--primary-color);
     line-height: 1.3;
     margin-bottom: 0.5rem;
-    word-wrap: break-word; /* PENTING */
+    word-wrap: break-word; /* PENTING: Text wrapping */
 }
 
 .produk .harga {
     font-weight: bold;
     color: var(--secondary-color);
     margin-top: auto; /* Dorong harga ke bawah */
-    margin-bottom: 8px; /* Jarak ke tombol */
-    font-size: 1em; /* Perkecil ukuran font */
+    margin-bottom: 8px;
+    font-size: 1em;
 }
 
 .produk .deskripsiSingkat {
-    font-size: 0.9em; /* Perkecil deskripsi */
+    font-size: 0.9em;
     color: #555;
     margin-bottom: 10px;
     line-height: 1.4;
-    word-wrap: break-word; /* PENTING */
+    word-wrap: break-word; /* PENTING: Text wrapping */
 }
 
 /* --- Tombol --- */
-/* Style untuk SEMUA tombol */
-.cta-button,
+.cta-button, /* Style untuk SEMUA tombol */
 .produk button,
-.link-form  {
+.link-form {
     display: inline-block;
     background-color: var(--primary-color);
     color: #fff;
-    padding: 10px 20px; /* Kurangi padding */
+    padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
     border: none;
-    font-size: 0.9em; /* Perkecil ukuran font */
+    font-size: 0.9em;
     cursor: pointer;
     margin: 5px; /* Jarak antar tombol */
 }
 
-/* Hover state untuk SEMUA tombol */
-.cta-button:hover,
+.cta-button:hover, /* Hover state untuk SEMUA tombol */
 .produk button:hover,
-.link-form:hover {
+ .link-form:hover{
     background-color: var(--secondary-color);
     transform: translateY(-3px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .tombol-detail {
-    background: none;
+    background: none; /* Hilangkan background bawaan */
     border: none;
     color: var(--primary-color);
     cursor: pointer;
     padding: 0;
     margin-top: 8px;
     font-size: 0.9em;
-    display: inline-block;
+    display: inline-block; /* Agar bisa diatur margin/padding */
     font-weight: bold;
 }
 
@@ -155,7 +153,7 @@ h1 {
 }
 
 .detail-produk {
-    display: none;
+    display: none; /* Sembunyikan secara default */
     margin-top: 10px;
     padding-top: 10px;
     border-top: 1px solid var(--border-color);
@@ -163,7 +161,6 @@ h1 {
     color: #555;
     word-wrap: break-word; /* PENTING */
 }
-
 /* Sembunyikan tombol "Buy Now" dan "Order Now" saat detail terbuka */
 .detail-produk + button {
      display: none;
@@ -196,35 +193,6 @@ h1 {
     display: block;
     margin-bottom: 5px;
 }
-
-#formPesan input[type="text"],
-#formPesan input[type="email"],
-#formPesan textarea,
-#formPesan select
-{
-    border-radius: 5px;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid var(--border-color);
-    box-sizing: border-box;  /* PENTING */
-    font-size: 0.9em; /* Perkecil ukuran font */
-    transition: border-color 0.3s ease;
-}
-
-#formPesan input[type="text"]:focus,
-#formPesan input[type="email"]:focus,
-#formPesan textarea:focus,
-#formPesan select:focus
-{
-    border-color: var(--primary-color);
-    outline: none;
-}
-
-#formPesan textarea {
-    resize: vertical;
-}
-
 /* Style untuk form*/
  #formPesan{
     display: flex;
@@ -238,33 +206,59 @@ h1 {
     flex-direction: column;
 }
 
+#formPesan input[type="text"],
+#formPesan input[type="email"],
+#formPesan textarea,
+#formPesan select {
+    width: 100%; /* Lebar penuh */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-sizing: border-box;  /* PENTING: Sertakan padding/border dalam width */
+    font-size: 0.9em;
+    transition: border-color 0.3s ease;
+}
+
+#formPesan input[type="text"]:focus,
+#formPesan input[type="email"]:focus,
+#formPesan textarea:focus,
+#formPesan select:focus {
+    border-color: var(--primary-color);
+    outline: none; /* Hilangkan outline bawaan browser */
+}
+
+#formPesan textarea {
+    resize: vertical; /* Izinkan resize vertikal saja */
+}
+
 /* --- MODAL --- */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
+    display: none; /* Sembunyikan secara default */
+    position: fixed; /* Tetap di tempat, meskipun di-scroll */
+    z-index: 1000; /* Di atas konten lain */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+    overflow: auto; /* Aktifkan scroll jika konten modal melebihi layar */
+    background-color: rgba(0, 0, 0, 0.4); /* Background semi-transparan */
 }
 
 .modal-content {
-    border-radius: 15px;
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 15% auto; /* 15% dari atas, dan pusatkan */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
-    max-width: 600px;
-    position: relative;
+    width: 80%; /* Lebar modal */
+    max-width: 600px; /* Lebar maksimum */
+    position: relative; /* Untuk positioning .close-button */
+    border-radius: 15px;
 }
 
 .close-button {
     color: #aaa;
-    position: absolute;
+    position: absolute; /* Posisi absolut terhadap .modal-content */
     top: 10px;
     right: 15px;
     font-size: 28px;
@@ -291,41 +285,39 @@ h1 {
     display: block;
     margin-bottom: 5px;
 }
-
 /* Select di dalam modal */
 #modalPembayaran select {
-      border-radius: 5px;
-    width: 100%;
+    width: 100%; /* Lebar penuh */
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid var(--border-color);
-    box-sizing: border-box;  /* PENTING */
-    font-size: 0.9em; /* Perkecil ukuran font */
+    border-radius: 5px;
+    box-sizing: border-box;  /* PENTING: Sertakan padding/border dalam width */
+    font-size: 0.9em;
     transition: border-color 0.3s ease;
     cursor: pointer;
 }
 
-#modalInstruksiPembayaran{
+#modalInstruksiPembayaran {
     padding: .8em;
     background-color: #f8f9fa;
     border: 1px solid #ddd;
 }
-
 /* --- NAVIGASI --- */
 header {
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 100; /* Pastikan navbar di atas konten lain */
 }
 
 nav {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: space-around; /* Distribusikan item secara merata */
+    align-items: center; /* Pusatkan item secara vertikal */
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto; /* Pusatkan navbar */
     padding: 0 20px;
 }
 
@@ -335,12 +327,12 @@ nav {
 }
 
 .nav-links {
-    list-style: none;
-    display: flex;
+    list-style: none; /* Hilangkan bullet */
+    display: flex; /* Navbar horizontal */
 }
 
 .nav-links li {
-    margin-left: 20px;
+    margin-left: 20px; /* Jarak antar item menu */
 }
 
 .nav-links a {
@@ -349,7 +341,7 @@ nav {
     padding: 8px 15px;
     border-radius: 5px;
     transition: background-color 0.3s ease, color 0.3s ease;
-    display: block;
+    display: block; /* Agar padding full width */
 }
 
 .nav-links a:hover {
@@ -363,11 +355,11 @@ nav {
     cursor: pointer;
     font-size: 1.5rem;
     padding: 10px;
-    z-index: 1000; /* Pastikan di atas menu */
+    z-index:1000; /* Pastikan di atas menu */
 }
 
 .hamburger-menu i {
-    color: black;
+    color: black; /* Warna icon hamburger */
     transition: transform 0.3s ease; /* Animasi putar */
 }
 
@@ -375,7 +367,7 @@ nav {
 @media (max-width: 768px) {
     .nav-links {
         display: none; /* Sembunyikan menu utama */
-        flex-direction: column;
+        flex-direction: column; /* Susun menu secara vertikal */
         width: 100%;
         position: absolute;
         top: 40px; /* Sesuaikan dengan tinggi header */
@@ -401,13 +393,13 @@ nav {
     }
 
     .nav-links li {
-        margin: 0;
-        border-bottom: 1px solid var(--light-gray);
+        margin: 0; /* Hilangkan margin */
+        border-bottom: 1px solid var(--light-gray); /* Garis pemisah */
         width: 100%;
     }
 
-     .nav-links li:last-child {
-        border-bottom: none;
+    .nav-links li:last-child {
+        border-bottom: none; /* Hilangkan garis pada item terakhir */
     }
 
     .nav-links a {
@@ -429,7 +421,7 @@ nav {
     }
 }
 
-/* --- POPUP PEMBAYARAN --- */
+/* --- POPUP INTRUKSI PEMBAYARAN --- */
 .payment-instructions {
     padding: 15px;
     border: 1px solid #ddd;
@@ -475,10 +467,12 @@ nav {
 @media (max-width: 600px) {
     #daftar-produk {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 1 kolom di mobile */
-        gap: 10px; /* Jarak lebih kecil */
+        gap: 10px;
     }
-    /* style untuk form*/
-     #formPesan input[type="text"],
+
+    /*style untuk form*/
+    #formPesan
+    #formPesan input[type="text"],
     #formPesan input[type="email"],
     #formPesan textarea, #formPesan select{
         font-size: .85em; /*Perkecil ukuran font*/

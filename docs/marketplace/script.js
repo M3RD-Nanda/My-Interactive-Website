@@ -152,8 +152,8 @@ document.querySelectorAll('.produk button:not(.tombol-detail), .link-form').forE
 // --- FUNGSI-FUNGSI LAINNYA ---
 
 function toggleDetail(button) {
-    const detailProduk = button.closest('.produk-info').querySelector('.detail-produk'); // Lebih spesifik
-    if (detailProduk) { // Cek apakah detailProduk ada
+    const detailProduk = button.closest('.produk-info').querySelector('.detail-produk');
+    if (detailProduk) {
         detailProduk.style.display = detailProduk.style.display === 'none' ? 'block' : 'none';
         button.textContent = detailProduk.style.display === 'none' ? 'View Detail' : 'Hide Detail';
     }
@@ -184,13 +184,25 @@ tombolLanjutPembayaran.addEventListener('click', () => {
     document.getElementById('form-pemesanan').style.display = 'none';
 });
 
+// --- Event listener untuk tombol tutup modal (DIPERBAIKI) ---
 tombolTutupModal.addEventListener('click', () => {
     modal.style.display = 'none';
+    document.getElementById('daftar-produk').style.display = ''; // Tampilkan kembali daftar produk
+    //munculkan kembali produk button dan link form
+     document.querySelectorAll('.produk button, .produk a.link-form').forEach(button => {
+        button.style.display = ''; // Kosongkan style.display (kembalikan ke default)
+    });
 });
 
+// --- Event listener untuk klik di luar modal (DIPERBAIKI) ---
 window.addEventListener('click', (event) => {
     if (event.target === modal) {
         modal.style.display = 'none';
+        document.getElementById('daftar-produk').style.display = ''; // Tampilkan kembali daftar produk
+        //munculkan kembali produk button dan link form
+        document.querySelectorAll('.produk button, .produk a.link-form').forEach(button => {
+        button.style.display = ''; // Kosongkan style.display (kembalikan ke default)
+        });
     }
 });
 
@@ -207,10 +219,10 @@ tombolKembali.addEventListener('click', () => {
 
 function tampilkanInstruksiPembayaranModal(metode) {
     const instruksiDiv = document.getElementById("modalInstruksiPembayaran");
-    instruksiDiv.innerHTML = ""; //kosongkan dulu
+    instruksiDiv.innerHTML = "";
     instruksiDiv.style.display = "block";
 
-    if(metode === "transfer"){
+    if (metode === "transfer") {
         instruksiDiv.innerHTML = `
         <div class="payment-instructions">
             <div class="bank-transfer-info">
@@ -237,10 +249,8 @@ function tampilkanInstruksiPembayaranModal(metode) {
             <p>After making the transfer, please confirm your payment by sending proof of transfer (photo/screenshot) via WhatsApp to <strong>0812-3456-7890</strong> or email to <strong>pembayaran@example.com</strong>. Also include your <strong>full name</strong> and the <strong>product name</strong> you ordered.</p>
         </div>
         `;
-
-
-    } else if (metode === "midtrans" || metode === "xendit"){
-          instruksiDiv.innerHTML = `<p>You will be redirected to the ${metode} payment page after clicking the "Pay" button.</p>`;
+    } else if (metode === "midtrans" || metode === "xendit") {
+        instruksiDiv.innerHTML = `<p>You will be redirected to the ${metode} payment page after clicking the "Pay" button.</p>`;
     } else {
         instruksiDiv.style.display = "none";
     }
@@ -291,8 +301,8 @@ function adjustProductTitleFontSize() {
         while (titleWidth > containerWidth && currentFontSize > minFontSize && counter < 50) {
             currentFontSize -= 0.5;
             h2.style.fontSize = currentFontSize + 'px';
-            titleWidth = h2.offsetWidth; // Update
-            containerWidth = product.querySelector('.produk-info').offsetWidth; // Update
+            titleWidth = h2.offsetWidth;  // Update
+            containerWidth = product.querySelector('.produk-info').offsetWidth;  //Update
             counter++;
         }
         if(counter >= 50){
@@ -301,24 +311,6 @@ function adjustProductTitleFontSize() {
     });
 }
 
-// --- Fungsi untuk menyembunyikan/menampilkan kembali tombol Buy Now/Order Now ---
-function sembunyikanTombolBeli(clickedButton) {
-  const produkDiv = clickedButton.closest('.produk');
-    if (produkDiv) {
-      const buttons = produkDiv.querySelectorAll('button:not(.tombol-detail), a.link-form');
-        buttons.forEach(btn => {
-          if (btn !== clickedButton && !btn.classList.contains('tombol-detail')) {
-            btn.style.display = 'none';
-        }
-      });
-    }
-}
-// --- Fungsi menampilkan semua tombol Buy Now/Order Now ---
-function resetTombolBeli() {
-  document.querySelectorAll('.produk button, .produk a.link-form').forEach(button => {
-        button.style.display = ''; // Kosongkan style.display (kembalikan ke default)
-    });
-}
 
 // --- PANGGIL FUNGSI-FUNGSI AWAL ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -329,3 +321,45 @@ document.addEventListener('DOMContentLoaded', () => {
 // --- EVENT LISTENER TAMBAHAN (Opsional) ---
 window.addEventListener('resize', adjustProductTitleFontSize);
 window.addEventListener('load', adjustProductTitleFontSize);
+
+//Fungsi untuk reset tampilan tombol "Buy Now" dan "Order Now"
+function resetTombolBeli() {
+    document.querySelectorAll('.produk button, .produk a.link-form').forEach(button => {
+        button.style.display = ''; // Kembalikan ke default
+    });
+}
+
+//FUNGSI UNTUK MENYEMBUNYIKAN TOMBOL KECUALI YANG DIKLIK
+function sembunyikanTombolBeli(clickedButton){
+     const produkDiv = clickedButton.closest('.produk');
+    if (produkDiv) {
+      const buttons = produkDiv.querySelectorAll('button:not(.tombol-detail), a.link-form');
+        buttons.forEach(btn => {
+          if (btn !== clickedButton && !btn.classList.contains('tombol-detail')) {
+            btn.style.display = 'none';
+        }
+      });
+    }
+}
+
+// Fungsi untuk menampilkan kembali semua tombol
+function resetTombolBeli() {
+    document.querySelectorAll('.produk button, .produk a.link-form').forEach(button => {
+        button.style.display = ''; // Kosongkan style.display (kembalikan ke default)
+    });
+}
+
+
+// --- EVENT LISTENER TAMBAHAN (Opsional) ---
+window.addEventListener('resize', adjustProductTitleFontSize);
+window.addEventListener('load', adjustProductTitleFontSize);
+
+
+// Panggil fungsi resetTombolBeli() saat halaman pertama kali dimuat
+document.addEventListener('DOMContentLoaded', () => {
+    renderProduk();
+    adjustProductTitleFontSize();
+    resetTombolBeli(); // PENTING: Panggil di sini
+});
+
+// --- (Akhir kode script.js) ---
