@@ -1,6 +1,5 @@
 // script.js (Marketplace)
 
-// --- (Kode data produk, renderProduk, dll. - SEBELUM hamburger menu) ---
 // Data Produk - DIISI FIKTIF
 const produkData = [
     {
@@ -73,15 +72,15 @@ function renderProduk() {
         const produkDiv = document.createElement('div');
         produkDiv.classList.add('produk');
         produkDiv.innerHTML = `
-            <img src="${produk.gambar}" alt="Gambar <span class="math-inline">\{produk\.nama\}"\>
-<div class\="produk\-info"\>
-<h2\></span>{produk.nama}</h2>
+            <img src="${produk.gambar}" alt="Gambar ${produk.nama}">
+            <div class="produk-info">
+                <h2>${produk.nama}</h2>
                 <p class="deskripsi-singkat">${produk.deskripsiSingkat}</p>
-                <p class="harga">Rp <span class="math-inline">\{produk\.harga\.toLocaleString\('id\-ID'\)\}</p\>
-<button class\="tombol\-detail" data\-id\="</span>{produk.id}">Lihat Detail</button>
+                <p class="harga">Rp ${produk.harga.toLocaleString('id-ID')}</p>
+                <button class="tombol-detail" data-id="${produk.id}">Lihat Detail</button>
                 <div class="detail-produk">
-                    <span class="math-inline">\{produk\.detail\}
-<a class\="link\-form" href\="\#form\-pemesanan" data\-id\="</span>{produk.id}">Pesan Sekarang</a>
+                    ${produk.detail}
+                    <a class="link-form" href="#form-pemesanan" data-id="${produk.id}">Pesan Sekarang</a>
                 </div>
                 <button data-id="${produk.id}">Beli Sekarang</button>
             </div>
@@ -229,8 +228,6 @@ tombolBayarModal.addEventListener("click", function(){
     }
 })
 
-
-
 // --- Fungsi Penyesuaian Ukuran Font Judul Produk ---
 function adjustProductTitleFontSize() {
     const products = document.querySelectorAll('.produk');
@@ -267,12 +264,10 @@ hamburgerMenu.addEventListener('click', () => {
 });
 // --- (Akhir bagian Hamburger Menu) ---
 
-
 // Jalankan renderProduk() dan adjustProductTitleFontSize() saat halaman selesai dimuat
 document.addEventListener('DOMContentLoaded', () => {
     renderProduk();
     adjustProductTitleFontSize(); // Panggil setelah render produk
-
 });
 
 // Panggil adjustProductTitleFontSize() juga saat window di-resize dan load
