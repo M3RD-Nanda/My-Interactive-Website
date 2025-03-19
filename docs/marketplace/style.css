@@ -34,7 +34,7 @@ header {
 
 nav {
     display: flex;
-    justify-content: space-between; /* Perubahan di sini */
+    justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
@@ -186,7 +186,8 @@ section p {
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-top: 20px;
+    flex-wrap: nowrap;
+    padding: 0 10px;
 }
 
 .contact-links a {
@@ -196,6 +197,7 @@ section p {
     color: var(--text-color);
     padding: 10px;
     transition: color 0.3s ease;
+    padding-top: 1.5rem;
 }
 
 .contact-links a:hover {
@@ -207,9 +209,6 @@ section p {
     margin-right: 8px;
 }
 
-#contact-us .center-text {
-    text-align: center;
-}
 /* Modal Styles */
 .modal-popup {
     display: none;
@@ -319,6 +318,10 @@ footer {
     z-index: 1001;
 }
 
+#contact-us .center-text {
+    text-align: center;
+}
+
 /* Responsiveness */
 @media (max-width: 768px) {
     .nav-links {
@@ -359,7 +362,10 @@ footer {
     .produk h3 {
         font-size: 1.1rem;
     }
-
+     .contact-links {
+        gap: 15px;
+        padding: 10px;
+    }
 }
 
 /* Animasi Modal */
