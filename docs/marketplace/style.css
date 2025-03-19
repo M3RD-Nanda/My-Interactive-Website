@@ -207,6 +207,9 @@ section p {
     margin-right: 8px;
 }
 
+#contact-us .center-text {
+    text-align: center;
+}
 /* Modal Styles */
 .modal-popup {
     display: none;
