@@ -36,11 +36,13 @@ p {
 }
 
 /* Animasi putar untuk ikon hourglass */
-.animated-hourglass {
-    animation: rotate 2s linear infinite;
+/* Hapus .animated-hourglass */
+#hourglass {
     color: #663399;
     margin-bottom: 25px;
     display: inline-block; /* Penting untuk animasi putar */
+    animation: rotate 2s linear infinite; /* Pindahkan animasi ke sini */
+
 }
 
 .social-icons {
