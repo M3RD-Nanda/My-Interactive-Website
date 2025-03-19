@@ -25,7 +25,6 @@ You can see a live demo of this website at:
 *   **JavaScript (ES6+):** Interactivity, smooth scrolling, animations, and dynamic content loading.
 *   **Font Awesome:** Icons.
 *   **GitHub Pages:** Website hosting.
-*    **(Optional) AOS:** *Jika Anda menggunakan library AOS untuk animasi, tambahkan di sini.*
 
 ## 📁 Project Structure
 ```
