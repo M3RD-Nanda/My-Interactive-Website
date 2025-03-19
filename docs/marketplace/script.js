@@ -1,43 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // Data Produk (Simulasi dari API - Produk Digital)
-    const produkData = [
-        {
-            id: 1,
-            nama: "Financial Statement Creation Service",
-            harga: 500000,
-            detail: "Comprehensive financial statement creation service, including balance sheets, income statements, and cash flow statements, tailored to your business needs.",
-            gambar: "path/ke/gambar1.jpg"
-        },
-        {
-            id: 2,
-            nama: "Graphic Design Service",
-            harga: 300000,
-            detail: "Professional graphic design services for logos, brochures, posters, and social media content. Enhance your brand's visual identity.",
-            gambar: "path/ke/gambar2.jpg"
-        },
-        {
-            id: 3,
-            nama: "Business Data Analysis Service",
-            harga: 400000,
-            detail: "In-depth business data analysis services using Excel, SPSS, and other tools to provide actionable insights for your business.",
-            gambar: "path/ke/gambar3.jpg"
-        },
-        {
-            id: 4,
-            nama: "Website Development Service",
-            harga: 1000000,
-            detail: "Custom website development service using HTML, CSS, and JavaScript.  Create a stunning and functional online presence for your business.",
-            gambar: "path/ke/gambar4.jpg"
-        }
-    ];
+    // --- HAPUS const productData = [...] dari sini ---
 
     // --- Fungsi untuk Merender Produk ---
     const produkContainer = document.getElementById('produk-container');
 
     function renderProduk() {
         produkContainer.innerHTML = ''; // Bersihkan container
-        produkData.forEach(produk => {
+        productData.forEach(produk => { // Ambil dari productData (global)
             const produkEl = document.createElement('div');
             produkEl.classList.add('produk');
             produkEl.dataset.id = produk.id;
@@ -73,8 +43,11 @@ document.addEventListener('DOMContentLoaded', function() {
         adjustProductTitleFontSize();
     }
 
-
-    // --- Modal Detail Produk ---
+    // --- (Sisa kode di script.js TIDAK BERUBAH) ---
+    // ... (Modal Detail Produk, Formulir Pemesanan, Modal Pembayaran, dll.) ...
+    // ... (Fungsi-fungsi lain: tampilkanDetailProduk, resetFormulir, formatRupiah, dll.) ...
+    // ... (Event listener: hamburger menu, window click, dll.) ...
+      // --- Modal Detail Produk ---
     const modalProduk = document.getElementById('modal-produk');
     const closeModalProduk = document.getElementById('close-modal-produk');
     const modalNamaProduk = document.getElementById('modal-nama-produk');
@@ -84,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const pesanSekarangBtn = document.getElementById('pesan-sekarang');
 
     function tampilkanDetailProduk(produkId) {
-        const produk = produkData.find(p => p.id === produkId);
+        const produk = productData.find(p => p.id === produkId);
         if (!produk) return;
 
         modalNamaProduk.textContent = produk.nama;
@@ -116,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function tampilkanFormulirPemesanan(produkId) {
         produkIdTerpilih = produkId;
-        const produk = produkData.find(p => p.id === produkId);
+        const produk = productData.find(p => p.id === produkId);
         if (produk) {
             namaProdukPesanan.textContent = produk.nama;
         }
@@ -175,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        const produk = produkData.find(p => p.id === produkIdTerpilih);
+        const produk = productData.find(p => p.id === produkIdTerpilih);
         if (!produk) return;
 
         const total = produk.harga;
@@ -281,8 +254,8 @@ document.addEventListener('DOMContentLoaded', function() {
             modalPembayaran.style.display = 'none';
         }
     });
-
-      function throttledAdjustProductTitleFontSize() {
+    
+    function throttledAdjustProductTitleFontSize() {
         let ticking = false;
 
         return function() {
@@ -297,5 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     const optimizedAdjustProductTitleFontSize = throttledAdjustProductTitleFontSize();
     window.addEventListener('resize', optimizedAdjustProductTitleFontSize);
+
+    renderProduk(); // Panggil renderProduk di sini
 
 });
