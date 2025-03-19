@@ -7,8 +7,8 @@
 }
 
 :root {
-    --primary-color: #663399; /* Ungu Rebecca Purple */
-    --secondary-color: #8058a5; /* Ungu yang sedikit lebih terang, untuk hover, dll. (Sesuaikan) */
+    --primary-color: #663399;
+    --secondary-color: #8058a5;
     --text-color: #333;
     --background-color: #f4f4f4;
     --light-gray: #eee;
@@ -34,7 +34,7 @@ header {
 
 nav {
     display: flex;
-    justify-content: space-between; /* Perubahan di sini */
+    justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
@@ -71,7 +71,7 @@ nav {
 
 /* Hamburger Menu */
 .hamburger-menu {
-    display: none; /* Sembunyikan di layar besar */
+    display: none;
     cursor: pointer;
     font-size: 1.5rem;
     padding: 10px;
@@ -140,7 +140,6 @@ nav {
     height: auto;
     border-radius: 50%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* width dan height sebaiknya diatur di sini, bukan inline */
 }
 
 /* Bagian About */
@@ -178,7 +177,7 @@ nav {
 }
 
 .about-text p {
-    margin-bottom: 1rem; /* Tambahkan spasi antar paragraf */
+    margin-bottom: 1rem;
 }
 
 .about-image {
@@ -280,20 +279,18 @@ nav {
     overflow: hidden;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex; /* Tambahkan ini */
-    flex-direction: column; /* Tambahkan ini */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transisi untuk hover */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Efek hover untuk desktop */
 .project:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Efek active (touch) untuk mobile */
 .project:active .project-image {
-    transform: scale(1.05); /* Sedikit perbesar gambar */
+    transform: scale(1.05);
 }
 
 .project-image {
@@ -337,8 +334,8 @@ nav {
     border-radius: 5px;
     font-weight: bold;
     transition: background-color 0.3s ease, color 0.3s ease;
-    margin-top: auto; /* Dorong ke bawah */
-    align-self: center; /* Pusatkan tombol */
+    margin-top: auto;
+    align-self: center;
 }
 
 .project a:hover {
@@ -366,9 +363,9 @@ nav {
 
 .contact-links {
     display: flex;
-    justify-content: center; /* Perubahan di sini */
+    justify-content: center;
     gap: 20px;
-    flex-wrap: wrap; /* Tambahkan ini */
+    flex-wrap: wrap;
 }
 
 .contact-links a {
@@ -439,28 +436,28 @@ footer {
     /* Hero Section */
     #hero {
         flex-direction: column;
-        align-items: center; /* Pusatkan konten di mobile */
+        align-items: center;
         text-align: center;
     }
 
     .hero-content {
         margin-bottom: 30px;
-        margin-right: 0; /* Hapus margin kanan */
+        margin-right: 0;
     }
 
     .hero-content h1 {
-        font-size: 2.5rem;  /* Perkecil ukuran font */
-        text-align: center; /* Pusatkan teks */
+        font-size: 2.5rem;
+        text-align: center;
     }
 
     .animated-text {
-        font-size: 1.2rem;  /* Perkecil ukuran font */
-        text-align: center; /* Pusatkan teks */
+        font-size: 1.2rem;
+        text-align: center;
     }
 
      .cta-button {
-        display: flex; /* Jadikan flex container */
-        justify-content: center; /* Pusatkan kontennya */
+        display: flex;
+        justify-content: center;
     }
     /* --- */
 
@@ -480,21 +477,25 @@ footer {
         justify-content: center;
     }
 
-    /* Sembunyikan link di mobile, bisa diganti dengan ikon */
     .project a {
       display: initial;
     }
-    /* --- */
 
     .contact-links {
-        flex-direction: row; /* Ubah kembali ke row */
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+    }
+
+      .contact-links a {
+        padding: 5px;
     }
 }
 
 /* Mobile (lebih kecil) */
 @media (max-width: 480px) {
     .hero-content h1 {
-        font-size: 2rem; /* Perkecil lagi */
+        font-size: 2rem;
     }
 }
 
@@ -514,7 +515,7 @@ footer {
 /* Perubahan animasi: Terapkan pada elemen yang relevan */
 .skill.animate-skill,
 .animate-heading{
-    opacity: 1;  /* Awalnya visible (karena kita cek scroll) */
+    opacity: 1;
     transform: translateY(0);
     transition: all 0.6s ease;
 }
@@ -523,5 +524,5 @@ footer {
 .skill.animate-skill.animate-out,
 .animate-heading.animate-out {
     opacity: 0;
-    transform: translateY(20px); /* atau scale(0.95) */
+    transform: translateY(20px);
 }
