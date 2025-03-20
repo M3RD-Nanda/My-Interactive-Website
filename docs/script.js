@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // --- TIDAK PERLU INISIALISASI MANUAL ---
-    // var loader = new ldBar("#my-loader");  // HAPUS INI
+
+    // --- Inisialisasi ldBar (Pindahkan ke bawah, dan tambahkan setTimeout) ---
+    setTimeout(function() {
+        var loader = new ldBar("#my-loader");
+        loader.set(100); // Pastikan nilai awal diatur ke 100
+    }, 1000); // Delay 0 milidetik (hampir instan, tapi memberikan waktu untuk render)
+
 
     // --- Sembunyikan loader setelah semua elemen dimuat ---
     window.addEventListener('load', function() {
@@ -10,14 +15,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // --- Smooth Scrolling ---
+    // ... (sisa kode script.js Anda) ...
+     // --- Smooth Scrolling ---
     const navLinks = document.querySelectorAll('.nav-links a');
 
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
 
-            if (targetId.startsWith("#")) {
+            if (targetId.startsWith("#")) { // Cek apakah ini anchor link
                 e.preventDefault();
                 const targetElement = document.querySelector(targetId);
 
@@ -27,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 }
             } else {
+                // Untuk link eksternal (bukan anchor), ganti halaman
                 window.location.href = targetId;
             }
 
@@ -44,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinksContainer = document.querySelector('.nav-links');
     const hamburgerIcon = document.querySelector('.hamburger-menu i');
 
+
     hamburgerMenu.addEventListener('click', function() {
         navLinksContainer.classList.toggle('show');
         // Ganti ikon hamburger
@@ -58,15 +66,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- Animasi Teks Hero ---
     const animatedText = document.querySelector('.animated-text');
-    animatedText.style.opacity = 1;
+    animatedText.style.opacity = 1; // Langsung tampilkan
 
     // --- Animasi Scroll (Heading dan Skill) ---
     function animateOnScroll() {
-      const headings = document.querySelectorAll('.animate-heading');
-      const skills = document.querySelectorAll('.skill');
+      const headings = document.querySelectorAll('.animate-heading'); // Semua heading
+      const skills = document.querySelectorAll('.skill');          // Semua skill
 
       animateElements(headings);
-      animateElements(skills, 'animate-skill');
+      animateElements(skills, 'animate-skill');  // Tambahkan class khusus skill
   }
 
   function animateElements(elements, animateClass = '') {
@@ -79,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   element.classList.add(animateClass);
               }
               element.classList.add('animate-heading');
-              element.classList.remove('animate-out');
+              element.classList.remove('animate-out'); // Hapus kelas animate-out
 
           } else {
               if (animateClass){
@@ -87,22 +95,25 @@ document.addEventListener('DOMContentLoaded', function() {
               }
 
               element.classList.remove('animate-heading');
-              element.classList.add('animate-out');
+              element.classList.add('animate-out');     // Tambahkan kelas animate-out
           }
       });
     }
 
-    animateOnScroll();
+
+
+    animateOnScroll(); // Panggil sekali saat load
     window.addEventListener('scroll', animateOnScroll);
+
 
     // --- Penyesuaian Ukuran Font Judul Skill ---
     function adjustSkillTitleFontSize() {
         const skillTitles = document.querySelectorAll('.skill h3');
-        const maxWidth = 250;
+        const maxWidth = 250; // Lebar maksimum container skill
 
         skillTitles.forEach(title => {
             const containerWidth = title.parentElement.offsetWidth;
-            let fontSize = 1.75;
+            let fontSize = 1.75; // Ukuran font awal
 
             if (containerWidth < maxWidth) {
                 const scale = containerWidth / maxWidth;
@@ -110,15 +121,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             title.style.fontSize = `${fontSize}rem`;
 
-            // Reset white-space
+            // Reset white-space jika sudah pernah diubah.
             title.style.whiteSpace = 'normal';
             if(title.scrollHeight > title.clientHeight) {
                 title.style.whiteSpace = 'nowrap';
             }
         });
     }
-
-    function throttledAdjustSkillTitleFontSize() {
+      //gunakan requestAnimationFrame
+      function throttledAdjustSkillTitleFontSize() {
         let ticking = false;
 
         return function() {
@@ -133,6 +144,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     const optimizedAdjustSkillTitleFontSize = throttledAdjustSkillTitleFontSize();
 
-    optimizedAdjustSkillTitleFontSize();
+
+    optimizedAdjustSkillTitleFontSize(); // Panggil sekali saat load
     window.addEventListener('resize', optimizedAdjustSkillTitleFontSize);
+
+
 });
