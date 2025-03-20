@@ -2,6 +2,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Inisialisasi ldBar (BUKAN di dalam window.onload) ---
     var loader = new ldBar("#my-loader");
     loader.set(0); // Mulai dari 0
+    
+    // --- Update loader secara bertahap ---
+    var progress = 0;
+    var interval = setInterval(function() {
+        if (progress < 100) {
+            progress += 1;
+            loader.set(progress);
+        } else {
+            clearInterval(interval);
+        }
+    }, 50); // Update setiap 50ms
 
      // --- Sembunyikan loader dan kartun HANYA JIKA window TELAH LOAD ---
     window.addEventListener('load', function() {
@@ -11,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
           }
     });
 
-    // ... (Sisa kode script.js Anda - TIDAK ADA PERUBAHAN) ...
     //  (Smooth Scrolling, Hamburger Menu, Animasi Teks Hero, dll.)
     // --- Smooth Scrolling ---
     const navLinks = document.querySelectorAll('.nav-links a');
