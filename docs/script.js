@@ -1,5 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // --- Inisialisasi ldBar ---
+    // --- Inisialisasi ldBar (dari loading.io) ---
+    /*
+     *  Kode ini menginisialisasi library loading bar dari loading.io.
+     *  `new ldBar("#my-loader")` membuat instance baru dari loading bar
+     *  dan mengaitkannya dengan elemen HTML dengan ID "my-loader".
+     *
+     *  `setInterval` digunakan untuk mensimulasikan progress loading.
+     *  Setiap 10 milidetik, nilai `currentValue` akan bertambah 1,
+     *  dan nilai ini akan diteruskan ke `loader.set(currentValue)`
+     *  untuk memperbarui tampilan loading bar.
+     *
+     *  Ketika `currentValue` mencapai 100, interval dihentikan, dan
+     *  loader serta kartun disembunyikan.
+     */
     var loader = new ldBar("#my-loader");
        var currentValue = 0;
        var intervalId = setInterval(function() {

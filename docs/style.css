@@ -88,6 +88,29 @@ nav {
 }
 
 /* --- Loading Animation (loading.io) --- */
+/*
+ *  Bagian ini menggunakan library loading bar dari loading.io.
+ *  Library ini memungkinkan kita membuat animasi loading kustom dengan mudah
+ *  menggunakan atribut data-*.  Kode di bawah ini mengkonfigurasi
+ *  tampilan dan perilaku loading bar.
+ *
+ *  Sumber: https://loading.io/
+ *
+ *  Cara Kerja:
+ *  1.  Elemen HTML dengan class `ldBar` dan ID `my-loader` digunakan sebagai
+ *      container untuk loading bar.
+ *  2.  Atribut `data-*` pada elemen ini digunakan untuk mengatur:
+ *      - `data-preset`:  Jenis animasi (misalnya, "circle").
+ *      - `data-value`:  Nilai awal progress (0-100).
+ *      - `data-fill`:  Warna pengisi (bisa gradien, gambar, dll.).
+ *          - `data:ldbar/res,bubble(...)`: Ini menggunakan fungsi `bubble` bawaan dari `loading.io`
+ *            untuk membuat efek gelembung.  Parameter di dalamnya adalah warna dan ukuran gelembung.
+ *      - `data-stroke`: Warna garis tepi.
+ *      - `data-stroke-width`: Ketebalan garis tepi.
+ *  3.  JavaScript (di file script.js) akan menginisialisasi dan mengontrol
+ *      loading bar ini, mengubah `data-value` secara dinamis untuk
+ *      menunjukkan progress.
+ */
 #loader-container {
     position: fixed;
     top: 0;
