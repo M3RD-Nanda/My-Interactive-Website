@@ -20,6 +20,10 @@ body {
     color: var(--text-color);
     background-color: var(--background-color);
     overflow-x: hidden;
+     /* Make body a flex container */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Minimum height of viewport */
 }
 
 /* Header dan Navigasi */
@@ -84,8 +88,6 @@ nav {
 }
 
 /* --- Loading Animation (loading.io) --- */
-/* Style khusus untuk loading bar, jika diperlukan */
-
 #loader-container {
     position: fixed;
     top: 0;
@@ -99,9 +101,30 @@ nav {
     z-index: 9999;
 }
 
-/* --- End Loading Animation --- */
+/* --- Animasi Kartun --- */
+#cartoon-walk {
+    position: absolute;
+    bottom: 0;
+    right: -20vw; /* Mulai dari luar layar kanan (20% lebar viewport) */
+    animation: walkAcross 3s linear forwards; /* Lebih cepat! */
+    z-index: 10000;
+}
 
-/* Bagian Hero */
+#cartoon-walk img {
+     width: 20vw;  /* Ukuran dasar untuk desktop */
+    height: auto;
+}
+
+@keyframes walkAcross {
+    from {
+        transform: translateX(0vw); /* Mulai dari kanan (100% lebar viewport) */
+    }
+    to {
+        transform: translateX(-1600%); /* Bergerak ke kiri layar */
+    }
+}
+
+/* --- Hero Section --- */
 #hero {
     display: flex;
     align-items: center;
@@ -115,9 +138,7 @@ nav {
 .hero-content {
     flex: 1;
     margin-right: 5rem;
-    text-align: left;
 }
-
 .hero-content h1 {
     font-size: 3rem;
     margin-bottom: 15px;
@@ -451,30 +472,38 @@ footer {
     }
 
     /* Hero Section */
-    #hero {
+     #hero {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
 
+    /* Perubahan di sini: Pusatkan konten hero */
     .hero-content {
         margin-bottom: 30px;
-        margin-right: 0;
+        margin-right: 0; /* Hapus margin kanan */
+        text-align: center; /* Pusatkan teks */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
+     .hero-content h1, .hero-content p {
+        text-align: center; /* Pusatkan teks */
+    }
+
 
     .hero-content h1 {
         font-size: 2.5rem;
-        text-align: center;
+
     }
 
     .animated-text {
         font-size: 1.2rem;
-        text-align: center;
-    }
 
+    }
      .cta-button {
-        display: flex;
-        justify-content: center;
+        display: flex; /*  Flexbox untuk centering */
+        justify-content: center; /* Pusatkan secara horizontal */
     }
     /* --- */
 
@@ -504,13 +533,30 @@ footer {
         gap: 10px;
     }
 
-    .contact-links a {
-        padding: 5px; /* Override padding for mobile */
+      .contact-links a {
+        padding: 5px;
+    }
+     /* --- Animasi Kartun (Mobile) --- */
+    #cartoon-walk img {
+        width: 50vw; /* Perbesar ukuran kartun */
+    }
+
+     /* Ubah animasi agar mulai dari luar kanan layar */
+     @keyframes walkAcross {
+        from {
+            transform: translateX(20vw); /* Mulai dari kanan */
+        }
+        to {
+            transform: translateX(-800%); /* Ke kiri */
+        }
     }
 }
 
 /* Mobile (lebih kecil) */
 @media (max-width: 480px) {
+     #cartoon-walk img {
+        width: 50vw;
+    }
     .hero-content h1 {
         font-size: 2rem;
     }
