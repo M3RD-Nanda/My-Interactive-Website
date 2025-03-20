@@ -66,7 +66,6 @@ nav {
     color: #fff;
 }
 
-/* Hamburger Menu */
 .hamburger-menu {
     display: none;
     cursor: pointer;
@@ -76,11 +75,10 @@ nav {
 }
 
 .hamburger-menu i {
-  color: black;
-  transition: transform 0.3s ease;
+    color: black;
+    transition: transform 0.3s ease;
 }
 
-/* Main Content Styles */
 main {
     max-width: 1200px;
     margin: 20px auto;
@@ -107,7 +105,6 @@ section p {
     line-height: 1.8;
 }
 
-/* Product Grid */
 .produk-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -121,9 +118,8 @@ section p {
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     background-color: #fff;
-    display: flex; /* Flexbox untuk layout */
-    flex-direction: column; /* Susun elemen secara vertikal */
-
+    display: flex;
+    flex-direction: column;
 }
 
 .produk:hover {
@@ -136,7 +132,7 @@ section p {
     height: auto;
     border-radius: 4px;
     margin-bottom: 10px;
-     order: -1;
+    order: -1;
 }
 
 .produk h3 {
@@ -144,10 +140,8 @@ section p {
     margin-bottom: 5px;
     color: var(--primary-color);
     line-height: 1.2;
-     white-space: normal;
+    white-space: normal;
     word-break: break-word;
-
-
 }
 
 .produk p {
@@ -173,15 +167,14 @@ section p {
     transition: background-color 0.3s ease;
     border: none;
     cursor: pointer;
-    margin-top: auto; /* Dorong tombol ke bawah */
-    width: 100%;     /* Isi lebar container */
+    margin-top: auto;
+    width: 100%;
 }
 
 .cta-button:hover {
     background-color: var(--secondary-color);
 }
 
-/* Contact Links */
 .contact-links {
     display: flex;
     justify-content: center;
@@ -209,7 +202,6 @@ section p {
     margin-right: 8px;
 }
 
-/* Modal Styles */
 .modal-popup {
     display: none;
     position: fixed;
@@ -233,7 +225,6 @@ section p {
     animation: slideDown 0.3s ease;
 }
 
-/* Close Button */
 .close-button {
     position: absolute;
     top: 15px;
@@ -248,7 +239,6 @@ section p {
     color: var(--primary-color);
 }
 
-/* Form Styles */
 .modal-content h2 {
     color: var(--primary-color);
     margin-bottom: 20px;
@@ -290,15 +280,22 @@ form textarea {
     min-height: 100px;
 }
 
-/* Total Payment */
 #total-pembayaran {
-  font-weight: bold;
-  font-size: 1.1rem;
-  color: var(--secondary-color);
-  margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
 }
 
-/* Footer */
+#modal-produk .modal-content img {
+    max-width: 70%;
+    max-height: 60vh;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 5px auto;
+}
+
 footer {
     background-color: var(--primary-color);
     color: #fff;
@@ -312,8 +309,8 @@ footer {
     margin-top: -10px;
     margin-bottom: 10px;
     display: block;
-
 }
+
 .modal-produk {
     z-index: 1001;
 }
@@ -322,7 +319,6 @@ footer {
     text-align: center;
 }
 
-/* Responsiveness */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -344,9 +340,9 @@ footer {
         text-align: center;
     }
 
-    .nav-links a{
-      padding: 15px;
-      border-bottom: 1px solid var(--light-gray);
+    .nav-links a {
+        padding: 15px;
+        border-bottom: 1px solid var(--light-gray);
     }
 
     .hamburger-menu {
@@ -359,21 +355,23 @@ footer {
         padding: 20px;
         width: auto;
     }
+
     .produk h3 {
         font-size: 1.1rem;
     }
-     .contact-links {
+
+    .contact-links {
         gap: 15px;
         padding: 10px;
     }
 }
 
-/* Animasi Modal */
 @keyframes slideDown {
     from {
         transform: translateY(-50px);
         opacity: 0;
     }
+
     to {
         transform: translateY(0);
         opacity: 1;
