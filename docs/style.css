@@ -84,6 +84,7 @@ nav {
 }
 
 /* --- Loading Animation (loading.io) --- */
+/* Style khusus untuk loading bar, jika diperlukan */
 
 #loader-container {
     position: fixed;
@@ -98,15 +99,7 @@ nav {
     z-index: 9999;
 }
 
-
-#my-loader {
-    width: 150px; /* Sesuaikan ukuran */
-    height: 150px;/* Sesuaikan ukuran */
-    /* border: 2px solid #3498db; */  /* Contoh style tambahan */
-}
-
 /* --- End Loading Animation --- */
-
 
 /* Bagian Hero */
 #hero {
@@ -511,8 +504,8 @@ footer {
         gap: 10px;
     }
 
-      .contact-links a {
-        padding: 5px;
+    .contact-links a {
+        padding: 5px; /* Override padding for mobile */
     }
 }
 
