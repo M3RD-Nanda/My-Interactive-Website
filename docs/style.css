@@ -83,7 +83,8 @@ nav {
     transition: transform 0.3s ease;
 }
 
-/* --- Loading Animation --- */
+/* --- Loading Animation (loading.io) --- */
+
 #loader-container {
     position: fixed;
     top: 0;
@@ -97,23 +98,15 @@ nav {
     z-index: 9999;
 }
 
-#loader {
-    width: 100px; 
-    height: 100px; 
+
+#my-loader {
+    width: 150px; /* Sesuaikan ukuran */
+    height: 150px;/* Sesuaikan ukuran */
+    /* border: 2px solid #3498db; */  /* Contoh style tambahan */
 }
 
-#loading-circle {
-    stroke-dasharray: 283;
-    stroke-dashoffset: 283;
-    animation: fill-circle 2s linear infinite;
-}
-
-@keyframes fill-circle {
-    to {
-        stroke-dashoffset: 0;
-    }
-}
 /* --- End Loading Animation --- */
+
 
 /* Bagian Hero */
 #hero {
